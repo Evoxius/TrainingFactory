@@ -1,12 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%; width: 90%; background-image: url("images/greyBg.png");">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/jpg" href="/images/healthone.jpg" />
+        {% block stylesheets %}
+   <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="../public/js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="../public/js/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="../public/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="../public/js/mdb.min.js"></script>
+  {% endblock %}
     </head>
-    <body>
+    <body style="display: flex; flex-direction: column; min-height: 100vh; margin-left:10%; background-image: url("../public/images/greyBg.png");">
+        {{ include('incl/navbar.html.twig') }}
+        
+        <div class="container">
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        </div>
+
+        {% block javascripts %}
+    
+  <!-- Bootstrap Files -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="../public/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="../public/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles (optional) -->
+    <link href="../public/css/style.css" rel="stylesheet">
+  {% endblock %}
+
+        {{ include('incl/footer.html.twig') }}
     </body>
 </html>

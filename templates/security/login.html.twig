@@ -3,25 +3,76 @@
 {% block title %}Hello!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    .error {color: red}
-</style>
+<!-- Material form login -->
+<div class="card" style="margin-top:10%; margin-bottom:10%;">
 
-<div class="example-wrapper">
-    <h1>Login hier</h1>
+  <h5 class="card-header teal white-text text-center py-4">
+    <strong>Sign in</strong>
+  </h5>
+
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0">
 
     {% if error %} 
         <span class="error">{{ error.messageKey }}</span>
     {% endif %}
 
-  <form action="{{ path('login') }}" method="POST">
-    <input type="text" name="_username" value="{{ last_username }}" placeholder="Gebruikersnaam hier ...">
-  <br>
-    <input type="password" name="_password" placeholder="Wachtwoord hier ...">
-  <br><br>
-    <button type="submit">Login</button>
-  </form>
+    <!-- Form -->
+    <form action="{{ path('login') }}" method="POST" class="text-center" style="color: #757575;">
+
+      <!-- Gebruikersnaam -->
+      <div class="md-form">
+       <input type="text" id="materialLoginFormEmail" name="_username" value="{{ last_username }}" placeholder="Username" class="form-control">
+      </div>
+
+      <!-- Password -->
+      <div class="md-form">
+         <input type="password" name="_password" id="materialLoginFormPassword" placeholder="Password" class="form-control">
+      </div>
+
+      <div class="d-flex justify-content-around">
+        <div>
+          <!-- Remember me -->
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="materialLoginFormRemember">
+            <label class="form-check-label" for="materialLoginFormRemember">Remember me</label>
+          </div>
+        </div>
+        <div>
+          <!-- Forgot password -->
+          <a href="">Forgot password?</a>
+        </div>
+      </div>
+
+      <!-- Sign in button -->
+      <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
+
+      <!-- Register -->
+      <p>Not a member?
+        <a href="">Register</a>
+      </p>
+
+      <!-- Social login -->
+      <p>or sign in with:</p>
+      <a type="button" class="btn-floating btn-fb btn-sm">
+        <i class="fa fa-facebook"></i>
+      </a>
+      <a type="button" class="btn-floating btn-tw btn-sm">
+        <i class="fa fa-twitter"></i>
+      </a>
+      <a type="button" class="btn-floating btn-li btn-sm">
+        <i class="fa fa-linkedin"></i>
+      </a>
+      <a type="button" class="btn-floating btn-git btn-sm">
+        <i class="fa fa-github"></i>
+      </a>
+
+    </form>
+    <!-- Form -->
+
+  </div>
+
 </div>
+<!-- Material form login -->
+
 {% endblock %}
