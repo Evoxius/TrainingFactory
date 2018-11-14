@@ -1,0 +1,15 @@
+body {
+    background-image: url('../images/greyBg.png');
+    background-repeat: repeat;
+}
+
+footer {
+    background-image: url('../images/footerBg.jpg');
+    background-repeat: repeat;
+}
+
+nav {
+    background-image: url('../images/navBg.jpg');
+    background-repeat: repeat;
+    color: black;
+}

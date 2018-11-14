@@ -3,7 +3,7 @@
 
   <!-- Navbar brand -->
   <a class="navbar-brand" href="#"><img src="../public/images/logo.png" style="margin-right:20px;" alt="Logo van TrainingFactory">TrainingFactory</a>
-
+        
   <!-- Collapse button -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
     aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,31 +21,30 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" href="#">Lessen</a>
       </li>
 
-      <!-- Dropdown -->
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">Dropdown</a>
-        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
+     <!-- Icon -->
+    <ul class="navbar-nav xl-auto nav-flex-icons dropright">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <i class="fa fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item waves-effect waves-light" href="{{ path('logout') }}">Uitloggen</a>
+              <a class="dropdown-item waves-effect waves-light" href="#">Wijzig profielinformatie</a>
+            </div>
+          </li>
+        </ul>
 
     </ul>
+
     <!-- Links -->
 
     <form class="form-inline">
       <div class="md-form my-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       </div>
-        <button class="btn btn-outline-white btn-sm my-0" type="submit">Search</button>
     </form>
   </div>
   <!-- Collapsible content -->
