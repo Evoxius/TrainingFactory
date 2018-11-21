@@ -13,3 +13,7 @@ nav {
     background-repeat: repeat;
     color: black;
 }
+
+canvas {
+    border: 1px solid #999;
+}
