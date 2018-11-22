@@ -19,7 +19,7 @@
     <body style="display: flex; flex-direction: column; min-height:  100vh;">
         
         {{ include('incl/navbar.html.twig') }}
-        <div class="container">
+        <div class="container" >
         {% block body %}{% endblock %}
         </div>
 
@@ -35,6 +35,15 @@
     <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script>
     <!-- P5.JS -->
     <script src="{{ asset('p5/p5.min.js') }}"></script>
+    <!-- Jquery plugins and such -->
+    <script src="{{ asset('js/element.js') }}"></script>
+    <script src="{{ asset('js/jquery.fancybox.js') }}"></script>
+    <script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.localscroll-1.2.7.min.js') }}"></script>
+    <script src="{{ asset('js/modernizr.js') }}"></script>
+    <script src="{{ asset('js/owl.carousel.js') }}"></script>
+    <script src="{{ asset('js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('js/wow.min.js') }}"></script>
 
 
   {% endblock %}
