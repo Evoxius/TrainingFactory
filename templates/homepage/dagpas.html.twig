@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gratis dagpas{% endblock %}
+
+{% block body %}
+
+<div class="card" style="margin-top:40px; margin-bottom:40px;">
+  <div class="card-body">
+    <section class="detailContent_section">    
+        <h3 style="margin-bottom:40px;">Gratis Dagpas</h3>
+        <h4 style="margin-bottom:40px;">Wil jij fitness bij TrainFactory ervaren?</h4>
+        <p>Wil jij gratis en vrijblijvend een dag de sfeer, fitness en groepslessen ervaren bij TrainMore? Je krijgt een rondleiding, antwoord op al jouw vragen en uiteraard mag je zelf aan de slag met fitness & groepslessen!</p>
+        
+        <label class="gfield_label" for="input_5_14">TrainFactory club<span class="gfield_required"> *</span></label>
+        <select class="browser-default custom-select">
+            <option value="" disabled selected>Selecteer een club</option>
+            <option value="1">Den Haag</option>
+            <option value="2">Rotterdam</option>
+            <option value="3">Utrecht</option>
+        </select>
+        
+        <div class="md-form input-group">
+        <input type="text" aria-label="First name" class="form-control" placeholder="Voornaam">
+        <input type="text" aria-label="Last name" class="form-control" placeholder="Achternaam">
+        </div>
+
+        <!-- Material input -->
+        <div class="md-form">
+            <input type="text" id="form1" class="form-control">
+            <label for="form1">E-mail</label>
+        </div>
+
+        <!-- Material input -->
+        <div class="md-form">
+            <input type="text" id="form1" class="form-control">
+            <label for="form1">Telefoonnummer</label>
+        </div>
+
+        <!-- Default checked -->
+        <div class="custom-control custom-radio">
+            <input type="radio" class="custom-control-input" id="defaultChecked2" name="defaultExample2" checked>
+            <label class="custom-control-label" for="defaultChecked2">Ik ga akkoord met de algemene <a  href="{{ path('contact') }}">Voorwaarden</a> en de <a  href="{{ path('privacy_beleid') }}">Privacy policy</a></label>
+        </div>
+
+        <button type="button" class="btn btn-success" style="float:right;">Verstuur</button>
+
+
+  </div>
+</div>
+{% endblock %}

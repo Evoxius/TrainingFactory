@@ -3,21 +3,23 @@
 {% block title %}Home - TrainingFactory{% endblock %}
 
 {% block body %}
-<div class="wow fadeInRight  animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+<div class="wow fadeInRight animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
 <img src="{{ asset('images/header1.jpg') }}" class="img-fluid rounded" alt="Responsive image">
 </div>
 
-<div class="card" style="margin-top: 5%; margin-bottom: 5%;">
+<div class="card border-success mb-3 fadeInRight animated" style="margin-top: 5%; margin-bottom: 5%;">
   <div class="card-body">
-    Eerst proberen? Vraag hier jouw gratis dagpas aan! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>#voeljegoed</b>  <a href="#" style="float:right;"> > Lees meer... </a> 
+    Eerst proberen? Vraag hier jouw gratis dagpas aan! &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>#voeljegoed</b>  <a href="{{ asset('home/gratis-dagpas') }}" style="float:right;"> > Lees meer... </a> 
   </div>
 </div>
 
+<!-- Informatie over TrainingFactory -->
+
 <section id="overons" class="about pad-top-110 pad-bottom-120">
             <div class="container-fluid no-padding">
-                <div class="row no-margin">
+                <div class="row no-margin" style="margin-top: 60px;">
                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 wow  fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
-                        <figure><img src="images/over-ons-training-factory.png" class="img-fluid" alt="training-factory"></figure>
+                        <figure><img src="images/over-ons-training-factory.png" class="img-fluid rounded" alt="training-factory"></figure>
                     </div>               
                             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 pull-right wow  fadeInRight animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInRight;">
                                 <h6 class="titleTop"> Welkom op de website van  </h6>
@@ -26,15 +28,17 @@
                                 <p>Training Factory is een sportschool opgericht in 2014. Het doel van de sportschool is om het sporten betaalbaar te maken voor iedereen. De sportschool is gevestigd aan de Monierweg 20, te Coevorden. De afgelopen jaren is Training-Factory sterk aan het groeien, en dat doen we vandaag nog steeds.  
                                 <br><br><a href="trainingfactory-informatie.html">Lees meer...</a></p>
                             </div>
-                        </div>       
-            </div>
-        </section>
+                    </div>       
+             </div>
+</section>
 
+<!-- Eind Informatie over TrainingFactory -->
 
+<!-- Rij van kaarten -->
 
 <div class="row">
   <div class="col-sm-6 mb-3 mb-md-0">
-    <div class="card" style="margin-top: 5%; margin-bottom: 5%;">
+    <div class="card border-success mb-3" style="margin-top: 5%; margin-bottom: 5%;">
       <div class="card-body">
         <h5 class="card-title">Wij helpen je</h5>
         <p class="card-text">met een vliegende start! Wij bieden een helper aan voor 15% korting!</p>
@@ -68,7 +72,7 @@
   </div>
 
   <div class="col-sm-6">
-    <div class="card" style="margin-top: 5%; margin-bottom: 5%;">
+    <div class="card border-success mb-3" style="margin-top: 5%; margin-bottom: 5%;">
       <div class="card-body">
         <h5 class="card-title">Jaarpas heeft veranderingen</h5>
         <p class="card-text">Wij gaan het jaarpas veranderen naar een maandpas</p>
@@ -101,6 +105,7 @@
     </div>
   </div>
 </div>
+  <!-- Eind Rij van kaarten -->
 
 
 {% endblock %}

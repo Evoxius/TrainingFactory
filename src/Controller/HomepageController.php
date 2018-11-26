@@ -16,4 +16,14 @@ class HomepageController extends AbstractController
             'controller_name' => 'HomepageController',
         ]);
     }
+
+    /**
+     * @Route("/home/gratis-dagpas", name="gratis_dagpas")
+     */
+    public function dagpas()
+    {
+        return $this->render('homepage/dagpas.html.twig', [
+            'controller_name' => 'HomepageController',
+        ]);
+    }
 }

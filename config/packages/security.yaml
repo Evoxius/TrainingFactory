@@ -27,16 +27,17 @@ security:
             form_login:
                 login_path: login
                 check_path: login
+                default_target_path: /home
                 provider: chain_provider
 
             logout:
                 path: /logout
-                target: /
+                target: /home
             
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/login|home|huis_regels|privacy_beleid|cookies|contact, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/ , roles: ROLE_USER }
          
          

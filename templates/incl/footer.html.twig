@@ -15,13 +15,13 @@
 
           <ul class="list-unstyled">
             <li>
-              <a href="#!">Veelgestelde vragen</a>
+              <a href="{{ asset('contact') }}">Veelgestelde vragen</a>
             </li>
             <li>
-              <a href="#!">Huisregels</a>
+              <a href="{{ asset('huisregels') }}">Huisregels</a>
             </li>
             <li>
-              <a href="#!">Voorwaarden</a>
+             <a href="{{ asset('images/benefitstore_privacy_policy.pdf') }}" download>Voorwaarden</a>
             </li>
           </ul>
 
@@ -60,18 +60,24 @@
           <h5 class="font-weight-bold text-uppercase mt-3 mb-4">Links</h5>
 
           <ul class="list-unstyled">
+
+           <!-- Grid row -->
+           <div class="row">
+
             <li>
-              <a href="#!">Link 1</a>
+              <a href="https://github.com/evoxius" target="_blank"><img src="{{ asset('images/github.png') }}" style="margin-right:5px;"></img></a>
             </li>
             <li>
-              <a href="#!">Link 2</a>
+              <a href="https://github.com/evoxius" target="_blank"><img src="{{ asset('images/twitter.jpg') }}" style="margin-right:5px;"></img></a>
             </li>
             <li>
-              <a href="#!">Link 3</a>
+              <a href="https://github.com/evoxius" target="_blank"><img src="{{ asset('images/facebook.jpg') }}" style="margin-right:5px;"></img></a>
             </li>
             <li>
-              <a href="#!">Link 4</a>
+              <a href="https://linkedin.com/in/michaelanthonyschaap" target="_blank"><img src="{{ asset('images/linkedin.jpg') }}"></img></a>
             </li>
+
+               </div>
           </ul>
 
         </div>
