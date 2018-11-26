@@ -19,33 +19,42 @@
         <a class="nav-link" href="{{ asset('home') }}">Home
         </a>
       </li>
+  
+      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
       <li class="nav-item">
         <a class="nav-link" href="#">Lessen</a>
       </li>
+      {% else %}
+      {% endif %}
+ 
+       {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+       {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
-     <!-- Icon -->
-    <ul class="navbar-nav xl-auto nav-flex-icons dropright">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <i class="fa fa-user"></i>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item waves-effect waves-light" href="{{ path('logout') }}">Uitloggen</a>
-              <a class="dropdown-item waves-effect waves-light" href="#">Wijzig profielinformatie</a>
-            </div>
-          </li>
-        </ul>
+       {% else %}
+         <li class="nav-item">
+           <a class="nav-link" href="{{ path('login') }}">Inloggen</a>
+         </li>
+          {% endif %}
+       {% else %}
+      {% endif %}
+      </ul>
 
+      <!-- Icon -->
+    {% if is_granted('ROLE_USER') %}
+    <ul class="navbar-nav xl-auto nav-flex-icons dropright" style="margin-right:15%;">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="true">
+          <i class="fa fa-user"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item waves-effect waves-light" href="{{ path('logout') }}">Uitloggen</a>
+        </div>
+      </li>
     </ul>
+    {% endif %}
 
-    <!-- Links -->
 
-    <form class="form-inline">
-      <div class="md-form my-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-      </div>
-    </form>
-  </div>
   <!-- Collapsible content -->
 
 </nav>
