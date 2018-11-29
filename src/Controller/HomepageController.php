@@ -26,4 +26,44 @@ class HomepageController extends AbstractController
             'controller_name' => 'HomepageController',
         ]);
     }
+
+     /**
+     * @Route("/home/huisregels", name="huis_regels")
+     */
+    public function huisregels()
+    {
+        return $this->render('homepage/huisregels.html.twig', [
+            'controller_name' => 'HomepageController',
+        ]);
+    }
+
+    /**
+     * @Route("/home/cookies", name="cookies")
+     */
+    public function cookies()
+    {
+        return $this->render('homepage/cookies.html.twig', [
+            'controller_name' => 'HomepageController',
+        ]);
+    }
+
+    /**
+     * @Route("/home/privacybeleid", name="privacy_beleid")
+     */
+    public function privacybeleid()
+    {
+        return $this->render('homepage/privacybeleid.html.twig', [
+            'controller_name' => 'HomepageController',
+        ]);
+    }
+
+     /**
+     * @Route("/home/test", name="test")
+     */
+    public function test()
+    {
+        return $this->render('homepage/test.html.twig', [
+            'controller_name' => 'HomepageController',
+        ]);
+    }
 }

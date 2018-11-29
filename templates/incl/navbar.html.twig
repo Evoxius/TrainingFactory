@@ -1,19 +1,18 @@
-<!--Navbar-->
-<nav class="navbar navbar-expand-lg navbar-dark default-color">
 
-  <!-- Navbar brand -->
-  <a class="navbar-brand" href="{{ asset('home') }}"><img src="{{ asset('images/logo.png') }}" style="margin-right:20px;" alt="Logo van TrainingFactory"></a>
-        
-  <!-- Collapse button -->
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
-    aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+ <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark unique-color-dark scrolling-navbar">
+    <div class="container">
 
-  <!-- Collapsible content -->
-  <div class="collapse navbar-collapse" id="basicExampleNav">
+      <!-- Brand -->
+        <a class="navbar-brand" href="{{ asset('home') }}"><img src="{{ asset('images/logo.png') }}" style="margin-right:20px;" alt="Logo van TrainingFactory"></a>
 
-    <!-- Links -->
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+         <!-- Links -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" href="{{ asset('home') }}">Home
@@ -39,23 +38,33 @@
       {% endif %}
       </ul>
 
-      <!-- Icon -->
-    {% if is_granted('ROLE_USER') %}
-    <ul class="navbar-nav xl-auto nav-flex-icons dropright" style="margin-right:15%;">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="true">
-          <i class="fa fa-user"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item waves-effect waves-light" href="{{ path('logout') }}">Uitloggen</a>
-        </div>
-      </li>
-    </ul>
-    {% endif %}
+        <!-- Right -->
+        <ul class="navbar-nav xl-auto nav-flex-icons dropright">
+          <li class="nav-item">
+            <a href="https://www.facebook.com/mdbootstrap" class="nav-link" target="_blank">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://twitter.com/MDBootstrap" class="nav-link" target="_blank">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          {% if is_granted('ROLE_MEMBER') %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="true">
+              <i class="fa fa-user"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item waves-effect waves-light" href="{{ path('logout') }}">Uitloggen</a>
+            </div>
+          </li>
+          {% endif %}
+        </ul>
 
+      </div>
 
-  <!-- Collapsible content -->
-
-</nav>
-<!--/.Navbar-->
+    </div>
+  </nav>
+  <!-- Navbar -->

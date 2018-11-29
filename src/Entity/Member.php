@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MemberRepository")
  */
-class Member
+class Member implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -17,17 +18,17 @@ class Member
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=150)
+     * @ORM\Column(type="string", length=60, unique=true)
      */
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=150)
+     * @ORM\Column(type="string", length=60)
      */
     private $password;
 
     /**
-     * @ORM\Column(type="string", length=100, nullable=true)
+     * @ORM\Column(type="string", length=60, unique=true)
      */
     private $email;
 
@@ -65,10 +66,41 @@ class Member
         return $this->email;
     }
 
-    public function setEmail(?string $email): self
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
         return $this;
+    }
+
+    public function getRoles()
+    {
+        return [
+            'ROLE_MEMBER'
+        ];
+    }
+
+    public function getSalt() {}
+
+    public function eraseCredentials() {}
+
+    public function serialize() 
+    {
+        return serialize([
+            $this->id,
+            $this->username,
+            $this->email,
+            $this->password
+        ]);
+    }
+
+    public function unserialize($string)
+    {
+        list (
+            $this->id,
+            $this->username,
+            $this->email,
+            $this->password
+        ) = unserialize($string, ['allowed_classes' => false]);
     }
 }

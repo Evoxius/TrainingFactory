@@ -1,7 +1,7 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
-        App\Entity\User:
+        App\Entity\Member:
             algorithm: bcrypt  
     providers:
         chain_provider:
@@ -10,11 +10,11 @@ security:
         in_memory:
             memory:
                 users:
-                    apotheker: { password: test, roles: [ 'ROLE_USER' ] }  
-                    verzekering: { password: test, roles: [ 'ROLE_USER' ] }          
+                    apotheker: { password: test, roles: [ 'ROLE_MEMBER' ] }  
+                    verzekering: { password: test, roles: [ 'ROLE_MEMBER' ] }          
         user_db:
             entity:
-                class: App\Entity\User
+                class: App\Entity\Member
                 property: username 
 
     firewalls:
@@ -38,6 +38,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/login|home|huis_regels|privacy_beleid|cookies|contact, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-         - { path: ^/ , roles: ROLE_USER }
+         - { path: ^/ , roles: ROLE_MEMBER }
          
          
