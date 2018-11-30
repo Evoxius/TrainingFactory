@@ -13,7 +13,7 @@ use Monolog\Handler\StreamHandler;
 class SecurityController extends Controller
 {
     /**
-     * @Route("/login", name="login")
+     * @Route("/home/test", name="login")
      */
     public function login(Request $request, AuthenticationUtils $utils)
     {
@@ -22,7 +22,7 @@ class SecurityController extends Controller
         $lastUsername = $utils->getLastUsername();
 
 
-        return $this->render('security/login.html.twig', [
+        return $this->render('homepage/test.html.twig', [
             'error'         => $error,
             'last_username' => $lastUsername
         ]);

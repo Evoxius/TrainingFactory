@@ -4,67 +4,51 @@
     <div class="container">
 
       <!-- Brand -->
-        <a class="navbar-brand" href="{{ asset('home') }}"><img src="{{ asset('images/logo.png') }}" style="margin-right:20px;" alt="Logo van TrainingFactory"></a>
 
       <!-- Collapse -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
         aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-         <!-- Links -->
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="{{ asset('home') }}">Home
-        </a>
-      </li>
-  
-      {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-      <li class="nav-item">
-        <a class="nav-link" href="#">Lessen</a>
-      </li>
-      {% else %}
-      {% endif %}
- 
-       {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
-       {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-
-       {% else %}
-         <li class="nav-item">
-           <a class="nav-link" href="{{ path('login') }}">Inloggen</a>
-         </li>
-          {% endif %}
-       {% else %}
-      {% endif %}
-      </ul>
-
-        <!-- Right -->
-        <ul class="navbar-nav xl-auto nav-flex-icons dropright">
-          <li class="nav-item">
-            <a href="https://www.facebook.com/mdbootstrap" class="nav-link" target="_blank">
-              <i class="fa fa-facebook"></i>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent-3">
+        <ul class="navbar-nav mr-auto">
+           {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <li class="nav-item">
+              <a class="nav-link" href="#">Lessen</a>
+            </li>
+           {% else %}
+           {% endif %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle waves-effect waves-light" href="{{ asset('home/test') }}" id="navbarDropdownMenuLink-3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home
             </a>
+            <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
+              <a class="dropdown-item waves-effect waves-light" href="">Action</a>
+              <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
+              <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
+            </div>
           </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
           <li class="nav-item">
-            <a href="https://twitter.com/MDBootstrap" class="nav-link" target="_blank">
+            <a class="nav-link waves-effect waves-light">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
-          {% if is_granted('ROLE_MEMBER') %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="true">
+          <li class="nav-item">
+            <a class="nav-link waves-effect waves-light">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+          <li class="nav-item dropdown dropright">
+            <a class="nav-link dropdown-toggle waves-effect waves-light dropright" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fa fa-user"></i>
             </a>
-            <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item waves-effect waves-light" href="{{ path('logout') }}">Uitloggen</a>
+            <div class="dropdown-menu dropright" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item waves-effect waves-light" href="{{ path('logout') }}">Logout</a>
+              <a class="dropdown-item waves-effect waves-light" href="#">Another action</a>
+              <a class="dropdown-item waves-effect waves-light" href="#">Something else here</a>
             </div>
           </li>
-          {% endif %}
         </ul>
-
       </div>
-
-    </div>
-  </nav>
-  <!-- Navbar -->
+    </nav>
