@@ -57,13 +57,4 @@ class HomepageController extends AbstractController
         ]);
     }
 
-     /**
-     * @Route("/home/test", name="test")
-     */
-    public function test()
-    {
-        return $this->render('homepage/test.html.twig', [
-            'controller_name' => 'HomepageController',
-        ]);
-    }
 }
