@@ -18,7 +18,7 @@ class HomepageController extends AbstractController
     }
 
     /**
-     * @Route("/home/gratis-dagpas", name="gratis_dagpas")
+     * @Route("/home/dagpas", name="gratis_dagpas")
      */
     public function dagpas()
     {

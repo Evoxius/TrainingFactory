@@ -5,903 +5,926 @@
 
 {% block body %}
 
-  <!-- data-ride="carousel" -->
-  <!--Carousel Wrapper-->
-  <div id="carousel-example-1z" class="carousel slide carousel-fade">
+<!-- data-ride="carousel" -->
+<!--Carousel Wrapper-->
+<div id="carousel-example-1z" class="carousel slide carousel-fade">
 
-    <!--Indicators-->
-    <ol class="carousel-indicators">
-      <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-example-1z" data-slide-to="1"></li>
-      <li data-target="#carousel-example-1z" data-slide-to="2"></li>
-    </ol>
-    <!--/.Indicators-->
+  <!--Indicators-->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+    <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+  </ol>
+  <!--/.Indicators-->
 
-    <!--Slides-->
-    <div class="carousel-inner" role="listbox">
+  <!--Slides-->
+  <div class="carousel-inner" role="listbox">
 
-      <!--First slide-->
-      <div class="carousel-item active">
-        <div class="view">
+    <!--First slide-->
+    <div class="carousel-item active">
+      <div class="view">
 
-          <!--Video source-->
-          <video class="video-intro" autoplay loop muted>
-            <source src="https://mdbootstrap.com/img/video/animation-intro.mp4" type="video/mp4" />
-          </video>
+        <!--Video source-->
+        <video class="video-intro" autoplay loop muted>
+          <source src="https://mdbootstrap.com/img/video/animation-intro.mp4" type="video/mp4" />
+        </video>
 
-          <!-- Mask & flexbox options-->
-          <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
 
-            <!-- Content -->
-            <div class="container">
+          <!-- Content -->
+          <div class="container">
 
-                <!--Grid row-->
-                <div class="row wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
+            <!--Grid row-->
+            <div class="row wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
 
-                  <!--Grid column-->
-                  <div class="col-md-6 mb-4 white-text text-center text-md-left">
+              <!--Grid column-->
+              <div class="col-md-6 mb-4 white-text text-center text-md-left">
 
-                    <h1 class="display-5 font-weight-bold">TrainingFactory</h1>
+                <h1 class="display-5 font-weight-bold">TrainingFactory</h1>
 
-                    <hr class="hr-light">
+                <hr class="hr-light">
 
-                    <p>
-                      <strong>Beste &amp; goedkoopste gym in Nederland</strong>
-                    </p>
+                <p>
+                  <strong>Beste &amp; goedkoopste gym in Nederland</strong>
+                </p>
 
-                    <p class="mb-4 d-none d-md-block">
-                      <p>Openingstijden<br>Maandag t/m vrijdag: 08:00 - 22:00, zaterdag &amp; zondag: 09:00 - 14:00</p>
-                                        <p>Training Factory is een sportschool opgericht in 2014. Het doel van de sportschool is om het sporten betaalbaar te maken voor iedereen. De sportschool is gevestigd aan de Monierweg 20, te Coevorden. De afgelopen jaren is Training-Factory sterk aan het groeien, en dat doen we vandaag nog steeds.  
-                    </p>
-
-                  </div>
-                  <!--Grid column-->
-                  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <div class="col-md-6 col-xl-5 mb-4">
-
-                    <!--Card-->
-                    <div class="card">
-
-                      <!--Card content-->
-                      <div class="card-body">
-
-                        <!-- Form -->
-                        <form name="">
-                          <!-- Heading -->
-                          <h3 class="dark-grey-text text-center">
-                            <strong>Write to us:</strong>
-                          </h3>
-                          <hr>
-
-                          <div class="md-form">
-                            <i class="fa fa-user prefix grey-text"></i>
-                            <input type="text" id="form3" class="form-control">
-                            <label for="form3">Your name</label>
-                          </div>
-                          <div class="md-form">
-                            <i class="fa fa-envelope prefix grey-text"></i>
-                            <input type="text" id="form2" class="form-control">
-                            <label for="form2">Your email</label>
-                          </div>
-
-                          <div class="md-form">
-                            <i class="fa fa-pencil prefix grey-text"></i>
-                            <textarea type="text" id="form8" class="md-textarea"></textarea>
-                            <label for="form8">Your message</label>
-                          </div>
-
-                          <div class="text-center">
-                            <button class="btn btn-indigo waves-effect waves-light">Send</button>
-                            <hr>
-                            <fieldset class="form-check">
-                              <input type="checkbox" class="form-check-input" id="checkbox1">
-                              <label for="checkbox1" class="form-check-label dark-grey-text">Subscribe me to the newsletter</label>
-                            </fieldset>
-                          </div>
-
-                        </form>
-                        <!-- Form -->
-
-                      </div>
-
-                    </div>
-                    <!--/.Card-->
-
-                  </div>
-                  {% else %}
-                  <!--Grid column-->
-                  <div class="col-md-6 col-xl-6 mb-4">
-
-                    <!--Card-->
-                    <div class="card">
-
-                      <!--Card content-->
-                      <div class="card-body">
-                        <!-- Form -->
-                        <form name="" action="{{ path('login') }}" method="POST">
-                          <!-- Heading -->
-                          <h3 class="dark-grey-text text-center">
-                            <strong>Login</strong>
-                          </h3>
-                          <hr>
-
-                          <div class="md-form">
-                            <i class="fa fa-user prefix grey-text"></i>
-                            <input type="username" id="form3" class="form-control" name="_username" placeholder="Username">
-                          </div>
-                          <div class="md-form">
-                            <i class="fa fa-envelope prefix grey-text"></i>
-                            <input type="password" id="form2" class="form-control" name="_password" placeholder="Password">
-                          </div>
-
-                          <div class="text-center">
-                            <button class="btn btn-indigo waves-effect waves-light" type="submit">Sign in</button>
-                            <hr>
-                            <fieldset class="form-check">
-                              <input type="checkbox" class="form-check-input" id="checkbox1">
-                              <label for="checkbox1" class="form-check-label dark-grey-text">Remember me</label>
-                            </fieldset>
-                          </div>
-
-                        </form>
-                        <!-- Form -->
-                      
-                      </div>
-
-                    </div>
-                    <!--/.Card-->
-
-                  </div>
-                  <!--Grid column-->
-                 {% endif %}
-                </div>
-                <!--Grid row-->
+                <p class="mb-4 d-none d-md-block">
+                  <p>Openingstijden<br>Maandag t/m vrijdag: 08:00 - 22:00, zaterdag &amp; zondag: 09:00 - 14:00</p>
+                  <p>Training Factory is een sportschool opgericht in 2014. Het doel van de sportschool is om het
+                    sporten betaalbaar te maken voor iedereen. De sportschool is gevestigd aan de Monierweg 20, te
+                    Coevorden. De afgelopen jaren is Training-Factory sterk aan het groeien, en dat doen we vandaag nog
+                    steeds.
+                  </p>
 
               </div>
-            <!-- Content -->
+              <!--Grid column-->
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+              <div class="col-md-6 col-xl-5 mb-4">
 
-          </div>
-          <!-- Mask & flexbox options-->
+                <!--Card-->
+                <div class="card">
 
-        </div>
-      </div>
-      <!--/First slide-->
+                  <!--Card content-->
+                  <div class="card-body">
 
-      <!--Second slide-->
-      <div class="carousel-item">
-        <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/77.jpg'); background-repeat: no-repeat; background-size: cover;">
+                    <!-- Form -->
+                    <form name="">
+                      <!-- Heading -->
+                      <h3 class="dark-grey-text text-center">
+                        <strong>Write to us:</strong>
+                      </h3>
+                      <hr>
 
-          <!-- Mask & flexbox options-->
-          <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
-
-             <!-- Content -->
-            <div class="container">
-
-                <!--Grid row-->
-                <div class="row wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
-
-                  <!--Grid column-->
-                  <div class="col-md-6 mb-4 white-text text-center text-md-left">
-
-                    <h1 class="display-5 font-weight-bold">TrainingFactory</h1>
-
-                    <hr class="hr-light">
-
-                    <p>
-                      <strong>Beste &amp; goedkoopste gym in Nederland</strong>
-                    </p>
-
-                    <p class="mb-4 d-none d-md-block">
-                      <p>Openingstijden<br>Maandag t/m vrijdag: 08:00 - 22:00, zaterdag &amp; zondag: 09:00 - 14:00</p>
-                                        <p>Training Factory is een sportschool opgericht in 2014. Het doel van de sportschool is om het sporten betaalbaar te maken voor iedereen. De sportschool is gevestigd aan de Monierweg 20, te Coevorden. De afgelopen jaren is Training-Factory sterk aan het groeien, en dat doen we vandaag nog steeds.  
-                    </p>
-
-                  </div>
-                  <!--Grid column-->
-                  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <div class="col-md-6 col-xl-5 mb-4">
-
-                    <!--Card-->
-                    <div class="card">
-
-                      <!--Card content-->
-                      <div class="card-body">
-
-                        <!-- Form -->
-                        <form name="">
-                          <!-- Heading -->
-                          <h3 class="dark-grey-text text-center">
-                            <strong>Write to us:</strong>
-                          </h3>
-                          <hr>
-
-                          <div class="md-form">
-                            <i class="fa fa-user prefix grey-text"></i>
-                            <input type="text" id="form3" class="form-control">
-                            <label for="form3">Your name</label>
-                          </div>
-                          <div class="md-form">
-                            <i class="fa fa-envelope prefix grey-text"></i>
-                            <input type="text" id="form2" class="form-control">
-                            <label for="form2">Your email</label>
-                          </div>
-
-                          <div class="md-form">
-                            <i class="fa fa-pencil prefix grey-text"></i>
-                            <textarea type="text" id="form8" class="md-textarea"></textarea>
-                            <label for="form8">Your message</label>
-                          </div>
-
-                          <div class="text-center">
-                            <button class="btn btn-indigo waves-effect waves-light">Send</button>
-                            <hr>
-                            <fieldset class="form-check">
-                              <input type="checkbox" class="form-check-input" id="checkbox1">
-                              <label for="checkbox1" class="form-check-label dark-grey-text">Subscribe me to the newsletter</label>
-                            </fieldset>
-                          </div>
-
-                        </form>
-                        <!-- Form -->
-
+                      <div class="md-form">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input type="text" id="form3" class="form-control">
+                        <label for="form3">Your name</label>
+                      </div>
+                      <div class="md-form">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input type="text" id="form2" class="form-control">
+                        <label for="form2">Your email</label>
                       </div>
 
-                    </div>
-                    <!--/.Card-->
-
-                  </div>
-                  {% else %}
-                  <!--Grid column-->
-                  <div class="col-md-6 col-xl-6 mb-4">
-
-                    <!--Card-->
-                    <div class="card">
-
-                      <!--Card content-->
-                      <div class="card-body">
-                        <!-- Form -->
-                        <form name="" action="{{ path('login') }}" method="POST">
-                          <!-- Heading -->
-                          <h3 class="dark-grey-text text-center">
-                            <strong>Login</strong>
-                          </h3>
-                          <hr>
-
-                          <div class="md-form">
-                            <i class="fa fa-user prefix grey-text"></i>
-                            <input type="username" id="form3" class="form-control" name="_username" placeholder="Username">
-                          </div>
-                          <div class="md-form">
-                            <i class="fa fa-envelope prefix grey-text"></i>
-                            <input type="password" id="form2" class="form-control" name="_password" placeholder="Password">
-                          </div>
-
-                          <div class="text-center">
-                            <button class="btn btn-indigo waves-effect waves-light" type="submit">Sign in</button>
-                            <hr>
-                            <fieldset class="form-check">
-                              <input type="checkbox" class="form-check-input" id="checkbox1">
-                              <label for="checkbox1" class="form-check-label dark-grey-text">Remember me</label>
-                            </fieldset>
-                          </div>
-
-                        </form>
-                        <!-- Form -->
-                      
+                      <div class="md-form">
+                        <i class="fa fa-pencil prefix grey-text"></i>
+                        <textarea type="text" id="form8" class="md-textarea"></textarea>
+                        <label for="form8">Your message</label>
                       </div>
 
-                    </div>
-                    <!--/.Card-->
+                      <div class="text-center">
+                        <button class="btn btn-indigo waves-effect waves-light">Send</button>
+                        <hr>
+                        <fieldset class="form-check">
+                          <input type="checkbox" class="form-check-input" id="checkbox1">
+                          <label for="checkbox1" class="form-check-label dark-grey-text">Subscribe me to the newsletter</label>
+                        </fieldset>
+                      </div>
+
+                    </form>
+                    <!-- Form -->
 
                   </div>
-                  <!--Grid column-->
-                 {% endif %}
+
                 </div>
-                <!--Grid row-->
+                <!--/.Card-->
 
               </div>
-            <!-- Content -->
+              {% else %}
+              <!--Grid column-->
+              <div class="col-md-6 col-xl-6 mb-4">
 
-          </div>
-          <!-- Mask & flexbox options-->
+                <!--Card-->
+                <div class="card">
 
-        </div>
-      </div>
-      <!--/Second slide-->
+                  <!--Card content-->
+                  <div class="card-body">
+                    <!-- Form -->
+                    <form name="" action="{{ path('login') }}" method="POST">
+                      <!-- Heading -->
+                      <h3 class="dark-grey-text text-center">
+                        <strong>Login</strong>
+                      </h3>
+                      <hr>
 
-      <!--Third slide-->
-      <div class="carousel-item">
-        <div class="view">
-
-          <!--Video source-->
-          <video class="video-intro" autoplay loop muted>
-              <source src="https://mdbootstrap.com/img/video/forest.mp4" type="video/mp4" />
-          </video>
-
-          <!-- Mask & flexbox options-->
-          <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
-
-             <!-- Content -->
-            <div class="container">
-
-                <!--Grid row-->
-                <div class="row wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
-
-                  <!--Grid column-->
-                  <div class="col-md-6 mb-4 white-text text-center text-md-left">
-
-                    <h1 class="display-5 font-weight-bold">TrainingFactory</h1>
-
-                    <hr class="hr-light">
-
-                    <p>
-                      <strong>Beste &amp; goedkoopste gym in Nederland</strong>
-                    </p>
-
-                    <p class="mb-4 d-none d-md-block">
-                      <p>Openingstijden<br>Maandag t/m vrijdag: 08:00 - 22:00, zaterdag &amp; zondag: 09:00 - 14:00</p>
-                                        <p>Training Factory is een sportschool opgericht in 2014. Het doel van de sportschool is om het sporten betaalbaar te maken voor iedereen. De sportschool is gevestigd aan de Monierweg 20, te Coevorden. De afgelopen jaren is Training-Factory sterk aan het groeien, en dat doen we vandaag nog steeds.  
-                    </p>
-
-                  </div>
-                  <!--Grid column-->
-                  {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <div class="col-md-6 col-xl-5 mb-4">
-
-                    <!--Card-->
-                    <div class="card">
-
-                      <!--Card content-->
-                      <div class="card-body">
-
-                        <!-- Form -->
-                        <form name="">
-                          <!-- Heading -->
-                          <h3 class="dark-grey-text text-center">
-                            <strong>Write to us:</strong>
-                          </h3>
-                          <hr>
-
-                          <div class="md-form">
-                            <i class="fa fa-user prefix grey-text"></i>
-                            <input type="text" id="form3" class="form-control">
-                            <label for="form3">Your name</label>
-                          </div>
-                          <div class="md-form">
-                            <i class="fa fa-envelope prefix grey-text"></i>
-                            <input type="text" id="form2" class="form-control">
-                            <label for="form2">Your email</label>
-                          </div>
-
-                          <div class="md-form">
-                            <i class="fa fa-pencil prefix grey-text"></i>
-                            <textarea type="text" id="form8" class="md-textarea"></textarea>
-                            <label for="form8">Your message</label>
-                          </div>
-
-                          <div class="text-center">
-                            <button class="btn btn-indigo waves-effect waves-light">Send</button>
-                            <hr>
-                            <fieldset class="form-check">
-                              <input type="checkbox" class="form-check-input" id="checkbox1">
-                              <label for="checkbox1" class="form-check-label dark-grey-text">Subscribe me to the newsletter</label>
-                            </fieldset>
-                          </div>
-
-                        </form>
-                        <!-- Form -->
-
+                      <div class="md-form">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input type="username" id="form3" class="form-control" name="_username" placeholder="Username">
+                      </div>
+                      <div class="md-form">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input type="password" id="form2" class="form-control" name="_password" placeholder="Password">
                       </div>
 
-                    </div>
-                    <!--/.Card-->
-
-                  </div>
-                  {% else %}
-                  <!--Grid column-->
-                  <div class="col-md-6 col-xl-6 mb-4">
-
-                    <!--Card-->
-                    <div class="card">
-
-                      <!--Card content-->
-                      <div class="card-body">
-                        <!-- Form -->
-                        <form name="" action="{{ path('login') }}" method="POST">
-                          <!-- Heading -->
-                          <h3 class="dark-grey-text text-center">
-                            <strong>Login</strong>
-                          </h3>
-                          <hr>
-
-                          <div class="md-form">
-                            <i class="fa fa-user prefix grey-text"></i>
-                            <input type="username" id="form3" class="form-control" name="_username" placeholder="Username">
-                          </div>
-                          <div class="md-form">
-                            <i class="fa fa-envelope prefix grey-text"></i>
-                            <input type="password" id="form2" class="form-control" name="_password" placeholder="Password">
-                          </div>
-
-                          <div class="text-center">
-                            <button class="btn btn-indigo waves-effect waves-light" type="submit">Sign in</button>
-                            <hr>
-                            <fieldset class="form-check">
-                              <input type="checkbox" class="form-check-input" id="checkbox1">
-                              <label for="checkbox1" class="form-check-label dark-grey-text">Remember me</label>
-                            </fieldset>
-                          </div>
-
-                        </form>
-                        <!-- Form -->
-                      
+                      <div class="text-center">
+                        <button class="btn btn-indigo waves-effect waves-light" type="submit">Sign in</button>
+                        <hr>
+                        <fieldset class="form-check">
+                          <input type="checkbox" class="form-check-input" id="checkbox1">
+                          <label for="checkbox1" class="form-check-label dark-grey-text">Remember me</label>
+                        </fieldset>
                       </div>
 
-                    </div>
-                    <!--/.Card-->
+                    </form>
+                    <!-- Form -->
 
                   </div>
-                  <!--Grid column-->
-                 {% endif %}
+
                 </div>
-                <!--Grid row-->
+                <!--/.Card-->
 
               </div>
-            <!-- Content -->
+              <!--Grid column-->
+              {% endif %}
+            </div>
+            <!--Grid row-->
 
           </div>
-          <!-- Mask & flexbox options-->
+          <!-- Content -->
 
         </div>
-      </div>
-      <!--/Third slide-->
+        <!-- Mask & flexbox options-->
 
+      </div>
     </div>
-    <!--/.Slides-->
+    <!--/First slide-->
 
-    <!--Controls-->
-    <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-    <!--/.Controls-->
+    <!--Second slide-->
+    <div class="carousel-item">
+      <div class="view" style="background-image: url('https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg'); background-repeat: no-repeat; background-size: cover;">
+
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+          <!-- Content -->
+          <div class="container">
+
+            <!--Grid row-->
+            <div class="row wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
+
+              <!--Grid column-->
+              <div class="col-md-6 mb-4 white-text text-center text-md-left">
+
+                <h1 class="display-5 font-weight-bold">TrainingFactory</h1>
+
+                <hr class="hr-light">
+
+                <p>
+                  <strong>Beste &amp; goedkoopste gym in Nederland</strong>
+                </p>
+
+                <p class="mb-4 d-none d-md-block">
+                  <p>Openingstijden<br>Maandag t/m vrijdag: 08:00 - 22:00, zaterdag &amp; zondag: 09:00 - 14:00</p>
+                  <p>Training Factory is een sportschool opgericht in 2014. Het doel van de sportschool is om het
+                    sporten betaalbaar te maken voor iedereen. De sportschool is gevestigd aan de Monierweg 20, te
+                    Coevorden. De afgelopen jaren is Training-Factory sterk aan het groeien, en dat doen we vandaag nog
+                    steeds.
+                  </p>
+
+              </div>
+              <!--Grid column-->
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+              <div class="col-md-6 col-xl-5 mb-4">
+
+                <!--Card-->
+                <div class="card">
+
+                  <!--Card content-->
+                  <div class="card-body">
+
+                    <!-- Form -->
+                    <form name="">
+                      <!-- Heading -->
+                      <h3 class="dark-grey-text text-center">
+                        <strong>Write to us:</strong>
+                      </h3>
+                      <hr>
+
+                      <div class="md-form">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input type="text" id="form3" class="form-control">
+                        <label for="form3">Your name</label>
+                      </div>
+                      <div class="md-form">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input type="text" id="form2" class="form-control">
+                        <label for="form2">Your email</label>
+                      </div>
+
+                      <div class="md-form">
+                        <i class="fa fa-pencil prefix grey-text"></i>
+                        <textarea type="text" id="form8" class="md-textarea"></textarea>
+                        <label for="form8">Your message</label>
+                      </div>
+
+                      <div class="text-center">
+                        <button class="btn btn-indigo waves-effect waves-light">Send</button>
+                        <hr>
+                        <fieldset class="form-check">
+                          <input type="checkbox" class="form-check-input" id="checkbox1">
+                          <label for="checkbox1" class="form-check-label dark-grey-text">Subscribe me to the newsletter</label>
+                        </fieldset>
+                      </div>
+
+                    </form>
+                    <!-- Form -->
+
+                  </div>
+
+                </div>
+                <!--/.Card-->
+
+              </div>
+              {% else %}
+              <!--Grid column-->
+              <div class="col-md-6 col-xl-6 mb-4">
+
+                <!--Card-->
+                <div class="card">
+
+                  <!--Card content-->
+                  <div class="card-body">
+                    <!-- Form -->
+                    <form name="" action="{{ path('login') }}" method="POST">
+                      <!-- Heading -->
+                      <h3 class="dark-grey-text text-center">
+                        <strong>Login</strong>
+                      </h3>
+                      <hr>
+
+                      <div class="md-form">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input type="username" id="form3" class="form-control" name="_username" placeholder="Username">
+                      </div>
+                      <div class="md-form">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input type="password" id="form2" class="form-control" name="_password" placeholder="Password">
+                      </div>
+
+                      <div class="text-center">
+                        <button class="btn btn-indigo waves-effect waves-light" type="submit">Sign in</button>
+                        <hr>
+                        <fieldset class="form-check">
+                          <input type="checkbox" class="form-check-input" id="checkbox1">
+                          <label for="checkbox1" class="form-check-label dark-grey-text">Remember me</label>
+                        </fieldset>
+                      </div>
+
+                    </form>
+                    <!-- Form -->
+
+                  </div>
+
+                </div>
+                <!--/.Card-->
+
+              </div>
+              <!--Grid column-->
+              {% endif %}
+            </div>
+            <!--Grid row-->
+
+          </div>
+          <!-- Content -->
+
+        </div>
+        <!-- Mask & flexbox options-->
+
+      </div>
+    </div>
+    <!--/Second slide-->
+
+    <!--Third slide-->
+    <div class="carousel-item">
+      <div class="view">
+
+        <!--Video source-->
+        <video class="video-intro" autoplay loop muted>
+          <source src="https://mdbootstrap.com/img/video/forest.mp4" type="video/mp4" />
+        </video>
+
+        <!-- Mask & flexbox options-->
+        <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+          <!-- Content -->
+          <div class="container">
+
+            <!--Grid row-->
+            <div class="row wow fadeIn animated" style="visibility: visible; animation-name: fadeIn;">
+
+              <!--Grid column-->
+              <div class="col-md-6 mb-4 white-text text-center text-md-left">
+
+                <h1 class="display-5 font-weight-bold">TrainingFactory</h1>
+
+                <hr class="hr-light">
+
+                <p>
+                  <strong>Beste &amp; goedkoopste gym in Nederland</strong>
+                </p>
+
+                <p class="mb-4 d-none d-md-block">
+                  <p>Openingstijden<br>Maandag t/m vrijdag: 08:00 - 22:00, zaterdag &amp; zondag: 09:00 - 14:00</p>
+                  <p>Training Factory is een sportschool opgericht in 2014. Het doel van de sportschool is om het
+                    sporten betaalbaar te maken voor iedereen. De sportschool is gevestigd aan de Monierweg 20, te
+                    Coevorden. De afgelopen jaren is Training-Factory sterk aan het groeien, en dat doen we vandaag nog
+                    steeds.
+                  </p>
+
+              </div>
+              <!--Grid column-->
+              {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+              <div class="col-md-6 col-xl-5 mb-4">
+
+                <!--Card-->
+                <div class="card">
+
+                  <!--Card content-->
+                  <div class="card-body">
+
+                    <!-- Form -->
+                    <form name="">
+                      <!-- Heading -->
+                      <h3 class="dark-grey-text text-center">
+                        <strong>Write to us:</strong>
+                      </h3>
+                      <hr>
+
+                      <div class="md-form">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input type="text" id="form3" class="form-control">
+                        <label for="form3">Your name</label>
+                      </div>
+                      <div class="md-form">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input type="text" id="form2" class="form-control">
+                        <label for="form2">Your email</label>
+                      </div>
+
+                      <div class="md-form">
+                        <i class="fa fa-pencil prefix grey-text"></i>
+                        <textarea type="text" id="form8" class="md-textarea"></textarea>
+                        <label for="form8">Your message</label>
+                      </div>
+
+                      <div class="text-center">
+                        <button class="btn btn-indigo waves-effect waves-light">Send</button>
+                        <hr>
+                        <fieldset class="form-check">
+                          <input type="checkbox" class="form-check-input" id="checkbox1">
+                          <label for="checkbox1" class="form-check-label dark-grey-text">Subscribe me to the newsletter</label>
+                        </fieldset>
+                      </div>
+
+                    </form>
+                    <!-- Form -->
+
+                  </div>
+
+                </div>
+                <!--/.Card-->
+
+              </div>
+              {% else %}
+              <!--Grid column-->
+              <div class="col-md-6 col-xl-6 mb-4">
+
+                <!--Card-->
+                <div class="card">
+
+                  <!--Card content-->
+                  <div class="card-body">
+                    <!-- Form -->
+                    <form name="" action="{{ path('login') }}" method="POST">
+                      <!-- Heading -->
+                      <h3 class="dark-grey-text text-center">
+                        <strong>Login</strong>
+                      </h3>
+                      <hr>
+
+                      <div class="md-form">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input type="username" id="form3" class="form-control" name="_username" placeholder="Username">
+                      </div>
+                      <div class="md-form">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input type="password" id="form2" class="form-control" name="_password" placeholder="Password">
+                      </div>
+
+                      <div class="text-center">
+                        <button class="btn btn-indigo waves-effect waves-light" type="submit">Sign in</button>
+                        <hr>
+                        <fieldset class="form-check">
+                          <input type="checkbox" class="form-check-input" id="checkbox1">
+                          <label for="checkbox1" class="form-check-label dark-grey-text">Remember me</label>
+                        </fieldset>
+                      </div>
+
+                    </form>
+                    <!-- Form -->
+
+                  </div>
+
+                </div>
+                <!--/.Card-->
+
+              </div>
+              <!--Grid column-->
+              {% endif %}
+            </div>
+            <!--Grid row-->
+
+          </div>
+          <!-- Content -->
+
+        </div>
+        <!-- Mask & flexbox options-->
+
+      </div>
+    </div>
+    <!--/Third slide-->
 
   </div>
-  <!--/.Carousel Wrapper-->
+  <!--/.Slides-->
 
-  <!--Main layout-->
-  <main>
-    <div class="container">
+  <!--Controls-->
+  <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  <!--/.Controls-->
 
-      <!--Section: Main info-->
-      <section class="mt-5 wow fadeIn">
+</div>
+<!--/.Carousel Wrapper-->
 
-        <!--Grid row-->
-        <div class="row">
+<!--Main layout-->
+<main>
+  <div class="container">
 
-          <!--Grid column-->
-          <div class="col-md-6 mb-4">
+    <!--Section: Main info-->
+    <section class="mt-5 wow fadeIn">
 
-            <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-main.jpg" class="img-fluid z-depth-1-half" alt="">
+      <!--Grid row-->
+      <div class="row">
 
-          </div>
-          <!--Grid column-->
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
 
-          <!--Grid column-->
-          <div class="col-md-6 mb-4">
-
-            <!-- Main heading -->
-            <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
-            <p>This template is created with Material Design for Bootstrap (
-              <strong>MDB</strong> ) framework.</p>
-            <p>Read details below to learn more about MDB.</p>
-            <!-- Main heading -->
-
-            <hr>
-
-            <p>
-              <strong>400+</strong> material UI elements,
-              <strong>600+</strong> material icons,
-              <strong>74</strong> CSS animations, SASS files, templates, tutorials and many more.
-              <strong>Free for personal and commercial use.</strong>
-            </p>
-
-            <!-- CTA -->
-            <a target="_blank" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" class="btn btn-grey btn-md">Download
-              <i class="fa fa-download ml-1"></i>
-            </a>
-            <a target="_blank" href="https://mdbootstrap.com/docs/jquery/components/" class="btn btn-grey btn-md">Live demo
-              <i class="fa fa-image ml-1"></i>
-            </a>
-
-          </div>
-          <!--Grid column-->
+          <img src="https://mdbootstrap.com/img/Marketing/mdb-press-pack/mdb-main.jpg" class="img-fluid z-depth-1-half"
+            alt="">
 
         </div>
-        <!--Grid row-->
+        <!--Grid column-->
 
-      </section>
-      <!--Section: Main info-->
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
 
-      <hr class="my-5">
+          <!-- Main heading -->
+          <h3 class="h3 mb-3">Material Design for Bootstrap</h3>
+          <p>This template is created with Material Design for Bootstrap (
+            <strong>MDB</strong> ) framework.</p>
+          <p>Read details below to learn more about MDB.</p>
+          <!-- Main heading -->
 
-      <!--Section: Main features & Quick Start-->
-      <section>
+          <hr>
 
-        <h3 class="h3 text-center mb-5">About MDB</h3>
+          <p>
+            <strong>400+</strong> material UI elements,
+            <strong>600+</strong> material icons,
+            <strong>74</strong> CSS animations, SASS files, templates, tutorials and many more.
+            <strong>Free for personal and commercial use.</strong>
+          </p>
 
-        <!--Grid row-->
-        <div class="row wow fadeIn">
-
-          <!--Grid column-->
-          <div class="col-lg-6 col-md-12 px-4">
-
-            <!--First row-->
-            <div class="row">
-              <div class="col-1 mr-3">
-                <i class="fa fa-code fa-2x indigo-text"></i>
-              </div>
-              <div class="col-10">
-                <h5 class="feature-title">Bootstrap 4</h5>
-                <p class="grey-text">Thanks to MDB you can take advantage of all feature of newest Bootstrap 4.</p>
-              </div>
-            </div>
-            <!--/First row-->
-
-            <div style="height:30px"></div>
-
-            <!--Second row-->
-            <div class="row">
-              <div class="col-1 mr-3">
-                <i class="fa fa-book fa-2x blue-text"></i>
-              </div>
-              <div class="col-10">
-                <h5 class="feature-title">Detailed documentation</h5>
-                <p class="grey-text">We give you detailed user-friendly documentation at your disposal. It will help you to implement your ideas
-                  easily.
-                </p>
-              </div>
-            </div>
-            <!--/Second row-->
-
-            <div style="height:30px"></div>
-
-            <!--Third row-->
-            <div class="row">
-              <div class="col-1 mr-3">
-                <i class="fa fa-graduation-cap fa-2x cyan-text"></i>
-              </div>
-              <div class="col-10">
-                <h5 class="feature-title">Lots of tutorials</h5>
-                <p class="grey-text">We care about the development of our users. We have prepared numerous tutorials, which allow you to learn
-                  how to use MDB as well as other technologies.</p>
-              </div>
-            </div>
-            <!--/Third row-->
-
-          </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-6 col-md-12">
-
-            <p class="h5 text-center mb-4">Watch our "5 min Quick Start" tutorial</p>
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/cXTThxoywNQ" allowfullscreen></iframe>
-            </div>
-          </div>
-          <!--/Grid column-->
+          <!-- CTA -->
+          <a target="_blank" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" class="btn btn-grey btn-md">Download
+            <i class="fa fa-download ml-1"></i>
+          </a>
+          <a target="_blank" href="https://mdbootstrap.com/docs/jquery/components/" class="btn btn-grey btn-md">Live
+            demo
+            <i class="fa fa-image ml-1"></i>
+          </a>
 
         </div>
-        <!--/Grid row-->
+        <!--Grid column-->
 
-      </section>
-      <!--Section: Main features & Quick Start-->
+      </div>
+      <!--Grid row-->
 
-      <hr class="my-5">
+    </section>
+    <!--Section: Main info-->
 
-      <!--Section: Not enough-->
-      <section>
+    <hr class="my-5">
 
-        <h2 class="my-5 h3 text-center">Not enough?</h2>
+    <!--Section: Main features & Quick Start-->
+    <section>
 
-        <!--First row-->
-        <div class="row features-small mb-5 mt-3 wow fadeIn">
+      <h3 class="h3 text-center mb-5">Over Training Factory</h3>
 
-          <!--First column-->
-          <div class="col-md-4">
-            <!--First row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-check-circle fa-2x indigo-text"></i>
-              </div>
-              <div class="col-10">
-                <h6 class="feature-title">Free for personal and commercial use</h6>
-                <p class="grey-text">Our license is user-friendly. Feel free to use MDB for both private as well as commercial projects.
-                </p>
-                <div style="height:15px"></div>
-              </div>
+      <!--Grid row-->
+      <div class="row wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-lg-6 col-md-12 px-4">
+
+          <!--First row-->
+          <div class="row">
+            <div class="col-1 mr-3">
+              <i class="fa fa-code fa-2x indigo-text"></i>
             </div>
-            <!--/First row-->
-
-            <!--Second row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-check-circle fa-2x indigo-text"></i>
-              </div>
-              <div class="col-10">
-                <h6 class="feature-title">400+ UI elements</h6>
-                <p class="grey-text">An impressive collection of flexible components allows you to develop any project.
-                </p>
-                <div style="height:15px"></div>
-              </div>
+            <div class="col-10">
+              <h5 class="feature-title">Bootstrap 4</h5>
+              <p class="grey-text">Thanks to MDB you can take advantage of all feature of newest Bootstrap 4.</p>
             </div>
-            <!--/Second row-->
-
-            <!--Third row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-check-circle fa-2x indigo-text"></i>
-              </div>
-              <div class="col-10">
-                <h6 class="feature-title">600+ icons</h6>
-                <p class="grey-text">Hundreds of useful, scalable, vector icons at your disposal.</p>
-                <div style="height:15px"></div>
-              </div>
-            </div>
-            <!--/Third row-->
-
-            <!--Fourth row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-check-circle fa-2x indigo-text"></i>
-              </div>
-              <div class="col-10">
-                <h6 class="feature-title">Fully responsive</h6>
-                <p class="grey-text">It doesn't matter whether your project will be displayed on desktop, laptop, tablet or mobile phone. MDB
-                  looks great on each screen.</p>
-                <div style="height:15px"></div>
-              </div>
-            </div>
-            <!--/Fourth row-->
           </div>
-          <!--/First column-->
+          <!--/First row-->
 
-          <!--Second column-->
-          <div class="col-md-4 flex-center">
-            <img src="https://mdbootstrap.com/img/Others/screens.png" alt="MDB Magazine Template displayed on iPhone" class="z-depth-0 img-fluid">
+          <div style="height:30px"></div>
+
+          <!--Second row-->
+          <div class="row">
+            <div class="col-1 mr-3">
+              <i class="fa fa-book fa-2x blue-text"></i>
+            </div>
+            <div class="col-10">
+              <h5 class="feature-title">Detailed documentation</h5>
+              <p class="grey-text">We give you detailed user-friendly documentation at your disposal. It will help you
+                to implement your ideas
+                easily.
+              </p>
+            </div>
           </div>
-          <!--/Second column-->
+          <!--/Second row-->
 
-          <!--Third column-->
-          <div class="col-md-4 mt-2">
-            <!--First row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-check-circle fa-2x indigo-text"></i>
-              </div>
-              <div class="col-10">
-                <h6 class="feature-title">70+ CSS animations</h6>
-                <p class="grey-text">Neat and easy to use animations, which will increase the interactivity of your project and delight your visitors.
-                </p>
-                <div style="height:15px"></div>
-              </div>
-            </div>
-            <!--/First row-->
+          <div style="height:30px"></div>
 
-            <!--Second row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-check-circle fa-2x indigo-text"></i>
-              </div>
-              <div class="col-10">
-                <h6 class="feature-title">Plenty of useful templates</h6>
-                <p class="grey-text">Need inspiration? Use one of our predefined templates for free.</p>
-                <div style="height:15px"></div>
-              </div>
+          <!--Third row-->
+          <div class="row">
+            <div class="col-1 mr-3">
+              <i class="fa fa-graduation-cap fa-2x cyan-text"></i>
             </div>
-            <!--/Second row-->
-
-            <!--Third row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-check-circle fa-2x indigo-text"></i>
-              </div>
-              <div class="col-10">
-                <h6 class="feature-title">Easy installation</h6>
-                <p class="grey-text">5 minutes, a few clicks and... done. You will be surprised at how easy it is.
-                </p>
-                <div style="height:15px"></div>
-              </div>
+            <div class="col-10">
+              <h5 class="feature-title">Lots of tutorials</h5>
+              <p class="grey-text">We care about the development of our users. We have prepared numerous tutorials,
+                which allow you to learn
+                how to use MDB as well as other technologies.</p>
             </div>
-            <!--/Third row-->
-
-            <!--Fourth row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-check-circle fa-2x indigo-text"></i>
-              </div>
-              <div class="col-10">
-                <h6 class="feature-title">Easy to use and customize</h6>
-                <p class="grey-text">Using MDB is straightforward and pleasant. Components flexibility allows you deep customization. You will
-                  easily adjust each component to suit your needs.</p>
-                <div style="height:15px"></div>
-              </div>
-            </div>
-            <!--/Fourth row-->
           </div>
-          <!--/Third column-->
+          <!--/Third row-->
 
         </div>
-        <!--/First row-->
+        <!--/Grid column-->
 
-      </section>
-      <!--Section: Not enough-->
+        <!--Grid column-->
+        <div class="col-lg-6 col-md-12">
 
-      <hr class="mb-5">
-
-      <!--Section: More-->
-      <section>
-
-        <h2 class="my-5 h3 text-center">...and even more</h2>
-
-        <!--First row-->
-        <div class="row features-small mt-5 wow fadeIn">
-
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-firefox fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2 pl-3">
-                <h5 class="feature-title font-bold mb-1">Cross-browser compatibility</h5>
-                <p class="grey-text mt-2">Chrome, Firefox, IE, Safari, Opera, Microsoft Edge - MDB loves all browsers; all browsers love MDB.
-                </p>
-              </div>
-            </div>
-            <!--/Grid row-->
+          <p class="h5 text-center mb-4">Bekijk onze mooie ingang</p>
+          <div class="embed-responsive embed-responsive-16by9">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oOWT25UgO88" allowfullscreen></iframe>
           </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-level-up fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">Frequent updates</h5>
-                <p class="grey-text mt-2">MDB becomes better every month. We love the project and enhance as much as possible.
-                </p>
-              </div>
-            </div>
-            <!--/Grid row-->
-          </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-comments-o fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">Active community</h5>
-                <p class="grey-text mt-2">Our society grows day by day. Visit our forum and check how it is to be a part of our family.
-                </p>
-              </div>
-            </div>
-            <!--/Grid row-->
-          </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-code fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">jQuery 3.x</h5>
-                <p class="grey-text mt-2">MDB is integrated with newest jQuery. Therefore you can use all the latest features which come along with
-                  it.
-                </p>
-              </div>
-            </div>
-            <!--/Grid row-->
-          </div>
-          <!--/Grid column-->
-
         </div>
-        <!--/First row-->
+        <!--/Grid column-->
 
-        <!--Second row-->
-        <div class="row features-small mt-4 wow fadeIn">
+      </div>
+      <!--/Grid row-->
 
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-cubes fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">Modularity</h5>
-                <p class="grey-text mt-2">Material Design for Bootstrap comes with both, compiled, ready to use libraries including all features as
-                  well as modules for CSS (SASS files) and JS.</p>
-              </div>
+    </section>
+    <!--Section: Main features & Quick Start-->
+
+    <hr class="my-5">
+
+    <!--Section: Not enough-->
+    <section>
+
+      <h2 class="my-5 h3 text-center">Not enough?</h2>
+
+      <!--First row-->
+      <div class="row features-small mb-5 mt-3 wow fadeIn">
+
+        <!--First column-->
+        <div class="col-md-4">
+          <!--First row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-check-circle fa-2x indigo-text"></i>
             </div>
-            <!--/Grid row-->
-          </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-question fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">Technical support</h5>
-                <p class="grey-text mt-2">We care about reliability. If you have any questions - do not hesitate to contact us.
-                </p>
-              </div>
+            <div class="col-10">
+              <h6 class="feature-title">Free for personal and commercial use</h6>
+              <p class="grey-text">Our license is user-friendly. Feel free to use MDB for both private as well as
+                commercial projects.
+              </p>
+              <div style="height:15px"></div>
             </div>
-            <!--/Grid row-->
           </div>
-          <!--/Grid column-->
+          <!--/First row-->
 
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-th fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">Flexbox</h5>
-                <p class="grey-text mt-2">MDB fully supports Flex Box. You can forget about alignment issues.</p>
-              </div>
+          <!--Second row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-check-circle fa-2x indigo-text"></i>
             </div>
-            <!--/Grid row-->
-          </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-file-code-o fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">SASS files</h5>
-                <p class="grey-text mt-2">Arranged and well documented .scss files can't wait until you compile them.</p>
-              </div>
+            <div class="col-10">
+              <h6 class="feature-title">400+ UI elements</h6>
+              <p class="grey-text">An impressive collection of flexible components allows you to develop any project.
+              </p>
+              <div style="height:15px"></div>
             </div>
-            <!--/Grid row-->
           </div>
-          <!--/Grid column-->
+          <!--/Second row-->
 
+          <!--Third row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-check-circle fa-2x indigo-text"></i>
+            </div>
+            <div class="col-10">
+              <h6 class="feature-title">600+ icons</h6>
+              <p class="grey-text">Hundreds of useful, scalable, vector icons at your disposal.</p>
+              <div style="height:15px"></div>
+            </div>
+          </div>
+          <!--/Third row-->
+
+          <!--Fourth row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-check-circle fa-2x indigo-text"></i>
+            </div>
+            <div class="col-10">
+              <h6 class="feature-title">Fully responsive</h6>
+              <p class="grey-text">It doesn't matter whether your project will be displayed on desktop, laptop, tablet
+                or mobile phone. MDB
+                looks great on each screen.</p>
+              <div style="height:15px"></div>
+            </div>
+          </div>
+          <!--/Fourth row-->
         </div>
-        <!--/Second row-->
+        <!--/First column-->
 
-      </section>
-      <!--Section: More-->
+        <!--Second column-->
+        <div class="col-md-4 flex-center">
+          <img src="https://mdbootstrap.com/img/Others/screens.png" alt="MDB Magazine Template displayed on iPhone"
+            class="z-depth-0 img-fluid">
+        </div>
+        <!--/Second column-->
 
-    </div>
-  </main>
-  <!--Main layout-->
+        <!--Third column-->
+        <div class="col-md-4 mt-2">
+          <!--First row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-check-circle fa-2x indigo-text"></i>
+            </div>
+            <div class="col-10">
+              <h6 class="feature-title">70+ CSS animations</h6>
+              <p class="grey-text">Neat and easy to use animations, which will increase the interactivity of your
+                project and delight your visitors.
+              </p>
+              <div style="height:15px"></div>
+            </div>
+          </div>
+          <!--/First row-->
 
-    {% endblock %}
+          <!--Second row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-check-circle fa-2x indigo-text"></i>
+            </div>
+            <div class="col-10">
+              <h6 class="feature-title">Plenty of useful templates</h6>
+              <p class="grey-text">Need inspiration? Use one of our predefined templates for free.</p>
+              <div style="height:15px"></div>
+            </div>
+          </div>
+          <!--/Second row-->
 
+          <!--Third row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-check-circle fa-2x indigo-text"></i>
+            </div>
+            <div class="col-10">
+              <h6 class="feature-title">Easy installation</h6>
+              <p class="grey-text">5 minutes, a few clicks and... done. You will be surprised at how easy it is.
+              </p>
+              <div style="height:15px"></div>
+            </div>
+          </div>
+          <!--/Third row-->
+
+          <!--Fourth row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-check-circle fa-2x indigo-text"></i>
+            </div>
+            <div class="col-10">
+              <h6 class="feature-title">Easy to use and customize</h6>
+              <p class="grey-text">Using MDB is straightforward and pleasant. Components flexibility allows you deep
+                customization. You will
+                easily adjust each component to suit your needs.</p>
+              <div style="height:15px"></div>
+            </div>
+          </div>
+          <!--/Fourth row-->
+        </div>
+        <!--/Third column-->
+
+      </div>
+      <!--/First row-->
+
+    </section>
+    <!--Section: Not enough-->
+
+    <hr class="mb-5">
+
+    <!--Section: More-->
+    <section>
+
+      <h2 class="my-5 h3 text-center">...and even more</h2>
+
+      <!--First row-->
+      <div class="row features-small mt-5 wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-xl-3 col-lg-6">
+          <!--Grid row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-firefox fa-2x mb-1 indigo-text" aria-hidden="true"></i>
+            </div>
+            <div class="col-10 mb-2 pl-3">
+              <h5 class="feature-title font-bold mb-1">Cross-browser compatibility</h5>
+              <p class="grey-text mt-2">Chrome, Firefox, IE, Safari, Opera, Microsoft Edge - MDB loves all browsers;
+                all browsers love MDB.
+              </p>
+            </div>
+          </div>
+          <!--/Grid row-->
+        </div>
+        <!--/Grid column-->
+
+        <!--Grid column-->
+        <div class="col-xl-3 col-lg-6">
+          <!--Grid row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-level-up fa-2x mb-1 indigo-text" aria-hidden="true"></i>
+            </div>
+            <div class="col-10 mb-2">
+              <h5 class="feature-title font-bold mb-1">Frequent updates</h5>
+              <p class="grey-text mt-2">MDB becomes better every month. We love the project and enhance as much as
+                possible.
+              </p>
+            </div>
+          </div>
+          <!--/Grid row-->
+        </div>
+        <!--/Grid column-->
+
+        <!--Grid column-->
+        <div class="col-xl-3 col-lg-6">
+          <!--Grid row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-comments-o fa-2x mb-1 indigo-text" aria-hidden="true"></i>
+            </div>
+            <div class="col-10 mb-2">
+              <h5 class="feature-title font-bold mb-1">Active community</h5>
+              <p class="grey-text mt-2">Our society grows day by day. Visit our forum and check how it is to be a part
+                of our family.
+              </p>
+            </div>
+          </div>
+          <!--/Grid row-->
+        </div>
+        <!--/Grid column-->
+
+        <!--Grid column-->
+        <div class="col-xl-3 col-lg-6">
+          <!--Grid row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-code fa-2x mb-1 indigo-text" aria-hidden="true"></i>
+            </div>
+            <div class="col-10 mb-2">
+              <h5 class="feature-title font-bold mb-1">jQuery 3.x</h5>
+              <p class="grey-text mt-2">MDB is integrated with newest jQuery. Therefore you can use all the latest
+                features which come along with
+                it.
+              </p>
+            </div>
+          </div>
+          <!--/Grid row-->
+        </div>
+        <!--/Grid column-->
+
+      </div>
+      <!--/First row-->
+
+      <!--Second row-->
+      <div class="row features-small mt-4 wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-xl-3 col-lg-6">
+          <!--Grid row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-cubes fa-2x mb-1 indigo-text" aria-hidden="true"></i>
+            </div>
+            <div class="col-10 mb-2">
+              <h5 class="feature-title font-bold mb-1">Modularity</h5>
+              <p class="grey-text mt-2">Material Design for Bootstrap comes with both, compiled, ready to use libraries
+                including all features as
+                well as modules for CSS (SASS files) and JS.</p>
+            </div>
+          </div>
+          <!--/Grid row-->
+        </div>
+        <!--/Grid column-->
+
+        <!--Grid column-->
+        <div class="col-xl-3 col-lg-6">
+          <!--Grid row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-question fa-2x mb-1 indigo-text" aria-hidden="true"></i>
+            </div>
+            <div class="col-10 mb-2">
+              <h5 class="feature-title font-bold mb-1">Technical support</h5>
+              <p class="grey-text mt-2">We care about reliability. If you have any questions - do not hesitate to
+                contact us.
+              </p>
+            </div>
+          </div>
+          <!--/Grid row-->
+        </div>
+        <!--/Grid column-->
+
+        <!--Grid column-->
+        <div class="col-xl-3 col-lg-6">
+          <!--Grid row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-th fa-2x mb-1 indigo-text" aria-hidden="true"></i>
+            </div>
+            <div class="col-10 mb-2">
+              <h5 class="feature-title font-bold mb-1">Flexbox</h5>
+              <p class="grey-text mt-2">MDB fully supports Flex Box. You can forget about alignment issues.</p>
+            </div>
+          </div>
+          <!--/Grid row-->
+        </div>
+        <!--/Grid column-->
+
+        <!--Grid column-->
+        <div class="col-xl-3 col-lg-6">
+          <!--Grid row-->
+          <div class="row">
+            <div class="col-2">
+              <i class="fa fa-file-code-o fa-2x mb-1 indigo-text" aria-hidden="true"></i>
+            </div>
+            <div class="col-10 mb-2">
+              <h5 class="feature-title font-bold mb-1">SASS files</h5>
+              <p class="grey-text mt-2">Arranged and well documented .scss files can't wait until you compile them.</p>
+            </div>
+          </div>
+          <!--/Grid row-->
+        </div>
+        <!--/Grid column-->
+
+      </div>
+      <!--/Second row-->
+
+    </section>
+    <!--Section: More-->
+
+  </div>
+</main>
+<!--Main layout-->
+
+{% endblock %}
