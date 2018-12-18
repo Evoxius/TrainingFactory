@@ -156,27 +156,27 @@ textarea {
 }
 
 ::-webkit-input-placeholder {
-    color: #e6007e;
+    color: #6d6c6c;
 }
 
 :-moz-placeholder {
     /* Firefox 18- */
-    color: #e6007e;
+    color: #6d6c6c;
 }
 
 ::-moz-placeholder {
     /* Firefox 19+ */
-    color: #e6007e;
+    color: #6d6c6c;
 }
 
 :-ms-input-placeholder {
-    color: #e6007e;
+    color: #6d6c6c;
 }
 
 a {
     outline: none;
     text-decoration: none;
-    color: #e6007e;
+    color: #6d6c6c;
     transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
@@ -187,7 +187,7 @@ a:hover,
 a:active,
 a:focus {
     text-decoration: none;
-    color: #e6007e;
+    color: #6d6c6c;
 }
 
 
@@ -675,7 +675,7 @@ a:focus {
 
 .fIcons:before {
     font-size: 72px;
-    color: #e6007e;
+    color: #6d6c6c;
 }
 
 .fIcons {
@@ -725,7 +725,7 @@ h1 {
 }
 
 h2 {
-    font-size: 70px;
+    font-size: 45px;
     line-height: 75px;
 }
 
@@ -845,12 +845,12 @@ p {
 
 ::-moz-selection {
     color: #fff;
-    background: #e6007e;
+    background: #6d6c6c;
 }
 
 ::selection {
     color: #fff;
-    background: #e6007e;
+    background: #6d6c6c;
 }
 
 @media (min-width: 1400px) {
@@ -897,7 +897,7 @@ p {
 }
 
 .top-head ul li a:hover {
-    color: #ff0a78;
+    color: #6d6c6c;
 }
 
 .top-head ul li {
@@ -944,7 +944,7 @@ p {
     margin: 0 78px 0 0 !important;
     height: auto;
     line-height: normal;
-    background-color: #e6007e;
+    background-color: #6d6c6c;
     position: relative;
     z-index: 1;
 }
@@ -978,7 +978,7 @@ p {
 
 .navbar-default .navbar-brand:focus,
 .navbar-default .navbar-brand:hover {
-    background-color: #e6007e;
+    background-color: #6d6c6c;
 }
 
 .menuBar .navbar-default {
@@ -1379,7 +1379,7 @@ header.fixed .menuBar .navbar-right {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #e6007e;
+    background-color: #6d6c6c;
     content: '';
     -webkit-transition: -webkit-transform 0.3s;
     transition: transform 0.3s;
@@ -1656,11 +1656,11 @@ header.fixed .menuBar .navbar-right {
 
 .gallery-button-group button.button.checked,
 .gallery-button-group button:hover {
-    color: #ff0a78;
+    color: #6d6c6c;
 }
 
 .gallery-button-group button.button.is-checked {
-    color: #ff0883;
+    color: #6d6c6c;
 }
 
 .gImg .circle-icon i {
@@ -1668,7 +1668,7 @@ header.fixed .menuBar .navbar-right {
     font-size: 12px;
     position: relative;
     border-radius: 50%;
-    background-color: #ff0a78;
+    background-color: #6d6c6c;
     width: 34px;
     height: 34px;
     text-align: center;
@@ -1838,7 +1838,7 @@ header.fixed .menuBar .navbar-right {
 .priceBox h4 {
     display: inline-block;
     font-size: 16px;
-    color: #ff0a78;
+    color: #6d6c6c;
     margin: 20.5px 0 !important;
 }
 
@@ -2074,7 +2074,7 @@ header.fixed .menuBar .navbar-right {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #e6007e;
+    background-color: #000;
     z-index: 1;
 }
 
@@ -2086,7 +2086,7 @@ header.fixed .menuBar .navbar-right {
     height: 100%;
     top: 0;
     right: 0;
-    background: #e6007e;
+    background: #000;
     transform-origin: bottom left;
     -ms-transform: skew(-29.6deg, 0deg);
     -webkit-transform: skew(-29.6deg, 0deg);
@@ -2137,7 +2137,7 @@ header.fixed .menuBar .navbar-right {
 }
 
 .skewback h2 {
-    font-size: 65px;
+    font-size:45px;
     position: relative;
     text-transform: uppercase;
     font-family: 'Passion One', cursive;
@@ -2158,13 +2158,14 @@ header.fixed .menuBar .navbar-right {
     left: -20px;
     font-weight: 600;
     text-transform: uppercase;
-    bottom: 15px;
+    bottom: 2px;
 }
 
 .plan-list {
     margin: 210px 0 28px;
     display: inline-block;
     width: 100%;
+    padding-left: 0px;
 }
 
 .plan-list li {
@@ -2184,7 +2185,7 @@ header.fixed .menuBar .navbar-right {
 }
 
 .pricebox .midelement {
-    background-color: #e6007e;
+    background-color: #a0a0a0;
 }
 
 .pricebox .midelement .plan-top,
@@ -2297,7 +2298,7 @@ header.fixed .menuBar .navbar-right {
 
 .clientSlide .item h4 {
     font-weight: 900;
-    color: #ff0a78;
+    color: #6d6c6c;
     text-transform: uppercase;
     font-style: italic;
     margin-top: 52px;
@@ -2407,7 +2408,7 @@ header.fixed .menuBar .navbar-right {
 }
 
 .news .item ul li a:hover {
-    color: #ff0a78;
+    color: #6d6c6c;
 }
 
 .news-comments a img {
@@ -2508,7 +2509,7 @@ header.fixed .menuBar .navbar-right {
 
 .b_effect:focus,
 .subscribe form input:focus {
-    border-color: #ff0a78;
+    border-color: #6d6c6c;
 }
 
 .form-Box .fill-btn {
@@ -2536,7 +2537,7 @@ header.fixed .menuBar .navbar-right {
 }
 
 .fTitle span {
-    color: #ff0a78;
+    color: #6d6c6c;
 }
 
 .contact-address ul li,
@@ -2568,7 +2569,7 @@ header.fixed .menuBar .navbar-right {
 }
 
 .contact-address ul li a:hover {
-    color: #ff0a78;
+    color: #6d6c6c;
 }
 
 .subscribe form {
@@ -2628,7 +2629,7 @@ header.fixed .menuBar .navbar-right {
     height: 43px;
     display: inline-block;
     position: absolute;
-    border: 1px solid #ff0a78;
+    border: 1px solid #6d6c6c;
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
     -moz-transform: rotate(135deg);
@@ -2644,7 +2645,7 @@ header.fixed .menuBar .navbar-right {
 }
 
 .social-icons ul li:hover:before {
-    background: #ff0a78;
+    background: #6d6c6c;
 }
 
 
@@ -2662,7 +2663,7 @@ header.fixed .menuBar .navbar-right {
 }
 
 .copyright h6 a {
-    color: #ff0a78;
+    color: #6d6c6c;
     transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
@@ -2701,7 +2702,7 @@ header.fixed .menuBar .navbar-right {
     height: 40px;
     display: inline-block;
     position: absolute;
-    background: #e6007e;
+    background: #c33d3d;
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
     -moz-transform: rotate(135deg);
@@ -2795,7 +2796,7 @@ header.fixed .menuBar .navbar-right {
 }
 
 .inner-banner .bannerText ol a {
-    color: #ff0a78;
+    color: #6d6c6c;
 }
 
 .inner-banner .bannerText ol li {
@@ -2862,7 +2863,7 @@ header.fixed .menuBar .navbar-right {
 }
 
 .hot-news figure figcaption a:hover {
-    color: #ff0a78;
+    color: #6d6c6c;
 }
 
 .hot-news figure {
@@ -2907,12 +2908,12 @@ header.fixed .menuBar .navbar-right {
 
 .posted-by span a {
     text-decoration: underline;
-    color: #ff0a78;
+    color: #6d6c6c;
 }
 
 .posted-by .badge {
     color: #fff;
-    background-color: #ff0a78;
+    background-color: #6d6c6c;
     padding: 4.5px 16px;
 }
 
@@ -2970,7 +2971,7 @@ header.fixed .menuBar .navbar-right {
 }
 
 .nlist-bottom .social li a:hover {
-    color: #ff0a78;
+    color: #6d6c6c;
 }
 
 .nlist-bottom .social li:first-child {
@@ -3035,7 +3036,7 @@ header.fixed .menuBar .navbar-right {
     float: none;
     width: auto;
     display: inline-block;
-    background-color: #ff0a78;
+    background-color: #6d6c6c;
     padding: 4.5px 16px;
 }
 
@@ -3056,7 +3057,7 @@ header.fixed .menuBar .navbar-right {
 }
 
 .list-status .nlist-info .nlist-title a:hover {
-    color: #ff0a78;
+    color: #6d6c6c;
 }
 
 .list-link .nlist-title a {
@@ -3202,7 +3203,7 @@ header.fixed .menuBar .navbar-right {
 }
 
 .widget_search {
-    background-color: #ff0a78;
+    background-color: #6d6c6c;
 }
 
 .widget_search form button {
@@ -3287,7 +3288,7 @@ input[type=radio].with-font#gender2 ~ label:before {
 }
 
 input[type=radio].with-font:checked ~ label {
-    background-color: #ff0a78;
+    background-color: #6d6c6c;
 }
 
 input[type=radio].with-font:checked ~ label:before {
@@ -3295,7 +3296,7 @@ input[type=radio].with-font:checked ~ label:before {
 }
 
 input[type=radio].with-font:focus ~ label {
-    background-color: #ff0a78;
+    background-color: #6d6c6c;
 }
 
 .w-cal {
@@ -3452,7 +3453,7 @@ input[type=radio].with-font:focus ~ label {
     padding: 5px 19px;
     display: inline-block;
     margin: 0 0 10px 5px;
-    background-color: #ff0a78;
+    background-color: #6d6c6c;
     color: #fff;
     transition: all 0.3s;
     -webkit-transition: all 0.3s;
@@ -3494,7 +3495,7 @@ blockquote h6 {
     float: right;
     font-size: 12px;
     text-transform: uppercase;
-    color: #ff0a78;
+    color: #6d6c6c;
     font-weight: 600;
     letter-spacing: 0.96px;
 }
@@ -3598,7 +3599,7 @@ blockquote h6 {
 }
 
 .blog-date a:hover {
-    color: #ff0a78;
+    color: #6d6c6c;
 }
 
 .blog-title a {
@@ -3611,7 +3612,7 @@ blockquote h6 {
 }
 
 .blog-title a:hover {
-    color: #ff0a78;
+    color: #6d6c6c;
 }
 
 .blog-comment > .blog-comment {
@@ -3626,7 +3627,7 @@ blockquote h6 {
 .blog-date .comment-reply {
     float: right;
     font-size: 14px;
-    color: #ff0a78;
+    color: #6d6c6c;
     font-style: italic;
     font-weight: 600;
     margin: 0;
