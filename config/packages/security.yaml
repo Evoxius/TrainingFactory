@@ -11,7 +11,7 @@ security:
             memory:
                 users:
                     apotheker: { password: test, roles: [ 'ROLE_MEMBER' ] }  
-                    verzekering: { password: test, roles: [ 'ROLE_MEMBER' ] }          
+                    admin: { password: admin, roles: [ 'ROLE_ADMIN' ] }          
         user_db:
             entity:
                 class: App\Entity\Member
@@ -38,6 +38,6 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/login|home|contact, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-         - { path: ^/ , roles: ROLE_MEMBER }
+    
          
          
