@@ -5,15 +5,15 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomepageController extends Controller
+class BezoekerController extends Controller
 {
     /**
      * @Route("/home", name="homepage")
      */
     public function index()
     {
-        return $this->render('homepage/index.html.twig', [
-            'controller_name' => 'HomepageController',
+        return $this->render('bezoeker/index.html.twig', [
+            'controller_name' => 'BezoekerController',
         ]);
     }
 
@@ -22,8 +22,8 @@ class HomepageController extends Controller
      */
     public function dagpas()
     {
-        return $this->render('homepage/dagpas.html.twig', [
-            'controller_name' => 'HomepageController',
+        return $this->render('bezoeker/dagpas.html.twig', [
+            'controller_name' => 'BezoekerController',
         ]);
     }
 
@@ -32,8 +32,8 @@ class HomepageController extends Controller
      */
     public function huisregels()
     {
-        return $this->render('homepage/huisregels.html.twig', [
-            'controller_name' => 'HomepageController',
+        return $this->render('bezoeker/huisregels.html.twig', [
+            'controller_name' => 'BezoekerController',
         ]);
     }
 
@@ -42,8 +42,8 @@ class HomepageController extends Controller
      */
     public function cookies()
     {
-        return $this->render('homepage/cookies.html.twig', [
-            'controller_name' => 'HomepageController',
+        return $this->render('bezoeker/cookies.html.twig', [
+            'controller_name' => 'BezoekerController',
         ]);
     }
 
@@ -52,8 +52,8 @@ class HomepageController extends Controller
      */
     public function privacybeleid()
     {
-        return $this->render('homepage/privacybeleid.html.twig', [
-            'controller_name' => 'HomepageController',
+        return $this->render('bezoeker/privacybeleid.html.twig', [
+            'controller_name' => 'BezoekerController',
         ]);
     }
 
@@ -62,8 +62,8 @@ class HomepageController extends Controller
      */
     public function contact()
     {
-        return $this->render('homepage/contact.html.twig', [
-            'controller_name' => 'HomepageController',
+        return $this->render('bezoeker/contact.html.twig', [
+            'controller_name' => 'BezoekerController',
         ]);
     }
 

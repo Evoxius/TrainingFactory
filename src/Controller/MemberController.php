@@ -128,4 +128,5 @@ class MemberController extends Controller
 
         return $this->redirectToRoute('member_index');
     }
+    
 }

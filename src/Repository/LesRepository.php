@@ -19,6 +19,43 @@ class LesRepository extends ServiceEntityRepository
         parent::__construct($registry, Les::class);
     }
 
+    public function getBeschikbareLessen($userid)
+    {
+        $em=$this->getEntityManager();
+        $query=$em->createQuery("SELECT a FROM AppBundle:les a WHERE :username NOT MEMBER OF a.member ORDER BY a.dag");
+
+        $query->setParameter('username',$userid);
+
+        return $query->getResult();
+    }
+
+    public function getIngeschrevenLessen($userid)
+    {
+
+        $em=$this->getEntityManager();
+        $query=$em->createQuery("SELECT a FROM AppBundle:les a WHERE :username MEMBER OF a.member ORDER BY a.dag");
+
+        $query->setParameter('username',$userid);
+
+        return $query->getResult();
+    }
+
+    public function getTotaal($Lessen)
+    {
+
+        $totaal=0;
+        foreach($Lessen as $a)
+        {
+            $totaal+=$a->getSoort()->getPrijs();
+        }
+        return $totaal;
+
+    }
+    public function findAll()
+    {
+        return $this->findBy(array(),array('dag'=>'ASC'));
+    }
+
     // /**
     //  * @return Les[] Returns an array of Les objects
     //  */

@@ -27,7 +27,7 @@ class LessenController extends Controller
 {
 
      /**
-     * @Route("/", name="les_index", methods={"GET"})
+     * @Route("/", name="les_list", methods={"GET"})
      */
     public function index(LesRepository $lesRepository): Response
     {
