@@ -2,49 +2,49 @@
 
 namespace App\Repository;
 
-use App\Entity\Les;
+use App\Entity\Lesson;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Les|null find($id, $lockMode = null, $lockVersion = null)
- * @method Les|null findOneBy(array $criteria, array $orderBy = null)
- * @method Les[]    findAll()
- * @method Les[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Lesson|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Lesson|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Lesson[]    findAll()
+ * @method Lesson[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class LesRepository extends ServiceEntityRepository
+class LessonRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Les::class);
+        parent::__construct($registry, Lesson::class);
     }
 
-    public function getBeschikbareLessen($userid)
+    public function getBeschikbareLesson($userid)
     {
         $em=$this->getEntityManager();
-        $query=$em->createQuery("SELECT a FROM AppBundle:les a WHERE :username NOT MEMBER OF a.member ORDER BY a.dag");
+        $query=$em->createQuery("SELECT a FROM Lesson::class a WHERE :username NOT MEMBER OF a.member ORDER BY a.dag");
 
         $query->setParameter('username',$userid);
 
         return $query->getResult();
     }
 
-    public function getIngeschrevenLessen($userid)
+    public function getIngeschrevenLesson($userid)
     {
 
         $em=$this->getEntityManager();
-        $query=$em->createQuery("SELECT a FROM AppBundle:les a WHERE :username MEMBER OF a.member ORDER BY a.dag");
+        $query=$em->createQuery("SELECT a FROM Lesson::class a WHERE :username MEMBER OF a.member ORDER BY a.dag");
 
         $query->setParameter('username',$userid);
 
         return $query->getResult();
     }
 
-    public function getTotaal($Lessen)
+    public function getTotaal($Lesson)
     {
 
         $totaal=0;
-        foreach($Lessen as $a)
+        foreach($Lesson as $a)
         {
             $totaal+=$a->getSoort()->getPrijs();
         }
@@ -56,8 +56,9 @@ class LesRepository extends ServiceEntityRepository
         return $this->findBy(array(),array('dag'=>'ASC'));
     }
 
+
     // /**
-    //  * @return Les[] Returns an array of Les objects
+    //  * @return Lesson[] Returns an array of Lesson objects
     //  */
     /*
     public function findByExampleField($value)
@@ -74,7 +75,7 @@ class LesRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Les
+    public function findOneBySomeField($value): ?Lesson
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.exampleField = :val')

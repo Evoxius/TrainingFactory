@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Rooster;
+use App\Entity\Registration;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Rooster|null find($id, $lockMode = null, $lockVersion = null)
- * @method Rooster|null findOneBy(array $criteria, array $orderBy = null)
- * @method Rooster[]    findAll()
- * @method Rooster[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Registration|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Registration|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Registration[]    findAll()
+ * @method Registration[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class RoosterRepository extends ServiceEntityRepository
+class RegistrationRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Rooster::class);
+        parent::__construct($registry, Registration::class);
     }
 
     // /**
-    //  * @return Rooster[] Returns an array of Rooster objects
+    //  * @return Registration[] Returns an array of Registration objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class RoosterRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Rooster
+    public function findOneBySomeField($value): ?Registration
     {
         return $this->createQueryBuilder('r')
             ->andWhere('r.exampleField = :val')

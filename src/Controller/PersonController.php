@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Member;
-use App\Form\MemberType;
-use App\Repository\MemberRepository;
+use App\Entity\Person;
+use App\Form\PersonType;
+use App\Repository\PersonRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,32 +18,38 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+
+
 
 /**
- * @Route("/member")
+ * @Route("/person")
  */
-class MemberController extends Controller
+class PersonController extends Controller
 {
     /**
-     * @Route("/", name="member_index", methods={"GET"})
+     * @Route("/", name="person_index", methods={"GET"})
      */
-    public function index(MemberRepository $memberRepository): Response
+    public function index(PersonRepository $personRepository): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'User tried to access a page without being logged in');
-        return $this->render('member/index.html.twig', ['members' => $memberRepository->findAll()]);
+        return $this->render('person/index.html.twig', ['persons' => $personRepository->findAll()]);
     }
 
     /**
-     * @Route("/new", name="member_new", methods={"GET","POST"})
+     * @Route("/new", name="person_new", methods={"GET","POST"})
      */
     public function new(Request $request) {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
-        $member = new Member();
+        $person = new Person();
   
-        $form = $this->createFormBuilder($member)
+        $form = $this->createFormBuilder($person)
         ->add('username', TextType::class, array('attr' => array('class' => 'form-control')))
         ->add('password', TextType::class, array('attr' => array('class' => 'form-control')))
-        ->add('email', TextType::class, array('attr' => array('class' => 'form-control')))
+        ->add('firstname', TextType::class, array('attr' => array('class' => 'form-control')))
+        ->add('preprovision', TextType::class, array('attr' => array('class' => 'form-control')))
+        ->add('lastname', TextType::class, array('attr' => array('class' => 'form-control')))
+        ->add('dateofbirth', DateType::class, array('attr' => array('class' => 'form-control')))
         ->add('save', SubmitType::class, array(
             'label' => 'Create',
             'attr' => array('class' => 'btn btn-success mt-3')
@@ -53,13 +59,13 @@ class MemberController extends Controller
         $form->handleRequest($request);
   
         if($form->isSubmitted() && $form->isValid()) {
-          $member = $form->getData();
+          $person = $form->getData();
   
           $entityManager = $this->getDoctrine()->getManager();
-          $entityManager->persist($member);
+          $entityManager->persist($person);
           $entityManager->flush();
   
-          return $this->redirectToRoute('member_index');
+          return $this->redirectToRoute('person_index');
         }
   
         $log = new Logger('addLogs');
@@ -67,26 +73,29 @@ class MemberController extends Controller
         $streamHandler->setFormatter(new \Monolog\Formatter\HtmlFormatter());
         $log->pushHandler($streamHandler);
   
-        $log->info('member toegevoegd');
+        $log->info('person toegevoegd');
       
   
-        return $this->render('member/new.html.twig', array(
+        return $this->render('person/new.html.twig', array(
           'form' => $form->createView()
         ));
       }
 
     /**
-     * @Route("/{id}/edit", name="member_edit", methods={"GET","POST"})
+     * @Route("/{id}/edit", name="person_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, $id) {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
-        $member = new Member();
-        $member = $this->getDoctrine()->getRepository(Member::class)->find($id);
+        $person = new Person();
+        $person = $this->getDoctrine()->getRepository(Person::class)->find($id);
   
-        $form = $this->createFormBuilder($member)
+        $form = $this->createFormBuilder($person)
         ->add('username', TextType::class, array('attr' => array('class' => 'form-control')))
         ->add('password', TextType::class, array('attr' => array('class' => 'form-control')))
-        ->add('email', TextType::class, array('attr' => array('class' => 'form-control')))
+        ->add('firstname', TextType::class, array('attr' => array('class' => 'form-control')))
+        ->add('preprovision', TextType::class, array('attr' => array('class' => 'form-control')))
+        ->add('lastname', TextType::class, array('attr' => array('class' => 'form-control')))
+        ->add('dateofbirth', DateType::class, array('attr' => array('class' => 'form-control')))
         ->add('save', SubmitType::class, array(
             'label' => 'Update',
             'attr' => array('class' => 'btn btn-success mt-3')
@@ -100,7 +109,7 @@ class MemberController extends Controller
           $entityManager = $this->getDoctrine()->getManager();
           $entityManager->flush();
   
-          return $this->redirectToRoute('member_index');
+          return $this->redirectToRoute('person_index');
         }
   
         $log = new Logger('editLogs');
@@ -108,25 +117,25 @@ class MemberController extends Controller
         $streamHandler->setFormatter(new \Monolog\Formatter\HtmlFormatter());
         $log->pushHandler($streamHandler);
   
-        $log->info('member informatie veranderd');
+        $log->info('person informatie veranderd');
   
-        return $this->render('member/edit.html.twig', array(
+        return $this->render('person/edit.html.twig', array(
           'form' => $form->createView()
         ));
       }
 
     /**
-     * @Route("/{id}", name="member_delete", methods={"DELETE"})
+     * @Route("/{id}", name="person_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Member $member): Response
+    public function delete(Request $request, Person $person): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$member->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$person->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($member);
+            $entityManager->remove($person);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('member_index');
+        return $this->redirectToRoute('person_index');
     }
     
 }

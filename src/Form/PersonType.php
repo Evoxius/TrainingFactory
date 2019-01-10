@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Member;
+use App\Entity\Person;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class MemberType extends AbstractType
+class PersonType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -25,16 +25,26 @@ class MemberType extends AbstractType
              'label' => 'Gebruikersnaam'))
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
-                'first_options'  => array('label' => 'Wachtwoord'),
+                'first_options' => array('label' => 'Wachtwoord'),
                 'second_options' => array('label' => 'Herhaal wachtwoord'),
             ))
-            ->add('email');
+            ->add('firstname',TextType::class
+            , array(
+         'label' => 'First name'))
+            ->add('preprovision')
+            ->add('lastname',TextType::class
+            , array(
+         'label' => 'Last name'))
+            ->add('dateofbirth',TextType::class
+            , array(
+         'label' => 'Date of Birth'));
+            
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Member::class,
+            'data_class' => Person::class,
         ]);
     }
 }

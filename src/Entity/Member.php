@@ -3,13 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MemberRepository")
  */
-class Member implements UserInterface, \Serializable
+class Member extends Person
 {
     /**
      * @ORM\Id()
@@ -19,116 +17,41 @@ class Member implements UserInterface, \Serializable
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=60, unique=true)
+     * @ORM\Column(type="string", length=50)
      */
-    private $username;
+    private $street;
 
     /**
-     * @ORM\Column(type="string", length=60)
+     * @ORM\Column(type="string", length=50)
      */
-    private $password;
-
-    /**
-     * @Assert\Length(max=4096)
-     * @Assert\NotBlank(message="vul wachtwoord in")
-     */
-     private $plainPassword;
-
-    /**
-     * @ORM\Column(type="string", length=60, unique=true)
-     */
-    private $email;
-
-    
+    private $place;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    public function getStreet(): ?string
     {
-        return $this->username;
+        return $this->street;
     }
 
-    public function setUsername(string $username): self
+    public function setStreet(string $street): self
     {
-        $this->username = $username;
+        $this->street = $street;
 
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getPlace(): ?string
     {
-        return $this->password;
+        return $this->place;
     }
 
-    public function setPassword(string $password): self
+    public function setPlace(string $place): self
     {
-        $this->password = $password;
+        $this->place = $place;
 
         return $this;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): self
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    public function getRoles()
-    {
-        return [
-            'ROLE_MEMBER'
-        ];
-    }
-
-    public function setRoles(array $roles)
-{
-    $this->roles = $roles;
-
-    // allows for chaining
-    return $this;
-}
-
-public function getPlainPassword()
-{
-    return $this->plainPassword;
-}
-
-public function setPlainPassword($password)
-{
-    $this->plainPassword = $password;
-}
-
-
-    public function getSalt() {}
-
-    public function eraseCredentials() {}
-
-    public function serialize() 
-    {
-        return serialize([
-            $this->id,
-            $this->username,
-            $this->email,
-            $this->password
-        ]);
-    }
-
-    public function unserialize($string)
-    {
-        list (
-            $this->id,
-            $this->username,
-            $this->email,
-            $this->password
-        ) = unserialize($string, ['allowed_classes' => false]);
     }
 }

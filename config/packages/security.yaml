@@ -1,7 +1,7 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
-        App\Entity\Member:
+        App\Entity\Person:
             algorithm: bcrypt  
     providers:
         chain_provider:
@@ -14,7 +14,7 @@ security:
                     admin: { password: admin, roles: [ 'ROLE_ADMIN' ] }          
         user_db:
             entity:
-                class: App\Entity\Member
+                class: App\Entity\Person
                 property: username 
 
     firewalls:
@@ -25,9 +25,9 @@ security:
             anonymous: true
 
             form_login:
-                login_path: /home
-                check_path: /home
-                default_target_path: /home
+                login_path: home
+                check_path: home
+                default_target_path: home
                 provider: chain_provider
 
             logout:
