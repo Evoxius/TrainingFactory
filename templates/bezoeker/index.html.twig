@@ -125,6 +125,7 @@
 
                     <!--Card content-->
                     <div class="card-body">
+
                       <!-- Form -->
                       <form name="" action="{{ path('login') }}" method="POST">
                         <!-- Heading -->
@@ -135,12 +136,14 @@
 
                         <div class="md-form">
                           <i class="fa fa-user prefix grey-text"></i>
-                          <input type="username" id="form3" class="form-control" name="_username" placeholder="Username">
+                          <input type="username" id="username" class="form-control" name="_username" placeholder="Username">
                         </div>
                         <div class="md-form">
                           <i class="fa fa-envelope prefix grey-text"></i>
-                          <input type="password" id="form2" class="form-control" name="_password" placeholder="Password">
+                          <input type="password" id="pwd" class="form-control" name="_password" placeholder="Password">
                         </div>
+
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                         <div class="text-center">
                           <button class="btn btn-indigo waves-effect waves-light z-depth-2" type="submit">Sign in</button>
@@ -282,12 +285,14 @@
 
                         <div class="md-form">
                           <i class="fa fa-user prefix grey-text"></i>
-                          <input type="username" id="form3" class="form-control" name="_username" placeholder="Username">
+                          <input type="username" id="username" class="form-control" name="_username" placeholder="Username">
                         </div>
                         <div class="md-form">
                           <i class="fa fa-envelope prefix grey-text"></i>
-                          <input type="password" id="form2" class="form-control" name="_password" placeholder="Password">
+                          <input type="password" id="pwd" class="form-control" name="_password" placeholder="Password">
                         </div>
+
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                         <div class="text-center">
                           <button class="btn btn-indigo waves-effect waves-light z-depth-2" type="submit">Sign in</button>
@@ -434,12 +439,14 @@
 
                         <div class="md-form">
                           <i class="fa fa-user prefix grey-text"></i>
-                          <input type="username" id="form3" class="form-control" name="_username" placeholder="Username">
+                          <input type="username" id="username" class="form-control" name="_username" placeholder="Username">
                         </div>
                         <div class="md-form">
                           <i class="fa fa-envelope prefix grey-text"></i>
-                          <input type="password" id="form2" class="form-control" name="_password" placeholder="Password">
+                          <input type="password" id="pwd" class="form-control" name="_password" placeholder="Password">
                         </div>
+
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
                         <div class="text-center">
                           <button class="btn btn-indigo waves-effect waves-light z-depth-2" type="submit">Sign in</button>

@@ -1,17 +1,8 @@
 security:
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
         App\Entity\Person:
             algorithm: bcrypt  
-    providers:
-        chain_provider:
-            chain:
-                providers: [in_memory, user_db] 
-        in_memory:
-            memory:
-                users:
-                    apotheker: { password: test, roles: [ 'ROLE_MEMBER' ] }  
-                    admin: { password: admin, roles: [ 'ROLE_ADMIN' ] }          
+    providers:         
         user_db:
             entity:
                 class: App\Entity\Person
@@ -22,13 +13,15 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
+            anonymous: ~
+
+            provider: user_db
 
             form_login:
-                login_path: home
-                check_path: home
-                default_target_path: home
-                provider: chain_provider
+                login_path: login
+                check_path: login
+                csrf_token_generator: security.csrf.token_manager
+                success_handler: app.login_handler
 
             logout:
                 path: /logout

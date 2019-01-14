@@ -26,17 +26,17 @@ class Person implements UserInterface, \Serializable
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=190)
      */
     private $password;
 
     /**
-     * @ORM\Column(type="json_array")
+     * @ORM\Column(type="array")
      */
     private $roles = array();
 
     /**
-     * @Assert\Length(max=50)
+     * @Assert\Length(max=190)
      * @Assert\NotBlank(message="vul wachtwoord in")
      */
     private $plainPassword;
@@ -205,7 +205,9 @@ class Person implements UserInterface, \Serializable
     }
 
 
-    public function getSalt() {}
+    public function getSalt() {
+        return null;
+    }
 
     public function eraseCredentials() {}
 

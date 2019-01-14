@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class BezoekerController extends Controller
 {
     /**
-     * @Route("/home", name="homepage")
+     * @Route("/home2", name="homepage")
      */
     public function index()
     {

@@ -22,7 +22,7 @@ class SecurityController extends Controller
     /**
      * @Route("/home", name="login")
      */
-    public function login(Request $request, AuthenticationUtils $utils)
+    public function loginAction(Request $request, AuthenticationUtils $authUtils)
     {
             // get the login error if there is one
             $error = $authUtils->getLastAuthenticationError();
@@ -41,7 +41,7 @@ class SecurityController extends Controller
                     'Vul uw gegevens in'
                 );
             }
-        return $this->render('homepage/index.html.twig', [
+        return $this->render('bezoeker/index.html.twig', [
             'error'         => $error,
             'last_username' => $lastUsername
         ]);
@@ -80,7 +80,7 @@ class SecurityController extends Controller
                 // 3) Encode the password (you could also do this via Doctrine listener)
                 $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
                 $user->setPassword($password);
-                $user->setRoles(['ROLE_ADMIN']);
+                $user->setRoles(['ROLE_MEMBER']);
                 // 4) save the User!
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($user);
@@ -91,7 +91,7 @@ class SecurityController extends Controller
                     $user->getUsername().' is geregistreerd!'
                 );
 
-                return $this->redirectToRoute('homepage');
+                return $this->redirectToRoute('login');
             }
             else
             {
