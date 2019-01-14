@@ -42,9 +42,9 @@ class LoginSuccessHandler implements AuthenticationSuccessHandlerInterface
         {
             $response = new RedirectResponse($this->router->generate('login'));
         }
-        elseif ($this->authorizationChecker->isGranted('ROLE_USER'))
+        elseif ($this->authorizationChecker->isGranted('ROLE_ADMIN'))
         {
-            $response = new RedirectResponse($this->router->generate('activiteiten'));
+            $response = new RedirectResponse($this->router->generate('login'));
         }
         return $response;
     }

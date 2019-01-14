@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Table(name="training")
@@ -18,9 +21,14 @@ class Training
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=190)
      */
     private $description;
+
+      /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $name;
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -45,6 +53,18 @@ class Training
     public function setDescription(string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
@@ -75,14 +95,14 @@ class Training
 
      /**
      * One Training have Many Lessen.
-     * @ORM\OneToMany(targetEntity="training", mappedBy="les")
+     * @ORM\OneToMany(targetEntity="App\Entity\Training", mappedBy="lesson")
      */
 
     private $trainings;
 
     public function __construct()
     {
-        $this->trainings = new ArrayCollection();
+ 
     }
 
     public function getTrainings()

@@ -10,15 +10,18 @@ namespace App\Controller;
     use Symfony\Component\HttpFoundation\Response;
     use Symfony\Component\HttpFoundation\Request;
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+    use Symfony\Component\Form\FormBuilderInterface;
 
     use Monolog\Logger;
     use Monolog\Handler\StreamHandler;
-
+    
+    use Symfony\Component\OptionsResolver\OptionsResolver;
     use Symfony\Component\Form\Extension\Core\Type\TextType;
     use Symfony\Component\Form\Extension\Core\Type\TextareaType;
     use Symfony\Component\Form\Extension\Core\Type\SubmitType;
     use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     use Symfony\Component\Form\Extension\Core\Type\DateType;
+    use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
 
 /**
@@ -34,66 +37,12 @@ class LessonController extends Controller
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'User tried to access a page without being logged in');
 
-        $usr= $this->get('security.token_storage')->getToken()->getUser();
-
-        $beschikbareLesson=$this->getDoctrine()
-            ->getRepository(Lesson::class)
-        ->getBeschikbareLesson($usr->getId());
-
-        $ingeschrevenLesson=$this->getDoctrine()
-            ->getRepository(Lesson::class)
-            ->getIngeschrevenLesson($usr->getId());
-
-        $totaal=$this->getDoctrine()
-            ->getRepository(Lesson::class)
-            ->getTotaal($ingeschrevenLesson);
-
-
-        return $this->render('lesson/index.html.twig', [
-                'beschikbare_lesson'=>$beschikbareLesson,
-                'ingeschreven_Lesson'=>$ingeschrevenLesson,
-                'totaal'=>$totaal,
-        ]);
+        $lessons= $this->getDoctrine()->getRepository(Lesson::class)->findAll();
+        return $this->render('lesson/index.html.twig', array('lessons' => $lessons));
         
   
     }
 
-
-
-    /**
-     * @Route("/inschrijven/{id}", name="inschrijven")
-     */
-    public function inschrijvenLessonAction($id)
-    {
-
-        $lesson = $this->getDoctrine()
-            ->getRepository(Lesson::class)
-            ->find($id);
-        $usr= $this->get('security.token_storage')->getToken()->getUser();
-        $usr->addLesson($lesson);
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($usr);
-        $em->flush();
-
-        return $this->redirectToRoute('lesson');
-    }
-
-    /**
-     * @Route("/uitschrijven/{id}", name="uitschrijven")
-     */
-    public function uitschrijvenLessonAction($id)
-    {
-        $lesson = $this->getDoctrine()
-            ->getRepository(Lesson::class)
-            ->find($id);
-        $usr= $this->get('security.token_storage')->getToken()->getUser();
-        $usr->removeLesson($lesson);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($usr);
-        $em->flush();
-        return $this->redirectToRoute('lesson');
-    }
 
 
     /**
@@ -104,8 +53,11 @@ class LessonController extends Controller
         $lesson = new Lesson();
   
         $form = $this->createFormBuilder($lesson)
-          ->add('time', TextType::class, array('attr' => array('class' => 'form-control')))
-          ->add('date', DateType::class, array('attr' => array('class' => 'form-control')))
+          ->add('time', TimeType::class, ['attr' => ['class' => 'js-timepicker', 'placeholder'=>'hh:mm'],
+          'widget'=>'single_text','html5' => false,])
+          ->add('date', DateType::class, ['attr' => ['class' => 'js-datepicker', 'placeholder'=>'dd-mm-yyyy'],
+          'widget'=>'single_text', 'html5' => false, 'format'=> 'dd-MM-yyyy'
+             ])
           ->add('location', TextareaType::class, array('attr' => array('class' => 'form-control')))
           ->add('max_persons', TextareaType::class, array('attr' => array('class' => 'form-control')))
           ->add('save', SubmitType::class, array(
@@ -192,6 +144,6 @@ class LessonController extends Controller
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('lesson_index');
+        return $this->redirectToRoute('lesson_list');
     }
 }

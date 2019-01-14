@@ -174,7 +174,7 @@ class Person implements UserInterface, \Serializable
 
     /**
      * One Lesson has Many Activities.
-     * @ORM\OneToMany(targetEntity="Lesson", mappedBy="person")
+     * @ORM\OneToMany(targetEntity="App\Entity\Lesson", mappedBy="person")
      * @ORM\JoinTable(name="Registration")
      */
     private $lesson;

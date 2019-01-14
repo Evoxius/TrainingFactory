@@ -727,166 +727,56 @@
       <!--Section: Abonnement-->
 
       <!--Section: More-->
-      <section>
+     <div class="container">
+    {% if is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-info" href="{{ asset('training/new') }}" style="margin-left:10px; margin-bottom: 40px;">Nieuwe
+        training
+        toevoegen</a>
+    {% else %}
+    {% endif %}
+    <div class="row">
+        {% if trainings %}
+        <table id="trainings" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
+            <tbody>
+                {% for training in trainings %}
 
-        <h2 class="my-5 h3 text-center">...and even more</h2>
+                <tr>
+                    <div class="card text-white bg-dark" style="max-width: 20rem; margin-bottom:25px; margin-left: 25px;">
+                        <div class="card-header">{{ training.name }} <div style="float:right;">Duur: {{
+                                training.duration }}</div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ training.name }}</h5>
+                            <p class="card-text text-white">{{ training.description }}</p>
+                            <p class="card-text text-white">{{ training.extracosts }}</p>
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <div class="row" style="margin-left:3px;">
+                                <a href="{{ path('training_edit', {'id': training.id}) }}" class="btn btn-success" style="padding-right: 44px;">Edit</a>
+                                {{ include('training/_delete_form.html.twig')}}
+                            </div>
 
-        <!--First row-->
-        <div class="row features-small mt-5 wow fadeIn">
+                            {% else %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </tr>
 
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-firefox fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2 pl-3">
-                <h5 class="feature-title font-bold mb-1">Cross-browser compatibility</h5>
-                <p class="grey-text mt-2">Chrome, Firefox, IE, Safari, Opera, Microsoft Edge - MDB loves all browsers;
-                  all browsers love MDB.
-                </p>
-              </div>
-            </div>
-            <!--/Grid row-->
-          </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-level-up fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">Frequent updates</h5>
-                <p class="grey-text mt-2">MDB becomes better every month. We love the project and enhance as much as
-                  possible.
-                </p>
-              </div>
-            </div>
-            <!--/Grid row-->
-          </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-comments-o fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">Active community</h5>
-                <p class="grey-text mt-2">Our society grows day by day. Visit our forum and check how it is to be a
-                  part
-                  of our family.
-                </p>
-              </div>
-            </div>
-            <!--/Grid row-->
-          </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-code fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">jQuery 3.x</h5>
-                <p class="grey-text mt-2">MDB is integrated with newest jQuery. Therefore you can use all the latest
-                  features which come along with
-                  it.
-                </p>
-              </div>
-            </div>
-            <!--/Grid row-->
-          </div>
-          <!--/Grid column-->
-
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="container class">
+    <div class="card text-white bg-danger mb-3" style="max-width: 20rem;  margin-bottom:300px;">
+        <div class="card-header">Sorry!</div>
+        <div class="card-body">
+            <h5 class="card-title">Maar er zijn op dit moment geen trainingen</h5>
+            <p class="card-text text-white">Er komen meer trainingen zometeen!</p>
         </div>
-        <!--/First row-->
-
-        <!--Second row-->
-        <div class="row features-small mt-4 wow fadeIn">
-
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-cubes fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">Modularity</h5>
-                <p class="grey-text mt-2">Material Design for Bootstrap comes with both, compiled, ready to use
-                  libraries
-                  including all features as
-                  well as modules for CSS (SASS files) and JS.</p>
-              </div>
-            </div>
-            <!--/Grid row-->
-          </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-question fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">Technical support</h5>
-                <p class="grey-text mt-2">We care about reliability. If you have any questions - do not hesitate to
-                  contact us.
-                </p>
-              </div>
-            </div>
-            <!--/Grid row-->
-          </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-th fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">Flexbox</h5>
-                <p class="grey-text mt-2">MDB fully supports Flex Box. You can forget about alignment issues.</p>
-              </div>
-            </div>
-            <!--/Grid row-->
-          </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-xl-3 col-lg-6">
-            <!--Grid row-->
-            <div class="row">
-              <div class="col-2">
-                <i class="fa fa-file-code-o fa-2x mb-1 indigo-text" aria-hidden="true"></i>
-              </div>
-              <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">SASS files</h5>
-                <p class="grey-text mt-2">Arranged and well documented .scss files can't wait until you compile them.</p>
-              </div>
-            </div>
-            <!--/Grid row-->
-          </div>
-          <!--/Grid column-->
-
-        </div>
-        <!--/Second row-->
-
-      </section>
+    </div>
+</div>
+{% endif %}
       <!--Section: More-->
 
 

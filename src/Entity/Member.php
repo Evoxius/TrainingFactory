@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\MemberRepository")
@@ -54,4 +57,9 @@ class Member extends Person
 
         return $this;
     }
+
+     /**
+    * @ORM\OneToMany(targetEntity="App\Entity\Registration", mappedBy="member")
+    */
+    private $registrations;
 }

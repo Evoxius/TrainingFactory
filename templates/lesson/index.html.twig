@@ -19,7 +19,8 @@
 </section>
 <div class="container">
     {% if is_granted('ROLE_ADMIN') %}
-    <a class="btn btn-info" href="{{ asset('lesson/new') }}" style="margin-left:10px; margin-bottom: 40px;">Nieuwe lesson
+    <a class="btn btn-info" href="{{ asset('lesson/new') }}" style="margin-left:10px; margin-bottom: 40px;">Nieuwe
+        lesson
         toevoegen</a>
     {% else %}
     {% endif %}
@@ -27,24 +28,28 @@
         {% if lessons %}
         <table id="lessons" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
             <tbody>
-                {% for lesson in beschikbare_lessons %}
+                {% for lesson in lessons %}
 
                 <tr>
                     <div class="card text-white bg-dark" style="max-width: 20rem; margin-bottom:25px; margin-left: 25px;">
-                        <div class="card-header">{{ lesson.name }} <div style="float:right;">Dag: {{ lesson.dag }}</div>
+                        <div class="card-header">{{ lesson.id }} <div style="float:right;">Dag: {{
+                                lesson.date|date('Y-m-d') }}</div>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">{{ lesson.tijd }}</h5>
-                            <p class="card-text text-white">{{ lesson.descriptie }}</p>
+                            <h5 class="card-title">{{ lesson.time }}</h5>
+                            <p class="card-text text-white">{{ lesson.location }}</p>
                             {% if is_granted('ROLE_ADMIN') %}
                             <div class="row" style="margin-left:3px;">
-                                <a href="{{ path('les_edit', {'id': lesson.id}) }}" class="btn btn-success" style="padding-right: 44px;">Edit</a>
+                                <a href="{{ path('lesson_edit', {'id': lesson.id}) }}" class="btn btn-success" style="padding-right: 44px;">Edit</a>
                                 {{ include('lesson/_delete_form.html.twig')}}
                             </div>
-                            
-                            {% else %} 
+
+                            {% else %}
                             {% endif %}
-                          <button type="button" class="btn btn-success">Subscribe</button>
+                            {% if is_granted('ROLE_MEMBER') %}
+                            <button type="button" class="btn btn-success">Subscribe</button>
+                            {% else %}
+                            {% endif %}
                         </div>
                     </div>
                 </tr>
@@ -54,10 +59,9 @@
         </table>
     </div>
 </div>
-
 {% else %}
-<div class="container class pad-top-115">
-    <div class="card text-white bg-danger mb-3" style="max-width: 20rem; margin-left: 350px; margin-bottom:300px;">
+<div class="container class">
+    <div class="card text-white bg-danger mb-3" style="max-width: 20rem;  margin-bottom:300px;">
         <div class="card-header">Sorry!</div>
         <div class="card-body">
             <h5 class="card-title">Maar er zijn op dit moment geen lessons</h5>
@@ -66,4 +70,6 @@
     </div>
 </div>
 {% endif %}
+</div>
+</div>
 {% endblock %}

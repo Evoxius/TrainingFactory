@@ -3,6 +3,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Table(name="lesson")
@@ -18,17 +22,21 @@ class Lesson
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="time", length=50)
      */
     private $time;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     * 
+     * @ORM\Column(name="date", length=50)
      */
     private $date;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @var \DateTime
+     * 
+     * @ORM\Column(name="string", length=50)
      */
     private $location;
 
@@ -54,12 +62,12 @@ class Lesson
         return $this;
     }
 
-    public function getDate(): ?\DateTimeInterface
+    public function getDate(): ?\DateTime
     {
         return $this->date;
     }
 
-    public function setDate(\DateTimeInterface $date): self
+    public function setDate(\DateTime $date): self
     {
         $this->date = $date;
 
@@ -92,15 +100,15 @@ class Lesson
 
     /**
      * One Lesson have Many Instructors.
-     * @ORM\OneToMany(targetEntity="Instructor", mappedBy="lesson")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Instructor", inversedBy="lesson")
      */
 
     private $instructors;
 
     public function __construct()
     {
-        $this->instructors = new ArrayCollection();
-        $this->registrations = new ArrayCollection();
+      
+       
     }
 
     public function getInstructors()
@@ -109,20 +117,20 @@ class Lesson
     }
 
      /**
-     * One Lesson have Many Registrations.
-     * @ORM\OneToMany(targetEntity="Registration", mappedBy="lesson")
+     * One Lesson have Many Trainings.
+     * @ORM\ManyToOne(targetEntity="App\Entity\Training", inversedBy="lesson")
      */
 
-    private $registrations;
+    private $trainings;
 
     public function getRegistrations()
     {
-        return $this->registrations;
+        return $this->trainings;
     }
 
     /**
      * Many Lessons has Many Activities.
-     * @ORM\ManyToMany(targetEntity="Person", inversedBy="lesson")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Person", inversedBy="lesson")
      */
     private $person;
 }

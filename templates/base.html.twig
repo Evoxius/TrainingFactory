@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% block stylesheets %}
     <!-- Bootstrap Files -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP"
+        crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -17,14 +18,20 @@
     <link href="{{ asset('css/mdb.min.css') }}" rel="stylesheet">
     <!-- Your custom styles (optional) -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-    
+
     <link href="{{ asset('css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery.fancybox.css') }}" rel="stylesheet">
     <link href="{{ asset('css/media.css') }}" rel="stylesheet">
     <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('webkit/webkit.css') }}" rel="stylesheet">
-    <style type="text/css">.fancybox-margin{margin-right:17px;}</style>
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui-timepicker-addon.css') }}" />
+    <style type="text/css">
+        .fancybox-margin {
+            margin-right: 17px;
+        }
+    </style>
     <style type="text/css">
         /* Necessary for full page carousel*/
         html,
@@ -79,7 +86,18 @@
     <script src="{{ asset('js/owl.carousel.js') }}"></script>
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/element.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
+    <script>
+        $(function () {
+            $(".js-datepicker").datepicker({
+                dateFormat: 'dd-mm-yy'
 
+            });
+
+            $('.js-timepicker').timepicker();
+        });
+    </script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
     <script>
         window.addEventListener("load", function () {

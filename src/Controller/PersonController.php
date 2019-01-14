@@ -9,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
@@ -49,7 +49,9 @@ class PersonController extends Controller
         ->add('firstname', TextType::class, array('attr' => array('class' => 'form-control')))
         ->add('preprovision', TextType::class, array('attr' => array('class' => 'form-control')))
         ->add('lastname', TextType::class, array('attr' => array('class' => 'form-control')))
-        ->add('dateofbirth', DateType::class, array('attr' => array('class' => 'form-control')))
+        ->add('dateofbirth',  DateType::class, ['attr' => ['class' => 'js-datepicker', 'placeholder'=>'dd-mm-yyyy'],
+        'widget'=>'single_text', 'html5' => false, 'format'=> 'dd-MM-yyyy'
+           ])
         ->add('save', SubmitType::class, array(
             'label' => 'Create',
             'attr' => array('class' => 'btn btn-success mt-3')
