@@ -7,15 +7,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class BezoekerController extends Controller
 {
-    /**
-     * @Route("/home2", name="homepage")
-     */
-    public function index()
-    {
-        return $this->render('bezoeker/index.html.twig', [
-            'controller_name' => 'BezoekerController',
-        ]);
-    }
 
     /**
      * @Route("/home/dagpas", name="gratis_dagpas")

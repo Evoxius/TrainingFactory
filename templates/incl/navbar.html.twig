@@ -9,7 +9,7 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle waves-effect waves-light" href="{{ asset('home/test') }}" id="navbarDropdownMenuLink-3"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px;">Home
           </a>
           <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
             <a class="dropdown-item waves-effect waves-light" href="{{ asset('home/dagpas') }}">Dagpas</a>
@@ -22,18 +22,18 @@
 
         {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{{ asset('registreren') }}">Register</a>
+          <a class="nav-link" href="{{ asset('registreren') }}" style="font-size: 20px;">Register</a>
         </li>
         {% endif %}
 
         {% if is_granted('ROLE_MEMBER') %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle waves-effect waves-light" href="#" id="navbarDropdownMenuLink-3"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lessen
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px;">Lessen
           </a>
           <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
             <a class="dropdown-item waves-effect waves-light" href="{{ asset('lesson') }}">Publieke rooster</a>
-            <a class="dropdown-item waves-effect waves-light" href="{{ asset('rooster') }}">Jouw rooster</a>
+            <a class="dropdown-item waves-effect waves-light" href="{{ asset('lesson/private') }}">Jouw rooster</a>
           </div>
         </li>
         {% else %}
@@ -42,7 +42,7 @@
         {% if is_granted('ROLE_ADMIN') %}
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle waves-effect waves-light" href="#" id="navbarDropdownMenuLink-3"
-            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Beheer
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px;">Beheer
           </a>
           <div class="dropdown-menu dropdown-default" aria-labelledby="navbarDropdownMenuLink-3">
             <a class="dropdown-item waves-effect waves-light" href="{{ asset('lesson') }}">Rooster</a>
@@ -56,18 +56,18 @@
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item">
           <a class="nav-link waves-effect waves-light" href="https://www.github.com/evoxius" target="_blank">
-            <i class="fa fa-github" href="www.github.com/evoxius" target="_blank"></i>
+            <i class="fa fa-github fa-3x" href="www.github.com/evoxius" target="_blank"></i>
           </a>
         </li>
         <li class="nav-item">
           <a class="nav-link waves-effect waves-light" href="https://www.linkedin.com/in/michaelanthonyschaap" target="_blank">
-            <i class="fa fa-linkedin"></i>
+            <i class="fa fa-linkedin fa-3x"></i>
           </a>
         </li>
         <li class="nav-item dropdown dropright">
           <a class="nav-link dropdown-toggle waves-effect waves-light dropright" id="navbarDropdownMenuLink"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user"></i>
+            <i class="fa fa-user fa-3x"></i>
           </a>
           <div class="dropdown-menu dropright" aria-labelledby="navbarDropdownMenuLink">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}

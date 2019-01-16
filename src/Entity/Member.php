@@ -61,5 +61,5 @@ class Member extends Person
      /**
     * @ORM\OneToMany(targetEntity="App\Entity\Registration", mappedBy="member")
     */
-    private $registrations;
+    private $registration;
 }

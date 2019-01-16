@@ -93,21 +93,9 @@ class Training
         return $this;
     }
 
-     /**
-     * One Training have Many Lessen.
-     * @ORM\OneToMany(targetEntity="App\Entity\Training", mappedBy="lesson")
-     */
-
-    private $trainings;
-
-    public function __construct()
-    {
- 
-    }
-
-    public function getTrainings()
-    {
-        return $this->trainings;
-    }
+    /**
+    * @ORM\OneToMany(targetEntity="App\Entity\Lesson", mappedBy="instructor")
+    */
+    private $lesson;
 
 }

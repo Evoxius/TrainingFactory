@@ -46,17 +46,17 @@ class Registration
      * @ORM\ManyToOne(targetEntity="App\Entity\Member", inversedBy="registration")
      */
 
-    private $members;
+    private $member;
 
     public function __construct()
     {
-        $this->members = new ArrayCollection();
-        $this->lessons = new ArrayCollection();
+        $this->member = new ArrayCollection();
+        $this->lesson = new ArrayCollection();
     }
 
-    public function getMembers()
+    public function getMember()
     {
-        return $this->members;
+        return $this->member;
     }
 
     /**
@@ -64,10 +64,10 @@ class Registration
      * @ORM\ManyToOne(targetEntity="App\Entity\Lesson", inversedBy="registration")
      */
 
-    private $lessons;
+    private $lesson;
 
-    public function getLessons()
+    public function getLesson()
     {
-        return $this->lessons;
+        return $this->lesson;
     }
 }

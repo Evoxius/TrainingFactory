@@ -37,10 +37,75 @@ class LessonController extends Controller
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'User tried to access a page without being logged in');
 
-        $lessons= $this->getDoctrine()->getRepository(Lesson::class)->findAll();
-        return $this->render('lesson/index.html.twig', array('lessons' => $lessons));
-        
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+
+        $beschikbareLessons=$this->getDoctrine()
+            ->getRepository(Lesson::class)
+        ->getBeschikbareLessons($usr->getId());
+
+        //$lessons= $this->getDoctrine()->getRepository(Lesson::class)->findBy([], ['date' => 'ASC']);
+
+        return $this->render('lesson/index.html.twig', array( 
+        'beschikbare_lessons'=>$beschikbareLessons
+    ));  
   
+    }
+
+     /**
+     * @Route("/private", name="lesson_privatelist", methods={"GET"})
+     */
+    public function private(): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'User tried to access a page without being logged in');
+
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+
+        $ingeschrevenLessons=$this->getDoctrine()
+            ->getRepository(Lesson::class)
+            ->getIngeschrevenLessons($usr->getId());
+
+
+        //$lessons= $this->getDoctrine()->getRepository(Lesson::class)->findBy([], ['date' => 'ASC']);
+
+        return $this->render('lesson/rooster.html.twig', array( 
+        'ingeschreven_lessons'=>$ingeschrevenLessons,
+    ));  
+  
+    }
+
+     /**
+     * @Route("/lesson/inschrijven/{id}", name="inschrijven")
+     */
+    public function inschrijvenLessonAction($id)
+    {
+
+        $lesson = $this->getDoctrine()
+            ->getRepository(Lesson::class)
+            ->find($id);
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $usr->addLesson($lesson);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($usr);
+        $em->flush();
+
+        return $this->redirectToRoute('lesson');
+    }
+
+    /**
+     * @Route("/lesson/uitschrijven/{id}", name="uitschrijven")
+     */
+    public function uitschrijvenLessonAction($id)
+    {
+        $lesson = $this->getDoctrine()
+            ->getRepository(Lesson::class)
+            ->find($id);
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $usr->removeLesson($lesson);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($usr);
+        $em->flush();
+        return $this->redirectToRoute('lesson');
     }
 
 
@@ -100,15 +165,18 @@ class LessonController extends Controller
         $lesson = $this->getDoctrine()->getRepository(Lesson::class)->find($id);
   
         $form = $this->createFormBuilder($lesson)
-        ->add('time', TextType::class, array('attr' => array('class' => 'form-control')))
-          ->add('date', DateType::class, array('attr' => array('class' => 'form-control')))
-          ->add('location', TextareaType::class, array('attr' => array('class' => 'form-control')))
-          ->add('max_persons', TextareaType::class, array('attr' => array('class' => 'form-control')))
-          ->add('save', SubmitType::class, array(
-            'label' => 'Update',
-            'attr' => array('class' => 'btn btn-success mt-3')
-          ))
-          ->getForm();
+        ->add('time', TimeType::class, ['attr' => ['class' => 'js-timepicker', 'placeholder'=>'hh:mm'],
+        'widget'=>'single_text','html5' => false,])
+        ->add('date', DateType::class, ['attr' => ['class' => 'js-datepicker', 'placeholder'=>'dd-mm-yyyy'],
+        'widget'=>'single_text', 'html5' => false, 'format'=> 'dd-MM-yyyy'
+           ])
+        ->add('location', TextareaType::class, array('attr' => array('class' => 'form-control')))
+        ->add('max_persons', TextareaType::class, array('attr' => array('class' => 'form-control')))
+        ->add('save', SubmitType::class, array(
+          'label' => 'Create',
+          'attr' => array('class' => 'btn btn-success mt-3')
+        ))
+        ->getForm();
   
         $form->handleRequest($request);
   

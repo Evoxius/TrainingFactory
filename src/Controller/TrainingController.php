@@ -23,8 +23,9 @@ namespace App\Controller;
 class TrainingController extends Controller
 {
 
+
      /**
-     * @Route("/home", name="login", methods={"GET"})
+     * @Route("/home", name="login", methods={"GET", "POST"})
      */
     public function index(): Response
     {
@@ -34,7 +35,6 @@ class TrainingController extends Controller
         
   
     }
-
 
 
     /**
