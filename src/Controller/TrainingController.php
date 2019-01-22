@@ -21,6 +21,7 @@ namespace App\Controller;
     use Symfony\Component\Form\Extension\Core\Type\DateType;
     use Symfony\Component\Form\Extension\Core\Type\FileType;
     use Vich\UploaderBundle\Form\Type\VichImageType;
+    use App\Service\FileUploader;
 
 
 class TrainingController extends Controller
@@ -43,7 +44,7 @@ class TrainingController extends Controller
     /**
      * @Route("/training/new", name="training_new", methods={"GET","POST"})
      */
-    public function new(Request $request) {
+    public function new(Request $request, FileUploader $fileUploader) {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
         $training = new Training();
   
@@ -65,21 +66,8 @@ class TrainingController extends Controller
           $training = $form->getData();
 
           $file = $product->getImage();
+          $fileName = $fileUploader->upload($file);
 
-          $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-
-          // Move the file to the directory where images are stored
-          try {
-              $file->move(
-                  $this->getParameter('images_directory'),
-                  $fileName
-              );
-          } catch (FileException $e) {
-              // ... handle exception if something happens during file upload
-          }
-
-          // updates the 'image' property to store the PDF file name
-          // instead of its contents
           $product->setImage($fileName);
 
   
