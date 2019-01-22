@@ -6,10 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Table(name="training")
  * @ORM\Entity(repositoryClass="App\Repository\TrainingRepository")
+ * @Vich\Uploadable
  */
 class Training
 {
@@ -40,11 +43,28 @@ class Training
      */
     private $extra_costs;
 
-    /** @ORM\Column(type="string")
-     * @Assert\NotBlank(message="Upload your image")
+     /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please, upload the image as a png or jpeg file.")
      * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
      */
     private $image;
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+
+  
 
     public function getId(): ?int
     {
@@ -95,18 +115,6 @@ class Training
     public function setExtraCosts(string $extra_costs): self
     {
         $this->extra_costs = $extra_costs;
-
-        return $this;
-    }
-
-        public function getImage()
-    {
-        return $this->image;
-    }
-
-    public function setImage($image)
-    {
-        $this->image = $image;
 
         return $this;
     }
