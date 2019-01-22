@@ -65,12 +65,18 @@ class TrainingController extends Controller
         if($form->isSubmitted() && $form->isValid()) {
           $training = $form->getData();
 
-          $file = $product->getImage();
-          $fileName = $fileUploader->upload($file);
-
-          $product->setImage($fileName);
-
-  
+          $file = $training->getImage();
+          // Generate a unique name for the file before saving it
+          $fileName = md5(uniqid()).'.'.$file->guessExtension();
+          // Move the file to the directory where images are stored
+          $file->move(
+          $this->getParameter('images_directory'),
+          $fileName
+          );
+          // Update the 'image' property to store the PDF file name
+          // instead of its contents
+          $training->setImage($fileName);
+          
           $entityManager = $this->getDoctrine()->getManager();
           $entityManager->persist($training);
           $entityManager->flush();

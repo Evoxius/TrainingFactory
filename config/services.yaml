@@ -4,14 +4,12 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    images_directory: '%kernel.project_dir%/public/images'
+    images_directory: '%kernel.project_dir%/public/images/'
     locale: 'en'
 
 services:
 
-    App\Service\FileUploader:
-        arguments:
-            $targetDirectory: '%images_directory%'
+   
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
@@ -35,6 +33,15 @@ services:
     app.login_handler:
           class: App\Handler\LoginSuccessHandler
           arguments: ["@router","@security.authorization_checker"]
+
+    App\EventListener\ImageUploadListener:
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+
+    App\Service\FileUploader:
+        arguments:
+             $targetDirectory: '%images_directory%'
 
     
 
