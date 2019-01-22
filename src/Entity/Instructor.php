@@ -12,12 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Instructor extends Person
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+
 
     /**
      * @ORM\Column(type="datetime")
@@ -33,11 +28,6 @@ class Instructor extends Person
      * @ORM\Column(type="string", length=50)
      */
     private $social_sec_number;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getHiringDate(): ?\DateTimeInterface
     {
@@ -78,5 +68,5 @@ class Instructor extends Person
     /**
     * @ORM\OneToMany(targetEntity="App\Entity\Lesson", mappedBy="instructor")
     */
-    private $lessons;
+    private $lesson;
 }

@@ -37,75 +37,9 @@ class LessonController extends Controller
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'User tried to access a page without being logged in');
 
-        $usr= $this->get('security.token_storage')->getToken()->getUser();
-
-        $beschikbareLessons=$this->getDoctrine()
-            ->getRepository(Lesson::class)
-        ->getBeschikbareLessons($usr->getId());
-
-        //$lessons= $this->getDoctrine()->getRepository(Lesson::class)->findBy([], ['date' => 'ASC']);
-
-        return $this->render('lesson/index.html.twig', array( 
-        'beschikbare_lessons'=>$beschikbareLessons
-    ));  
+        $lessons= $this->getDoctrine()->getRepository(Lesson::class)->findAll();
+        return $this->render('lesson/index.html.twig', array('lessons' => $lessons));
   
-    }
-
-     /**
-     * @Route("/private", name="lesson_privatelist", methods={"GET"})
-     */
-    public function private(): Response
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'User tried to access a page without being logged in');
-
-        $usr= $this->get('security.token_storage')->getToken()->getUser();
-
-        $ingeschrevenLessons=$this->getDoctrine()
-            ->getRepository(Lesson::class)
-            ->getIngeschrevenLessons($usr->getId());
-
-
-        //$lessons= $this->getDoctrine()->getRepository(Lesson::class)->findBy([], ['date' => 'ASC']);
-
-        return $this->render('lesson/rooster.html.twig', array( 
-        'ingeschreven_lessons'=>$ingeschrevenLessons,
-    ));  
-  
-    }
-
-     /**
-     * @Route("/lesson/inschrijven/{id}", name="inschrijven")
-     */
-    public function inschrijvenLessonAction($id)
-    {
-
-        $lesson = $this->getDoctrine()
-            ->getRepository(Lesson::class)
-            ->find($id);
-        $usr= $this->get('security.token_storage')->getToken()->getUser();
-        $usr->addLesson($lesson);
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($usr);
-        $em->flush();
-
-        return $this->redirectToRoute('lesson');
-    }
-
-    /**
-     * @Route("/lesson/uitschrijven/{id}", name="uitschrijven")
-     */
-    public function uitschrijvenLessonAction($id)
-    {
-        $lesson = $this->getDoctrine()
-            ->getRepository(Lesson::class)
-            ->find($id);
-        $usr= $this->get('security.token_storage')->getToken()->getUser();
-        $usr->removeLesson($lesson);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($usr);
-        $em->flush();
-        return $this->redirectToRoute('lesson');
     }
 
 

@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Table(name="person")
- * @ORM\Entity(repositoryClass="App\Repository\PersonRepository")
+ * @ORM\MappedSuperclass(repositoryClass="App\Repository\PersonRepository")
  */
 class Person implements UserInterface, \Serializable
 {
@@ -170,38 +170,6 @@ class Person implements UserInterface, \Serializable
 
         // allows for chaining
         return $this;
-    }
-
-    /**
-     * One Lesson has Many Activities.
-     * @ORM\OneToMany(targetEntity="App\Entity\Lesson", mappedBy="person")
-     * @ORM\JoinTable(name="Registration")
-     */
-    private $lesson;
-
-    public function __construct()
-    {
-        $this->lesson = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->isActive = true;
-    }
-
-    public function addLesson(Lesson $a)
-    {
-        if ($this->lesson->contains($a)) {
-
-            return;
-        }
-
-        $this->lesson->add($a);
-
-    }
-
-    public function removeLesson(Lesson $a)
-    {
-        if (!$this->lesson->contains($a)) {
-            return;
-        }
-        $this->lesson->removeElement($a);
     }
 
 

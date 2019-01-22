@@ -1,7 +1,7 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
-        App\Entity\Person:
+        App\Entity\Member:
             algorithm: bcrypt  
     providers:
         chain_provider:
@@ -13,7 +13,7 @@ security:
                     admin: { password: admin, roles: [ 'ROLE_ADMIN' ] }                   
         user_db:
             entity:
-                class: App\Entity\Person
+                class: App\Entity\Member
                 property: username 
 
     firewalls:

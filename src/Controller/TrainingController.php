@@ -19,6 +19,8 @@ namespace App\Controller;
     use Symfony\Component\Form\Extension\Core\Type\SubmitType;
     use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     use Symfony\Component\Form\Extension\Core\Type\DateType;
+    use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 
 class TrainingController extends Controller
 {
@@ -49,6 +51,7 @@ class TrainingController extends Controller
         ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control')))
         ->add('duration', TextType::class, array('attr' => array('class' => 'form-control')))
         ->add('extra_costs', TextType::class, array('attr' => array('class' => 'form-control')))
+        ->add('image',FileType::class,array('data_class'=> null, 'label' => 'Image'))
           ->add('save', SubmitType::class, array(
             'label' => 'Create',
             'attr' => array('class' => 'btn btn-success mt-3')
@@ -93,6 +96,7 @@ class TrainingController extends Controller
         ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control')))
         ->add('duration', TextType::class, array('attr' => array('class' => 'form-control')))
         ->add('extra_costs', TextType::class, array('attr' => array('class' => 'form-control')))
+        ->add('image',FileType::class,array('data_class'=> null, 'label' => 'Image'))
           ->add('save', SubmitType::class, array(
             'label' => 'Update',
             'attr' => array('class' => 'btn btn-success mt-3')

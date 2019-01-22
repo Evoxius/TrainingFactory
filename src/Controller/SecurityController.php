@@ -10,9 +10,9 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use App\Entity\Person;
-use App\Form\PersonType;
-use App\Repository\PersonRepository;
+use App\Entity\Member;
+use App\Form\MemberType;
+use App\Repository\MemberRepository;
 
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -63,8 +63,8 @@ class SecurityController extends Controller
     public function registreren(Request $request,UserPasswordEncoderInterface $passwordEncoder)
     {
         // 1) build the form
-        $user = new Person();
-        $form = $this->createForm(PersonType::class, $user);
+        $user = new Member();
+        $form = $this->createForm(MemberType::class, $user);
         $form->add('save', SubmitType::class, array('label'=>"registreren"));
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
@@ -72,7 +72,7 @@ class SecurityController extends Controller
         if ($form->isSubmitted() && $form->isValid())
         {
             // 2.5) Is the user new, gebruikersnaam moet uniek zijn
-            $repository=$this->getDoctrine()->getRepository(Person::class);
+            $repository=$this->getDoctrine()->getRepository(Member::class);
             $bestaande_user=$repository->findOneBy(['username'=>$form->getData()->getUsername()]);
 
             if($bestaande_user==null)

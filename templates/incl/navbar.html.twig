@@ -73,6 +73,7 @@
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <a class="dropdown-item waves-effect waves-light" href="{{ path('logout') }}">{{ app.user.username }}
               uitloggen</a>
+            
             {% else %}
             {% endif %}
           </div>

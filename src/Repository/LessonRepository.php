@@ -19,42 +19,6 @@ class LessonRepository extends ServiceEntityRepository
         parent::__construct($registry, Lesson::class);
     }
 
-    public function getBeschikbareLessons($personid)
-    {
-        $em=$this->getEntityManager();
-        $query=$em->createQuery("SELECT a FROM App:Lesson a WHERE :personid NOT MEMBER OF a.person ORDER BY a.date");
-
-        $query->setParameter('personid',$personid);
-
-        return $query->getResult();
-    }
-
-    public function getIngeschrevenLessons($personid)
-    {
-
-        $em=$this->getEntityManager();
-        $query=$em->createQuery("SELECT a FROM App:Lesson a WHERE :personid MEMBER OF a.person ORDER BY a.date");
-
-        $query->setParameter('personid',$personid);
-
-        return $query->getResult();
-    }
-
-    public function getTotaal($lessons)
-    {
-
-        $totaal=0;
-        foreach($lessons as $a)
-        {
-            $totaal+=$a->getSoort()->getPrijs();
-        }
-        return $totaal;
-
-    }
-    public function findAll()
-    {
-        return $this->findBy(array(),array('date'=>'ASC'));
-    }
    
 
 

@@ -122,7 +122,7 @@ class Lesson
 
     /**
      * One Lesson have Many Instructors.
-     * @ORM\ManyToOne(targetEntity="App\Entity\Instructor", inversedBy="lessons")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Instructor", inversedBy="lesson")
      */
 
     private $instructor;
@@ -148,9 +148,14 @@ class Lesson
 
     /**
      * Many Lessons has Many Activities.
-     * @ORM\ManyToOne(targetEntity="App\Entity\Person", inversedBy="lesson")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Member", inversedBy="lesson")
      */
-    private $person;
+    private $member;
+
+    public function getMember()
+    {
+        return $this->member;
+    }
 
     /**
     * @ORM\OneToMany(targetEntity="App\Entity\Registration", mappedBy="lesson")

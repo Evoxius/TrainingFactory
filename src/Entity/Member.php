@@ -12,12 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class Member extends Person
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -29,10 +24,6 @@ class Member extends Person
      */
     private $place;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getStreet(): ?string
     {
@@ -62,4 +53,36 @@ class Member extends Person
     * @ORM\OneToMany(targetEntity="App\Entity\Registration", mappedBy="member")
     */
     private $registration;
+
+      /**
+     * One Lesson has Many Activities.
+     * @ORM\OneToMany(targetEntity="App\Entity\Lesson", mappedBy="member")
+     * @ORM\JoinTable(name="Registration")
+     */
+    private $lesson;
+
+    public function __construct()
+    {
+        $this->lesson = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->isActive = true;
+    }
+
+    public function addLesson(Lesson $a)
+    {
+        if ($this->lesson->contains($a)) {
+
+            return;
+        }
+
+        $this->lesson->add($a);
+
+    }
+
+    public function removeLesson(Lesson $a)
+    {
+        if (!$this->lesson->contains($a)) {
+            return;
+        }
+        $this->lesson->removeElement($a);
+    }
 }

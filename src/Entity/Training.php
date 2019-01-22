@@ -40,6 +40,12 @@ class Training
      */
     private $extra_costs;
 
+    /** @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Upload your image")
+     * @Assert\File(mimeTypes={ "image/png", "image/jpeg" })
+     */
+    private $image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -93,8 +99,21 @@ class Training
         return $this;
     }
 
+        public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+
     /**
-    * @ORM\OneToMany(targetEntity="App\Entity\Lesson", mappedBy="instructor")
+    * @ORM\OneToMany(targetEntity="App\Entity\Lesson", mappedBy="training")
     */
     private $lesson;
 
