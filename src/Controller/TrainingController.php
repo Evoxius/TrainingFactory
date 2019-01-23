@@ -5,6 +5,7 @@ namespace App\Controller;
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
     use Symfony\Component\Routing\Annotation\Route;
     use App\Entity\Training;
+    use App\Entity\Lesson;
     use App\Form\TrainingType;
     use App\Repository\TrainingRepository;
     use Symfony\Component\HttpFoundation\Response;
@@ -40,6 +41,20 @@ class TrainingController extends Controller
   
     }
 
+     /**
+     * @Route("/les", name="les_list", methods={"GET", "POST"})
+     */
+    public function les(): Response
+    {
+        
+        $lessons= $this->getDoctrine()->getRepository(Lesson::class)->findAll();
+        return $this->render('bezoeker/les.html.twig', array('lessons' => $lessons));
+        
+  
+    }
+
+
+
 
     /**
      * @Route("/training/new", name="training_new", methods={"GET","POST"})
@@ -53,7 +68,7 @@ class TrainingController extends Controller
         ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control')))
         ->add('duration', TextType::class, array('attr' => array('class' => 'form-control')))
         ->add('extra_costs', TextType::class, array('attr' => array('class' => 'form-control')))
-        ->add('image', FileType::class, ['label' => 'Image (PNG/JPEG)'])
+        ->add('image', FileType::class, ['label' => 'Image (PNG/JPEG)', 'data_class' => null])
           ->add('save', SubmitType::class, array(
             'label' => 'Create',
             'attr' => array('class' => 'btn btn-success mt-3')
@@ -120,7 +135,11 @@ class TrainingController extends Controller
         ->add('description', TextareaType::class, array('attr' => array('class' => 'form-control')))
         ->add('duration', TextType::class, array('attr' => array('class' => 'form-control')))
         ->add('extra_costs', TextType::class, array('attr' => array('class' => 'form-control')))
-        ->add('image', FileType::class, ['label' => 'Image (PNG/JPEG)'])
+        ->add('image', FileType::class, ['label' => 'Image (PNG/JPEG)', 'data_class' => null])
+        ->add('save', SubmitType::class, array(
+          'label' => 'Save',
+          'attr' => array('class' => 'btn btn-success mt-3')
+        ))
           ->getForm();
   
         $form->handleRequest($request);

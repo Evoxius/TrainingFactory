@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -144,6 +145,30 @@ class Lesson
     public function getTraining()
     {
         return $this->training;
+    }
+
+    public function setTraining(Array $training)
+{
+    $this->training = $training;
+}
+
+    public function addTraining(Training $training)
+    {
+        if ($this->training->contains($training)) {
+
+            return;
+        }
+
+        $this->training->add($training);
+
+    }
+
+    public function removeTraining(Training $training)
+    {
+        if (!$this->training->contains($training)) {
+            return;
+        }
+        $this->training->removeElement($training);
     }
 
     /**
