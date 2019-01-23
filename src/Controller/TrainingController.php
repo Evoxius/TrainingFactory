@@ -146,10 +146,10 @@ class TrainingController extends Controller
       }
 
 
-    /**
+     /**
      * @Route("/training/{id}", name="training_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Training $trainingsraining): Response
+    public function delete(Request $request, Training $training): Response
     {
         if ($this->isCsrfTokenValid('delete'.$training->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();

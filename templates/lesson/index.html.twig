@@ -46,12 +46,7 @@
 
                             {% else %}
                             {% endif %}
-                            {% if is_granted('ROLE_MEMBER') %}
-                            <a href="{{ path('inschrijven', {'id':lesson.id}) }}" >
-                               <span class="fa fa-plus" style="color:red; float:right;"></span>
-                            </a>
-                            {% else %}
-                            {% endif %}
+                          
                         </div>
                     </div>
                 </tr>

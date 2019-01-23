@@ -64,15 +64,18 @@
             <i class="fa fa-linkedin fa-3x"></i>
           </a>
         </li>
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <li class="nav-item dropdown dropright">
           <a class="nav-link dropdown-toggle waves-effect waves-light dropright" id="navbarDropdownMenuLink"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fa fa-user fa-3x"></i>
           </a>
           <div class="dropdown-menu dropright" aria-labelledby="navbarDropdownMenuLink">
-            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            
             <a class="dropdown-item waves-effect waves-light" href="{{ path('logout') }}">{{ app.user.username }}
               uitloggen</a>
+              
+            <a class="dropdown-item waves-effect waves-light" href="{{ path('member_show', { 'id': app.user.id }) }}"> Profiel</a>
             
             {% else %}
             {% endif %}

@@ -498,8 +498,23 @@
   </div>
   <!--/.Carousel Wrapper-->
 
-  <!--Main layout-->
+  <!--Main layout-->  
+
   <main>
+  <section id="trainingens" class="plans pad-top-115 pad-bottom-120">
+  <div class="container pr">
+          <div class="secHead wow fadeInLeft  animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+            <div class="skewpink"></div>
+            <div class="row">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                <div class="titleText">
+                  <h6 class="titleTop">Bekijk hier</h6>
+                  <h2 class="sectionTitle">Onze <span>trainingen</span></h2>
+                </div>
+              </div>
+            </div>
+          </div>
+ 
     <div class="container">
 
       <!--Section: Trainingen-->
@@ -507,7 +522,7 @@
         {% if is_granted('ROLE_ADMIN') %}
         <a class="btn btn-info" href="{{ asset('training/new') }}" style="margin-left:10px; margin-bottom: 40px;">Nieuwe
           training
-          toevoegen</a>  
+          toevoegen</a>
         {% else %}
         {% endif %}
         <div class="row">
@@ -517,24 +532,42 @@
               {% for training in trainings %}
 
               <tr>
-                <div class="card text-white bg-dark" style="max-width: 20rem; margin-bottom:25px; margin-left: 25px;">
-                  <div class="card-header"> <img src={{ asset(training.image) }}> <div style="float:right;">Duur: {{
-                      training.duration }}</div>
+
+
+                <!-- Card -->
+                <div class="card" style="width: 19rem;">
+
+                  <!-- Card image -->
+                  <div class="view overlay">
+                    <img class="card-img-top" src="{{ asset('images/' ~ training.image) }}" alt="Image van training">
+                    <a tabindex="0"  role="button" data-placement="left" data-toggle="popover" data-trigger="focus"
+                      title="Descriptie" data-content=" {{ training.description }}">
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
                   </div>
-                  <div class="card-body">
-                    <h5 class="card-title">{{ training.name }}</h5>
-                    <p class="card-text text-white">{{ training.description }}</p>
-                    <p class="card-text text-white">{{ training.extracosts }}</p>
+
+                  <!-- Card content -->
+                  <div class="card-body" style="">
+
+                    <!-- Title -->
+                   
+
+                    <h4 class="card-title text-center"><b>{{ training.name }}</b></h4>
+
+                    <p class="text-center"><hr><b>Extra:</b> {{ training.extracosts }} <hr> <b>Duur:</b> {{training.duration }} </p>
+                    <!-- Button -->
                     {% if is_granted('ROLE_ADMIN') %}
-                    <div class="row" style="margin-left:3px;">
+                    <hr>
+                    <div class="row">
                       <a href="{{ path('training_edit', {'id': training.id}) }}" class="btn btn-success" style="padding-right: 44px;">Edit</a>
                       {{ include('training/_delete_form.html.twig')}}
                     </div>
-
                     {% else %}
                     {% endif %}
                   </div>
+
                 </div>
+                <!-- Card -->
               </tr>
 
               {% endfor %}
@@ -553,10 +586,10 @@
         </div>
       </div>
       {% endif %}
+     
       <!--Section: Trainingen-->
 
       <hr class="my-5">
-
       <!--Section: Main features & Quick Start-->
       <section>
 

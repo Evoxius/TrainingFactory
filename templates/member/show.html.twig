@@ -3,40 +3,25 @@
 {% block title %}Member{% endblock %}
 
 {% block body %}
-    <h1>Member</h1>
+<div class="container" style="margin-top:100px;">
+    <h3>Member</h3>
 
     <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ member.id }}</td>
-            </tr>
             <tr>
                 <th>Username</th>
                 <td>{{ member.username }}</td>
             </tr>
             <tr>
-                <th>Password</th>
-                <td>{{ member.password }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ member.roles ? member.roles|join(', ') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Firstname</th>
+                <th>First name</th>
                 <td>{{ member.firstname }}</td>
             </tr>
             <tr>
-                <th>Preprovision</th>
-                <td>{{ member.preprovision }}</td>
-            </tr>
-            <tr>
-                <th>Lastname</th>
+                <th>Last name</th>
                 <td>{{ member.lastname }}</td>
             </tr>
             <tr>
-                <th>Dateofbirth</th>
+                <th>Date of Birth</th>
                 <td>{{ member.dateofbirth }}</td>
             </tr>
             <tr>
@@ -47,12 +32,19 @@
                 <th>Place</th>
                 <td>{{ member.place }}</td>
             </tr>
+            <tr>
+                <th>Preprovision</th>
+                <td>{{ member.preprovision }}</td>
+            </tr>
         </tbody>
     </table>
+</div>
 
-    <a href="{{ path('member_index') }}">back to list</a>
+<div class="container">
+    <div class="row" style="margin-top:40px;">
+        <a href="{{ path('member_edit', {'id': member.id}) }}" class="btn btn-success" style="padding-right: 44px;">Edit</a>
 
-    <a href="{{ path('member_edit', {'id': member.id}) }}">edit</a>
-
-    {{ include('member/_delete_form.html.twig') }}
+        {{ include('member/_delete_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}

@@ -57,6 +57,7 @@ class SecurityController extends Controller
       
     }
 
+
     /**
      * @Route("registreren", name="registreren")
      */

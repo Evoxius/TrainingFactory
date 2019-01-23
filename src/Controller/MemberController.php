@@ -10,6 +10,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+
+
 /**
  * @Route("/member")
  */
@@ -54,25 +68,54 @@ class MemberController extends AbstractController
         return $this->render('member/show.html.twig', ['member' => $member]);
     }
 
-    /**
+      /**
      * @Route("/{id}/edit", name="member_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Member $member): Response
-    {
-        $form = $this->createForm(MemberType::class, $member);
+    public function edit(Request $request, $id) {
+
+        $member = new Member();
+        $member = $this->getDoctrine()->getRepository(Member::class)->find($id);
+  
+        $form = $this->createFormBuilder($member)
+        ->add('username',TextType::class
+        , array(
+        'label' => 'Gebruikersnaam'))
+        ->add('plainPassword', RepeatedType::class, array(
+            'type' => PasswordType::class,
+            'first_options' => array('label' => 'Wachtwoord'),
+            'second_options' => array('label' => 'Herhaal wachtwoord'),
+        ))
+        ->add('firstname',TextType::class, array('label' => 'First name'))
+        ->add('lastname',TextType::class, array('label' => 'Last name'))
+        ->add('dateofbirth', TextType::class, array('label' => 'Date of Birth'))
+        ->add('street',TextType::class, array('label' => 'Street'))
+        ->add('place',TextType::class, array('label' => 'Place'))
+        ->add('preprovision')
+        ->add('save', SubmitType::class, array('label' => 'Save','attr' => array('class' => 'btn btn-success mt-3')
+        ))
+        ->getForm();
+  
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('member_index', ['id' => $member->getId()]);
+  
+        if($form->isSubmitted() && $form->isValid()) {
+  
+          $entityManager = $this->getDoctrine()->getManager();
+          $entityManager->flush();
+  
+          return $this->redirectToRoute('login');
         }
-
-        return $this->render('member/edit.html.twig', [
-            'member' => $member,
-            'form' => $form->createView(),
-        ]);
-    }
+  
+        $log = new Logger('editLogs');
+        $streamHandler=new StreamHandler('add.log.html', Logger::INFO);
+        $streamHandler->setFormatter(new \Monolog\Formatter\HtmlFormatter());
+        $log->pushHandler($streamHandler);
+  
+        $log->info('member informatie veranderd');
+  
+        return $this->render('member/edit.html.twig', array(
+          'form' => $form->createView()
+        ));
+      }
 
     /**
      * @Route("/{id}", name="member_delete", methods={"DELETE"})

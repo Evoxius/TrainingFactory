@@ -49,8 +49,7 @@ class Person implements UserInterface, \Serializable
     private $firstname;
 
     /**
-     * @ORM\Column(type="string", length=50)
-     * @Assert\NotBlank(message="vul tussenvoegsels in in")
+     * @ORM\Column(type="string", length=50, nullable=true)
      */
     private $preprovision;
 

@@ -87,6 +87,7 @@
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script src="{{ asset('js/element.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('js/popover.js') }}"></script>
     <script src="{{ asset('js/jquery-ui-timepicker-addon.js') }}"></script>
     <script>
         $(function () {
@@ -115,6 +116,13 @@
                 "position": "top"
             })
         });
+
+        
+    </script>
+    <script>
+    $('.popover-dismiss').popover({
+        trigger: 'focus'
+    })
     </script>
     {% endblock %}
     {{ include('incl/footer.html.twig') }}

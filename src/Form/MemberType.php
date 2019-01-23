@@ -32,7 +32,6 @@ class MemberType extends AbstractType
             ->add('firstname',TextType::class
             , array(
          'label' => 'First name'))
-            ->add('preprovision')
             ->add('lastname',TextType::class
             , array(
          'label' => 'Last name'))
@@ -44,7 +43,8 @@ class MemberType extends AbstractType
          'label' => 'Street'))
             ->add('place',TextType::class
             , array(
-         'label' => 'Place'));
+         'label' => 'Place'))
+         ->add('preprovision');
             
     }
 
