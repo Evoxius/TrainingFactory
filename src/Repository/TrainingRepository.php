@@ -18,6 +18,12 @@ class TrainingRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Training::class);
     }
+    
+    public function findAll()
+    {
+        return $this->findBy(array(),array());
+    }
+  
 
     // /**
     //  * @return Training[] Returns an array of Training objects

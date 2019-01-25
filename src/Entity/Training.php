@@ -125,4 +125,9 @@ class Training
     */
     private $lesson;
 
+    public function getLesson()
+    {
+        return $this->lesson;
+    }
+
 }

@@ -21,6 +21,8 @@ namespace App\Controller;
     use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
     use Symfony\Component\Form\Extension\Core\Type\DateType;
     use Symfony\Component\Form\Extension\Core\Type\FileType;
+    use Symfony\Component\Form\Extension\Core\Type\TimeType;
+    use Symfony\Bridge\Doctrine\Form\Type\EntityType; 
     use Vich\UploaderBundle\Form\Type\VichImageType;
     use App\Service\FileUploader;
 
@@ -42,17 +44,64 @@ class TrainingController extends Controller
     }
 
      /**
-     * @Route("/les", name="les_list", methods={"GET", "POST"})
+     * @Route("/training/newlesson/{id}", name="training_addlesson", methods={"GET", "POST"})
      */
-    public function les(): Response
+    public function addLesson(Request $request, $id): Response
     {
-        
-        $lessons= $this->getDoctrine()->getRepository(Lesson::class)->findAll();
-        return $this->render('bezoeker/les.html.twig', array('lessons' => $lessons));
-        
+      $lesson = new Lesson();
   
+      $form = $this->createFormBuilder($lesson)
+        ->add('time', TimeType::class, ['attr' => ['class' => 'js-timepicker', 'placeholder'=>'hh:mm'],
+        'widget'=>'single_text','html5' => false,])
+        ->add('date', DateType::class, ['attr' => ['class' => 'js-datepicker', 'placeholder'=>'dd-mm-yyyy'],
+        'widget'=>'single_text', 'html5' => false, 'format'=> 'dd-MM-yyyy'
+           ])
+        ->add('location', TextareaType::class, array('attr' => array('class' => 'form-control')))
+        ->add('max_persons', TextareaType::class, array('attr' => array('class' => 'form-control')))
+        ->add('save', SubmitType::class, array(
+          'label' => 'Create',
+          'attr' => array('class' => 'btn btn-success mt-3')
+        ))
+        ->getForm();
+
+      $form->handleRequest($request);
+
+      if($form->isSubmitted() && $form->isValid()) { 
+        
+   
+        $repository = $this->getDoctrine()->getRepository(Training::class);
+        $trainingid = $repository->find($id);
+        $lesson->setTraining($trainingid);
+       
+       
+
+        $entityManager = $this->getDoctrine()->getManager();
+        
+       
+        $entityManager->persist($lesson);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('login');
+      }
+
+      return $this->render('lesson/new.html.twig', array(
+        'form' => $form->createView()
+      ));
     }
 
+     /**
+     * @Route("/training/{id}/lessons", name="lesson_list", methods={"GET"})
+     */
+    public function lessons($id): Response
+    {
+      
+        $repository = $this->getDoctrine()->getRepository(Training::class);
+        $trainingid = $repository->find($id);
+        
+        $lessons= $this->getDoctrine()->getRepository(Lesson::class)->findBy(array('training' => $trainingid ));
+        return $this->render('lesson/index.html.twig', array('lessons' => $lessons));
+  
+    }
 
 
 

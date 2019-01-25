@@ -18,45 +18,43 @@
         </div>
 </section>
 <div class="container">
-    {% if is_granted('ROLE_ADMIN') %}
-    <a class="btn btn-info" href="{{ asset('lesson/new') }}" style="margin-left:10px; margin-bottom: 40px;">Nieuwe
-        lesson
-        toevoegen</a>
-    {% else %}
-    {% endif %}
-    <div class="row">
-        <table id="lessons" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
+
+        <table id="lessons" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style=" visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
+            <thead>
+                <tr>
+                    <th>Tijd</th>
+                    <th>Datum</th>
+                    <th>Lokatie</th>
+                    <th>Max personen</th>
+                    <th>Acties</th>
+                </tr>
+            </thead>
             <tbody>
                 {% for lesson in lessons %}
-
                 <tr>
-                    <div class="card text-white bg-dark" style="margin-bottom:25px; margin-left: 25px;">
-                        <div class="card-header"> <div style="float:left; font-size:20px;">Dag: {{
-                                lesson.date|date('m/d/Y') }}</div> <div style="float:right; font-size:20px; margin-left:50px;">Max: {{
-                                lesson.maxpersons }}</div>
+                    <td>{{ lesson.time|date('H:i') }}</td>
+                    <td>{{ lesson.date|date('m/d/Y') }}</td>
+                    <td>{{ lesson.location }}</td>
+                    <td>{{ lesson.maxpersons }}</td>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <td>
+                        <div class="row">
+                        <a href="{{ path('lesson_edit', {'id': lesson.id}) }}" ><i
+                         class="fa fa-4x fa-edit" style="color:black;"></i></a>
+                        {{ include('lesson/_delete_form.html.twig')}}
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Begint om: {{ lesson.time|date('H:i') }}</h5>
-                            <p class="card-title text-white">Begint in: {{ lesson.location }}</p>
-                            {% if is_granted('ROLE_ADMIN') %}
-                            <div class="row" style="margin-left:3px;">
-                                <a href="{{ path('lesson_edit', {'id': lesson.id}) }}" class="btn btn-success" style="padding-right: 44px;">Edit</a>
-                                {{ include('lesson/_delete_form.html.twig')}}
-                            </div>
-
-                            {% else %}
-                            {% endif %}
-                          
-                        </div>
-                    </div>
+                    </td>{% endif %}
                 </tr>
-
                 {% endfor %}
             </tbody>
         </table>
-    </div>
+
 </div>
 
 </div>
 </div>
 {% endblock %}
+
+
+
+

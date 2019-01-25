@@ -142,15 +142,24 @@ class Lesson
 
     private $training;
 
+    public function __construct()
+    {
+        $this->training = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->isActive = true;
+    }
+
+
     public function getTraining()
     {
         return $this->training;
     }
 
-    public function setTraining(Array $training)
-{
-    $this->training = $training;
-}
+    public function setTraining(Training $training)
+    {
+        $this->training = $training;
+
+        return $this;
+    }
 
     public function addTraining(Training $training)
     {

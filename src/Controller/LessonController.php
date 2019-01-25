@@ -32,65 +32,7 @@ namespace App\Controller;
 class LessonController extends Controller
 {
 
-     /**
-     * @Route("/", name="lesson_list", methods={"GET"})
-     */
-    public function index(): Response
-    {
-        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY', null, 'User tried to access a page without being logged in');
-
-        $lessons= $this->getDoctrine()->getRepository(Lesson::class)->findAll();
-        return $this->render('lesson/index.html.twig', array('lessons' => $lessons));
-  
-    }
-
-
-
-    /**
-     * @Route("/new", name="lesson_new", methods={"GET","POST"})
-     */
-    public function new(Request $request) {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
-        $lesson = new Lesson();
-  
-        $form = $this->createFormBuilder($lesson)
-          ->add('time', TimeType::class, ['attr' => ['class' => 'js-timepicker', 'placeholder'=>'hh:mm'],
-          'widget'=>'single_text','html5' => false,])
-          ->add('date', DateType::class, ['attr' => ['class' => 'js-datepicker', 'placeholder'=>'dd-mm-yyyy'],
-          'widget'=>'single_text', 'html5' => false, 'format'=> 'dd-MM-yyyy'
-             ])
-          ->add('location', TextareaType::class, array('attr' => array('class' => 'form-control')))
-          ->add('max_persons', TextareaType::class, array('attr' => array('class' => 'form-control')))
-          ->add('save', SubmitType::class, array(
-            'label' => 'Create',
-            'attr' => array('class' => 'btn btn-success mt-3')
-          ))
-          ->getForm();
-  
-        $form->handleRequest($request);
-  
-        if($form->isSubmitted() && $form->isValid()) {
-          $lesson = $form->getData();
-  
-          $entityManager = $this->getDoctrine()->getManager();
-          $entityManager->persist($lesson);
-          $entityManager->flush();
-  
-          return $this->redirectToRoute('lesson_list');
-        }
-  
-        $log = new Logger('addLogs');
-        $streamHandler=new StreamHandler('add.log.html', Logger::INFO);
-        $streamHandler->setFormatter(new \Monolog\Formatter\HtmlFormatter());
-        $log->pushHandler($streamHandler);
-  
-        $log->info('lesson toegevoegd');
-      
-  
-        return $this->render('lesson/new.html.twig', array(
-          'form' => $form->createView()
-        ));
-      }
+    
 
     /**
      * @Route("/{id}/edit", name="lesson_edit", methods={"GET","POST"})

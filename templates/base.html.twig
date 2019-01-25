@@ -116,13 +116,21 @@
                 "position": "top"
             })
         });
-
-        
     </script>
     <script>
-    $('.popover-dismiss').popover({
-        trigger: 'focus'
-    })
+        $('.popover-dismiss').popover({
+            trigger: 'focus'
+        })
+    </script>
+
+    <link href="{{ asset('css/addons/datatables.min.css') }}" rel="stylesheet">
+    <script type="text/javascript" src="{{ asset('js/addons/datatables.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#lessons').DataTable();
+            $('.dataTables_length').addClass('bs-select');
+        });
     </script>
     {% endblock %}
     {{ include('incl/footer.html.twig') }}

@@ -498,268 +498,279 @@
   </div>
   <!--/.Carousel Wrapper-->
 
-  <!--Main layout-->  
+  <!--Main layout-->
 
   <main>
-  <section id="trainingens" class="plans pad-top-115 pad-bottom-120">
-  <div class="container pr">
-          <div class="secHead wow fadeInLeft  animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
-            <div class="skewpink"></div>
-            <div class="row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
-                <div class="titleText">
-                  <h6 class="titleTop">Bekijk hier</h6>
-                  <h2 class="sectionTitle">Onze <span>trainingen</span></h2>
-                </div>
-              </div>
-            </div>
-          </div>
- 
-    <div class="container">
-
-      <!--Section: Trainingen-->
-      <div class="container">
-        {% if is_granted('ROLE_ADMIN') %}
-        <a class="btn btn-info" href="{{ asset('training/new') }}" style="margin-left:10px; margin-bottom: 40px;">Nieuwe
-          training
-          toevoegen</a>
-        {% else %}
-        {% endif %}
-        <div class="row">
-          {% if trainings %}
-          <table id="trainings" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
-            <tbody>
-              {% for training in trainings %}
-
-              <tr>
-
-
-                <!-- Card -->
-                <div class="card" style="width: 19rem; margin-left:20px; margin-top:20px;">
-
-                  <!-- Card image -->
-                  <div class="view overlay">
-                    <img class="card-img-top" src="{{ asset('images/' ~ training.image) }}" alt="Image van training">
-                    <a tabindex="0"  role="button" data-placement="left" data-toggle="popover" data-trigger="focus"
-                      title="Descriptie" data-content=" {{ training.description }}">
-                      <div class="mask rgba-white-slight"></div>
-                    </a>
-                  </div>
-
-                  <!-- Card content -->
-                  <div class="card-body" style="">
-
-                    <!-- Title -->
-                   
-
-                    <h4 class="card-title text-center"><b>{{ training.name }}</b></h4>
-
-                    <p class="text-center"><hr><b>Extra:</b> {{ training.extracosts }} <hr> <b>Duur:</b> {{training.duration }} </p>
-                    <!-- Button -->
-                    {% if is_granted('ROLE_ADMIN') %}
-                    <hr>
-                    <div class="row">
-                      <a href="{{ path('training_edit', {'id': training.id}) }}" class="btn btn-success" style="padding-right: 44px;">Edit</a>
-                      {{ include('training/_delete_form.html.twig')}}
-                      <a href="{{ path('les_list') }}" class="btn btn-success" style="padding-right: 44px;">Lessen</a>
-                    </div>
-                    {% else %}
-                    {% endif %}
-                  </div>
-
-                </div>
-                <!-- Card -->
-              </tr>
-
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      {% else %}
-      <div class="container class">
-        <div class="card text-white bg-danger mb-3" style="max-width: 20rem;  margin-bottom:300px;">
-          <div class="card-header">Sorry!</div>
-          <div class="card-body">
-            <h5 class="card-title">Maar er zijn op dit moment geen trainingen</h5>
-            <p class="card-text text-white">Er komen meer trainingen zometeen!</p>
-          </div>
-        </div>
-      </div>
-      {% endif %}
-     
-      <!--Section: Trainingen-->
-
-      <hr class="my-5">
-      <!--Section: Main features & Quick Start-->
-      <section>
-
-        <h3 class="h3 text-center mb-5">Over Training Factory</h3>
-        <div class="skewpink"></div>
-        <!--Grid row-->
-        <div class="row wow fadeIn">
-
-          <!--Grid column-->
-          <div class="col-lg-6 col-md-12 px-4">
-
-            <!--First row-->
-            <div class="row">
-              <div class="col-1 mr-3">
-                <i class="fa fa-code fa-2x indigo-text"></i>
-              </div>
-              <div class="col-10">
-                <h5 class="feature-title">Bootstrap 4</h5>
-                <p class="grey-text">Thanks to MDB you can take advantage of all feature of newest Bootstrap 4.</p>
-              </div>
-            </div>
-            <!--/First row-->
-
-            <div style="height:30px"></div>
-
-            <!--Second row-->
-            <div class="row">
-              <div class="col-1 mr-3">
-                <i class="fa fa-book fa-2x blue-text"></i>
-              </div>
-              <div class="col-10">
-                <h5 class="feature-title">Detailed documentation</h5>
-                <p class="grey-text">We give you detailed user-friendly documentation at your disposal. It will help
-                  you
-                  to implement your ideas
-                  easily.
-                </p>
-              </div>
-            </div>
-            <!--/Second row-->
-
-            <div style="height:30px"></div>
-
-            <!--Third row-->
-            <div class="row">
-              <div class="col-1 mr-3">
-                <i class="fa fa-graduation-cap fa-2x cyan-text"></i>
-              </div>
-              <div class="col-10">
-                <h5 class="feature-title">Lots of tutorials</h5>
-                <p class="grey-text">We care about the development of our users. We have prepared numerous tutorials,
-                  which allow you to learn
-                  how to use MDB as well as other technologies.</p>
-              </div>
-            </div>
-            <!--/Third row-->
-
-          </div>
-          <!--/Grid column-->
-
-          <!--Grid column-->
-          <div class="col-lg-6 col-md-12">
-
-            <p class="h5 text-center mb-4">Bekijk onze mooie ingang</p>
-            <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oOWT25UgO88" allowfullscreen></iframe>
-            </div>
-          </div>
-          <!--/Grid column-->
-
-        </div>
-        <!--/Grid row-->
-
-      </section>
-      <!--Section: Main features & Quick Start-->
-
-      <hr class="my-5">
-
-      <!--Section: Abonnement-->
-
-      <section id="abonnement" class="plans pad-top-115 pad-bottom-120">
-        <div class="container pr">
-          <div class="secHead wow fadeInLeft  animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
-            <div class="skewpink"></div>
-            <div class="row">
-              <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
-                <div class="titleText">
-                  <h6 class="titleTop">Direct beginnen?</h6>
-                  <h2 class="sectionTitle">Onze <span>abonnementen</span></h2>
-                </div>
-              </div>
-            </div>
-          </div>
+    <section id="trainingens" class="plans pad-top-115 pad-bottom-120">
+      <div class="container pr">
+        <div class="secHead wow fadeInLeft  animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+          <div class="skewpink"></div>
           <div class="row">
-            <div class="pricing-tables pad-top-55" style="margin-left:45px;">
-              <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12 no-padding pricebox" style="margin-bottom: 80px;">
-                <div class="element">
-                  <div class="plan-top">
-                    <!--<div class="skewpink"></div>-->
-                    <h5>Speciaal: Doe mee pas</h5>
-                  </div>
-                  <div class="plan-side">
-                    <div class="skewback">
-                      <h2>€200</h2>
-                      <h6> Zie actievoorwaarden </h6>
-                    </div>
-                  </div>
-                  <ul class="plan-list">
-                    <li> Normaal €300,00 </li>
-                    <li> Het hele jaar fit! </li>
-                    <li> Gratis begeleiding </li>
-                    <li> Géén inschrijfgeld </li>
-                    <li> Géén administratiekosten </li>
-                  </ul>
-                  <button type="button" class="fill-btn"><a href="doe-mee-pas.html"> Bekijk nu</a></button>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12 no-padding pricebox midprice" style="margin-bottom: 80px;">
-                <div class="element midelement">
-                  <div class="plan-top">
-                    <!--<div class="skewpink"></div>-->
-                    <h5>Maand abonnement</h5>
-                  </div>
-                  <div class="plan-side">
-                    <div class="skewback">
-                      <h2>€24,95</h2>
-                      <h6>Gratis begeleiding</h6>
-                    </div>
-                  </div>
-                  <div class="midIcon"><i class="flaticon-gym fIcons"></i></div>
-                  <ul class="plan-list">
-                    <li> 7 Dagen per week onbeperkt sporten</li>
-                    <li> Géén inschrijfgeld </li>
-                    <li> Géén administratiekosten </li>
-                    <li> Opzegtermijn van 1 maand </li>
-                  </ul>
-                  <button type="button" class="fill-btn"><a href="maand-abonnement.html"> Bekijk nu</a></button>
-                </div>
-              </div>
-              <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12 no-padding pricebox" style="margin-bottom: 80px;">
-                <div class="element">
-                  <div class="plan-top">
-                    <!--<div class="skewpink"></div>-->
-                    <h5>Gezinsabonnement</h5>
-                  </div>
-                  <div class="plan-side">
-                    <div class="skewback">
-                      <h2> €49,95</h2>
-                      <h6>Gratis begeleiding</h6>
-                    </div>
-                  </div>
-                  <ul class="plan-list">
-                    <li> 7 Dagen per week onbeperkt sporten</li>
-                    <li> Voor het hele gezin</li>
-                    <li> Géén inschrijfgeld </li>
-                    <li> Géén administratiekosten </li>
-                    <li> Opzegtermijn van 1 maand </li>
-                  </ul>
-                  <button type="button" class="fill-btn"><a href="gezin-abonnement.html"> Bekijk nu</a></button>
-                </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
+              <div class="titleText">
+                <h6 class="titleTop">Bekijk hier</h6>
+                <h2 class="sectionTitle">Onze <span>trainingen</span></h2>
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-      <hr class="mb-5">
+        <div class="container">
 
-      <!--Section: Abonnement-->
+          <!--Section: Trainingen-->
+          <div class="container">
+            {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-info" href="{{ asset('training/new') }}" style="margin-left:10px; margin-bottom: 40px;">Nieuwe
+              training
+              toevoegen</a>
+            {% else %}
+            {% endif %}
+            <div class="row">
+              {% if trainings %}
+              <table id="trainings" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
+                <tbody>
+                  {% for training in trainings %}
+
+                  <tr>
+
+
+                    <!-- Card -->
+                    <div class="card" style="width: 19rem; margin-left:20px; margin-top:20px;">
+
+                      <!-- Card image -->
+                      <div class="view overlay">
+                        <img class="card-img-top" src="{{ asset('images/' ~ training.image) }}" alt="Image van training">
+                        <a tabindex="0" role="button" data-placement="left" data-toggle="popover" data-trigger="focus"
+                          title="Descriptie" data-content=" {{ training.description }}">
+                          <div class="mask rgba-white-slight"></div>
+                        </a>
+                      </div>
+
+                      <!-- Card content -->
+                      <div class="card-body" style="">
+
+                        <!-- Title -->
+
+
+                        <h4 class="card-title text-center"><b>{{ training.name }}</b></h4>
+
+                        <p class="text-center">
+                          <hr><b>Extra:</b> {{ training.extracosts }}
+                          <hr> <b>Duur:</b> {{training.duration }} </p>
+                        <!-- Button -->
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <hr>
+                        <div class="row" style="margin-left: 30px;">
+                        
+
+                            <a href="{{ path('training_edit', {'id': training.id}) }}"><i class="fa fa-4x fa-edit" style="color:black;"></i></a>
+                            {{ include('training/_delete_form.html.twig')}}
+                         
+                       
+                       
+                          <a href="{{ path('training_addlesson', { 'id': training.id }) }}"><i class="fa fa-4x fa-plus" style="color:green; margin-right:5px;"></i></a>
+                          <a href="{{ path('lesson_list', {'id': training.id}) }}"><i class="fa fa-4x fa-folder" style="color:orange;"></i></a>
+                     
+                        </div>
+                        {% else %}
+                        {% endif %}
+                      </div>
+
+                    </div>
+                    <!-- Card -->
+                  </tr>
+
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+          {% else %}
+          <div class="container class">
+            <div class="card text-white bg-danger mb-3" style="max-width: 20rem;  margin-bottom:300px;">
+              <div class="card-header">Sorry!</div>
+              <div class="card-body">
+                <h5 class="card-title">Maar er zijn op dit moment geen trainingen</h5>
+                <p class="card-text text-white">Er komen meer trainingen zometeen!</p>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+
+          <!--Section: Trainingen-->
+
+          <hr class="my-5">
+          <!--Section: Main features & Quick Start-->
+          <section>
+
+            <h3 class="h3 text-center mb-5">Over Training Factory</h3>
+            <div class="skewpink"></div>
+            <!--Grid row-->
+            <div class="row wow fadeIn">
+
+              <!--Grid column-->
+              <div class="col-lg-6 col-md-12 px-4">
+
+                <!--First row-->
+                <div class="row">
+                  <div class="col-1 mr-3">
+                    <i class="fa fa-code fa-2x indigo-text"></i>
+                  </div>
+                  <div class="col-10">
+                    <h5 class="feature-title">Bootstrap 4</h5>
+                    <p class="grey-text">Thanks to MDB you can take advantage of all feature of newest Bootstrap 4.</p>
+                  </div>
+                </div>
+                <!--/First row-->
+
+                <div style="height:30px"></div>
+
+                <!--Second row-->
+                <div class="row">
+                  <div class="col-1 mr-3">
+                    <i class="fa fa-book fa-2x blue-text"></i>
+                  </div>
+                  <div class="col-10">
+                    <h5 class="feature-title">Detailed documentation</h5>
+                    <p class="grey-text">We give you detailed user-friendly documentation at your disposal. It will
+                      help
+                      you
+                      to implement your ideas
+                      easily.
+                    </p>
+                  </div>
+                </div>
+                <!--/Second row-->
+
+                <div style="height:30px"></div>
+
+                <!--Third row-->
+                <div class="row">
+                  <div class="col-1 mr-3">
+                    <i class="fa fa-graduation-cap fa-2x cyan-text"></i>
+                  </div>
+                  <div class="col-10">
+                    <h5 class="feature-title">Lots of tutorials</h5>
+                    <p class="grey-text">We care about the development of our users. We have prepared numerous
+                      tutorials,
+                      which allow you to learn
+                      how to use MDB as well as other technologies.</p>
+                  </div>
+                </div>
+                <!--/Third row-->
+
+              </div>
+              <!--/Grid column-->
+
+              <!--Grid column-->
+              <div class="col-lg-6 col-md-12">
+
+                <p class="h5 text-center mb-4">Bekijk onze mooie ingang</p>
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/oOWT25UgO88" allowfullscreen></iframe>
+                </div>
+              </div>
+              <!--/Grid column-->
+
+            </div>
+            <!--/Grid row-->
+
+          </section>
+          <!--Section: Main features & Quick Start-->
+
+          <hr class="my-5">
+
+          <!--Section: Abonnement-->
+
+          <section id="abonnement" class="plans pad-top-115 pad-bottom-120">
+            <div class="container pr">
+              <div class="secHead wow fadeInLeft  animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+                <div class="skewpink"></div>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xl-12">
+                    <div class="titleText">
+                      <h6 class="titleTop">Direct beginnen?</h6>
+                      <h2 class="sectionTitle">Onze <span>abonnementen</span></h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="pricing-tables pad-top-55" style="margin-left:45px;">
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12 no-padding pricebox" style="margin-bottom: 80px;">
+                    <div class="element">
+                      <div class="plan-top">
+                        <!--<div class="skewpink"></div>-->
+                        <h5>Speciaal: Doe mee pas</h5>
+                      </div>
+                      <div class="plan-side">
+                        <div class="skewback">
+                          <h2>€200</h2>
+                          <h6> Zie actievoorwaarden </h6>
+                        </div>
+                      </div>
+                      <ul class="plan-list">
+                        <li> Normaal €300,00 </li>
+                        <li> Het hele jaar fit! </li>
+                        <li> Gratis begeleiding </li>
+                        <li> Géén inschrijfgeld </li>
+                        <li> Géén administratiekosten </li>
+                      </ul>
+                      <button type="button" class="fill-btn"><a href="doe-mee-pas.html"> Bekijk nu</a></button>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12 no-padding pricebox midprice" style="margin-bottom: 80px;">
+                    <div class="element midelement">
+                      <div class="plan-top">
+                        <!--<div class="skewpink"></div>-->
+                        <h5>Maand abonnement</h5>
+                      </div>
+                      <div class="plan-side">
+                        <div class="skewback">
+                          <h2>€24,95</h2>
+                          <h6>Gratis begeleiding</h6>
+                        </div>
+                      </div>
+                      <div class="midIcon"><i class="flaticon-gym fIcons"></i></div>
+                      <ul class="plan-list">
+                        <li> 7 Dagen per week onbeperkt sporten</li>
+                        <li> Géén inschrijfgeld </li>
+                        <li> Géén administratiekosten </li>
+                        <li> Opzegtermijn van 1 maand </li>
+                      </ul>
+                      <button type="button" class="fill-btn"><a href="maand-abonnement.html"> Bekijk nu</a></button>
+                    </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-xl-12 no-padding pricebox" style="margin-bottom: 80px;">
+                    <div class="element">
+                      <div class="plan-top">
+                        <!--<div class="skewpink"></div>-->
+                        <h5>Gezinsabonnement</h5>
+                      </div>
+                      <div class="plan-side">
+                        <div class="skewback">
+                          <h2> €49,95</h2>
+                          <h6>Gratis begeleiding</h6>
+                        </div>
+                      </div>
+                      <ul class="plan-list">
+                        <li> 7 Dagen per week onbeperkt sporten</li>
+                        <li> Voor het hele gezin</li>
+                        <li> Géén inschrijfgeld </li>
+                        <li> Géén administratiekosten </li>
+                        <li> Opzegtermijn van 1 maand </li>
+                      </ul>
+                      <button type="button" class="fill-btn"><a href="gezin-abonnement.html"> Bekijk nu</a></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <hr class="mb-5">
+
+          <!--Section: Abonnement-->
 
 
 

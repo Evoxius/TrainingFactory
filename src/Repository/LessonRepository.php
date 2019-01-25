@@ -19,7 +19,13 @@ class LessonRepository extends ServiceEntityRepository
         parent::__construct($registry, Lesson::class);
     }
 
-   
+    public function findAll()
+    {
+        return $this->findBy(array(), array());
+    }
+
+
+  
 
 
     // /**
