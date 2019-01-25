@@ -97,11 +97,66 @@ class TrainingController extends Controller
       
         $repository = $this->getDoctrine()->getRepository(Training::class);
         $trainingid = $repository->find($id);
+
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
         
-        $lessons= $this->getDoctrine()->getRepository(Lesson::class)->findBy(array('training' => $trainingid ));
-        return $this->render('lesson/index.html.twig', array('lessons' => $lessons));
+        $beschikbareLessons= $this->getDoctrine()->getRepository(Lesson::class)->getBeschikbareLessons($usr->getId())->findBy(array('training' => $trainingid ));
+        return $this->render('lesson/index.html.twig', array('beschikbare_Lessons' => $beschikbareLessons));
   
     }
+
+     /**
+     * @Route("/training/{id}/private", name="lesson_private", methods={"GET"})
+     */
+    public function private($id): Response
+    {
+      
+        $repository = $this->getDoctrine()->getRepository(Training::class);
+        $trainingid = $repository->find($id);
+
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        
+        $ingeschrevenLessons= $this->getDoctrine()->getRepository(Lesson::class)->getIngeschrevenLessons($usr->getId())->findBy(array('training' => $trainingid ));
+        return $this->render('lesson/rooster.html.twig', array('ingeschreven_lessons' => $ingeschrevenLessons));
+  
+    }
+
+
+     /**
+     * @Route("/training/inschrijven/{id}", name="inschrijven")
+     */
+    public function inschrijvenLessonAction($id)
+    {
+
+        $lesson = $this->getDoctrine()
+            ->getRepository(Lesson::class)
+            ->find($id);
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $usr->addLesson($lesson);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($usr);
+        $em->flush();
+
+        return $this->redirectToRoute('lesson_list');
+    }
+
+     /**
+     * @Route("/training/uitschrijven/{id}", name="uitschrijven")
+     */
+    public function uitschrijvenLessonAction($id)
+    {
+        $lesson = $this->getDoctrine()
+            ->getRepository(Lesson::class)
+            ->find($id);
+        $usr= $this->get('security.token_storage')->getToken()->getUser();
+        $usr->removeLesson($lesson);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($usr);
+        $em->flush();
+        return $this->redirectToRoute('lesson_private');
+    }
+
 
 
 

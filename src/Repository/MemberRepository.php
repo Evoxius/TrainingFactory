@@ -19,6 +19,19 @@ class MemberRepository extends ServiceEntityRepository
         parent::__construct($registry, Member::class);
     }
 
+     
+    public function getDeelnemers($lessonid)
+    {
+        $em=$this->getEntityManager();
+
+        
+        $query=$em->createQuery("SELECT d FROM Member d WHERE :lessonid MEMBER OF d.lesson");
+
+        $query->setParameter('lessonid',$lessonid);
+
+        return $query->getResult();
+    }
+
     // /**
     //  * @return Member[] Returns an array of Member objects
     //  */

@@ -24,6 +24,26 @@ class LessonRepository extends ServiceEntityRepository
         return $this->findBy(array(), array());
     }
 
+    public function getBeschikbareLessons($memberid)
+    {
+        $em=$this->getEntityManager();
+        $query=$em->createQuery("SELECT a FROM App:lesson a WHERE :memberid NOT MEMBER OF a.member");
+
+        $query->setParameter('memberid',$memberid);
+
+        return $query->getResult();
+    }
+
+    public function getIngeschrevenLessons($memberid)
+    {
+
+        $em=$this->getEntityManager();
+        $query=$em->createQuery("SELECT a FROM App:lesson a WHERE :memberid MEMBER OF a.member");
+
+        $query->setParameter('memberid',$memberid);
+
+        return $query->getResult();
+    }
 
   
 
