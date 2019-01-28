@@ -25,7 +25,7 @@ class MemberRepository extends ServiceEntityRepository
         $em=$this->getEntityManager();
 
         
-        $query=$em->createQuery("SELECT d FROM Member d WHERE :lessonid MEMBER OF d.lesson");
+        $query=$em->createQuery("SELECT d FROM App:Member d WHERE :lessonid MEMBER OF d.lesson");
 
         $query->setParameter('lessonid',$lessonid);
 

@@ -6,6 +6,7 @@ namespace App\Controller;
     use Symfony\Component\Routing\Annotation\Route;
     use App\Entity\Training;
     use App\Entity\Lesson;
+    use App\Entity\Member;
     use App\Form\TrainingType;
     use App\Repository\TrainingRepository;
     use Symfony\Component\HttpFoundation\Response;
@@ -95,13 +96,14 @@ class TrainingController extends Controller
     public function lessons($id): Response
     {
       
-        $repository = $this->getDoctrine()->getRepository(Training::class);
-        $trainingid = $repository->find($id);
+      $repository = $this->getDoctrine()->getRepository(Training::class);
+      $trainingid = $repository->find($id);
+    
 
-        $usr= $this->get('security.token_storage')->getToken()->getUser();
-        
-        $beschikbareLessons= $this->getDoctrine()->getRepository(Lesson::class)->getBeschikbareLessons($usr->getId())->findBy(array('training' => $trainingid ));
-        return $this->render('lesson/index.html.twig', array('beschikbare_Lessons' => $beschikbareLessons));
+        $memberid= $this->get('security.token_storage')->getToken()->getUser();
+       
+        $beschikbareLessons= $this->getDoctrine()->getRepository(Lesson::class)->getBeschikbareLessons($memberid->getId());
+        return $this->render('training/index.html.twig', ['beschikbare_lessons' => $beschikbareLessons]);
   
     }
 
@@ -111,13 +113,15 @@ class TrainingController extends Controller
     public function private($id): Response
     {
       
-        $repository = $this->getDoctrine()->getRepository(Training::class);
-        $trainingid = $repository->find($id);
+      $repository = $this->getDoctrine()->getRepository(Training::class);
+      $trainingid = $repository->find($id);
 
-        $usr= $this->get('security.token_storage')->getToken()->getUser();
+
+
+        $memberid= $this->get('security.token_storage')->getToken()->getUser();
         
-        $ingeschrevenLessons= $this->getDoctrine()->getRepository(Lesson::class)->getIngeschrevenLessons($usr->getId())->findBy(array('training' => $trainingid ));
-        return $this->render('lesson/rooster.html.twig', array('ingeschreven_lessons' => $ingeschrevenLessons));
+        $ingeschrevenLessons= $this->getDoctrine()->getRepository(Lesson::class)->getIngeschrevenLessons($memberid->getId());
+        return $this->render('training/rooster.html.twig', array('ingeschreven_lessons' => $ingeschrevenLessons));
   
     }
 
@@ -132,7 +136,7 @@ class TrainingController extends Controller
             ->getRepository(Lesson::class)
             ->find($id);
         $usr= $this->get('security.token_storage')->getToken()->getUser();
-        $usr->addLesson($lesson);
+        $usr->addRegistration($registration);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($usr);
@@ -150,7 +154,7 @@ class TrainingController extends Controller
             ->getRepository(Lesson::class)
             ->find($id);
         $usr= $this->get('security.token_storage')->getToken()->getUser();
-        $usr->removeLesson($lesson);
+        $usr->removeRegistration($registration);
         $em = $this->getDoctrine()->getManager();
         $em->persist($usr);
         $em->flush();

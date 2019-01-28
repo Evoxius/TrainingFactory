@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Lesson;
+use App\Entity\Member;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -21,26 +22,35 @@ class LessonRepository extends ServiceEntityRepository
 
     public function findAll()
     {
-        return $this->findBy(array(), array());
+        return $this->findBy(array('training' => $trainingid), array('date'=>'ASC'));
     }
 
+
     public function getBeschikbareLessons($memberid)
-    {
+    {  
+        
+
+
         $em=$this->getEntityManager();
-        $query=$em->createQuery("SELECT a FROM App:lesson a WHERE :memberid NOT MEMBER OF a.member");
-
-        $query->setParameter('memberid',$memberid);
-
+        $member=$em->getRepository(Member::class)->findOneBy(['id'=>$memberid]);
+        $query=$em->createQuery("SELECT a FROM App:lesson a WHERE :member Not MEMBER OF a.registration ORDER BY a.date");
+       
+        $query->setParameter('member',$member);
+        
+      
         return $query->getResult();
     }
 
     public function getIngeschrevenLessons($memberid)
     {
+      
 
         $em=$this->getEntityManager();
-        $query=$em->createQuery("SELECT a FROM App:lesson a WHERE :memberid MEMBER OF a.member");
-
-        $query->setParameter('memberid',$memberid);
+        $member=$em->getRepository(Member::class)->findOneBy(['id'=>$memberid]);
+        $query=$em->createQuery("SELECT a FROM App:lesson a WHERE :member MEMBER OF a.registration ORDER BY a.date");
+       
+        $query->setParameter('member',$member);
+       
 
         return $query->getResult();
     }

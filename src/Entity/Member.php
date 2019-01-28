@@ -54,35 +54,30 @@ class Member extends Person
     */
     private $registration;
 
-      /**
-     * One Lesson has Many Activities.
-     * @ORM\OneToMany(targetEntity="App\Entity\Lesson", mappedBy="member")
-     * @ORM\JoinTable(name="Registration")
-     */
-    private $lesson;
+      
 
     public function __construct()
     {
-        $this->lesson = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->registration = new \Doctrine\Common\Collections\ArrayCollection();
         $this->isActive = true;
     }
 
-    public function addLesson(Lesson $a)
+    public function addRegistration(Registration $a)
     {
-        if ($this->lesson->contains($a)) {
+        if ($this->registration->contains($a)) {
 
             return;
         }
 
-        $this->lesson->add($a);
+        $this->registration->add($a);
 
     }
 
-    public function removeLesson(Lesson $a)
+    public function removeRegistration(Registration $a)
     {
-        if (!$this->lesson->contains($a)) {
+        if (!$this->registration->contains($a)) {
             return;
         }
-        $this->lesson->removeElement($a);
+        $this->registration->removeElement($a);
     }
 }

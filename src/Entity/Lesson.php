@@ -146,6 +146,7 @@ class Lesson
     {
         $this->training = new \Doctrine\Common\Collections\ArrayCollection();
         $this->isActive = true;
+        $this->registration = new ArrayCollection();
     }
 
 
@@ -180,16 +181,7 @@ class Lesson
         $this->training->removeElement($training);
     }
 
-    /**
-     * Many Lessons has Many Activities.
-     * @ORM\ManyToOne(targetEntity="App\Entity\Member", inversedBy="lesson")
-     */
-    private $member;
-
-    public function getMember()
-    {
-        return $this->member;
-    }
+    
 
     /**
     * @ORM\OneToMany(targetEntity="App\Entity\Registration", mappedBy="lesson")

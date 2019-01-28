@@ -26,29 +26,33 @@
                 <th>Datum</th>
                 <th>Lokatie</th>
                 <th>Max personen</th>
+                <th>Naam</th>
                 <th>Acties</th>
             </tr>
         </thead>
         <tbody>
-            {% for beschikbare_lessons in beschikbareLessons %}
+            {% for lesson in beschikbare_lessons %}
             <tr>
                 <td>{{ lesson.time|date('H:i') }}</td>
                 <td>{{ lesson.date|date('m/d/Y') }}</td>
                 <td>{{ lesson.location }}</td>
                 <td>{{ lesson.maxpersons }}</td>
+                <td>{{lesson.training.name}}</td>
 
                 <td>
                     <div class="row">
-                        <a href="{{ path('training_addlesson', { 'id': lesson.id }) }}"><i class="fa fa-4x fa-plus" style="color:green; margin-right:5px;"></i></a>
+                        <a href="{{ path('inschrijven', { 'id': lesson.id }) }}"><i class="fa fa-4x fa-plus" style="color:green; margin-right:5px;"></i></a>
                         {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('lesson_edit', {'id': lesson.id}) }}"><i class="fa fa-4x fa-edit" style="color:black;"></i></a>
                         {{ include('lesson/_delete_form.html.twig')}}
                     </div>
-                </td>{% endif %}
+                </td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
 
 </div>
 
