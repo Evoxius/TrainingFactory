@@ -22,22 +22,22 @@
     <table id="lessons" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style=" visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
         <thead>
             <tr>
+                <th>Naam</th>
                 <th>Tijd</th>
                 <th>Datum</th>
                 <th>Lokatie</th>
                 <th>Max personen</th>
-                <th>Naam</th>
-                <th>Acties</th>
+                <th>Inschrijven</th>
             </tr>
         </thead>
         <tbody>
             {% for lesson in beschikbare_lessons %}
             <tr>
+                <td>{{lesson.training.name}}</td>
                 <td>{{ lesson.time|date('H:i') }}</td>
                 <td>{{ lesson.date|date('m/d/Y') }}</td>
                 <td>{{ lesson.location }}</td>
                 <td>{{ lesson.maxpersons }}</td>
-                <td>{{lesson.training.name}}</td>
 
                 <td>
                     <div class="row">
@@ -53,7 +53,9 @@
         </tbody>
     </table>
 
-
+ {% for member in members %}
+  <a class="btn btn-danger" href="{{ path('lesson_private', {'id': member.id}) }}">Jouw rooster</a>
+   {% endfor %}
 </div>
 
 </div>

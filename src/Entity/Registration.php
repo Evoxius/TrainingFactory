@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RegistrationRepository")
@@ -42,7 +43,7 @@ class Registration
     }
 
     /**
-     * One Registration have Many Members.
+     * Many Registration have One Member.
      * @ORM\ManyToOne(targetEntity="App\Entity\Member", inversedBy="registration")
      */
 
@@ -54,13 +55,21 @@ class Registration
         $this->lesson = new ArrayCollection();
     }
 
+    public function setMember(Member $member)
+    {
+        $this->member = $member;
+
+        return $this;
+    }
+
     public function getMember()
     {
         return $this->member;
     }
 
+
     /**
-     * One Registration have Many Members.
+     * Many Registration have One Lesson.
      * @ORM\ManyToOne(targetEntity="App\Entity\Lesson", inversedBy="registration")
      */
 
@@ -69,5 +78,12 @@ class Registration
     public function getLesson()
     {
         return $this->lesson;
+    }
+
+    public function setLesson(Lesson $lesson)
+    {
+        $this->lesson = $lesson;
+
+        return $this;
     }
 }

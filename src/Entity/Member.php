@@ -73,6 +73,13 @@ class Member extends Person
 
     }
 
+    public function setRegistration(Registration $registration)
+    {
+        $this->registration = $registration;
+
+        return $this;
+    }
+
     public function removeRegistration(Registration $a)
     {
         if (!$this->registration->contains($a)) {
@@ -80,4 +87,11 @@ class Member extends Person
         }
         $this->registration->removeElement($a);
     }
+
+     /**
+    * @ORM\OneToMany(targetEntity="App\Entity\Lesson", mappedBy="member")
+    */
+    private $lesson;
+
+    
 }

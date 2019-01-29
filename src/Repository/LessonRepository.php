@@ -30,15 +30,20 @@ class LessonRepository extends ServiceEntityRepository
     {  
         
 
-
+        $memberid=2;
         $em=$this->getEntityManager();
         $member=$em->getRepository(Member::class)->findOneBy(['id'=>$memberid]);
-        $query=$em->createQuery("SELECT a FROM App:lesson a WHERE :member Not MEMBER OF a.registration ORDER BY a.date");
+        //dump($member  ); die;
+      //$query=$em->createQuery("SELECT a FROM App:lesson a WHERE :member MEMBER OF a.registration ORDER BY a.date");
+        $query=$em->createQuery("SELECT l FROM App:lesson l JOIN l.registration r  WHERE  r.member=:member");
        
         $query->setParameter('member',$member);
         
-      
-        return $query->getResult();
+       $ingeschrevenlessen=$query->getResult();
+       $allelessen=$em->getRepository(Member::class)->findAll();
+        $beschikbarelessen=array_diff($ingeschrevenlessen,$allelessen);
+        dump($beschikbarelessen);die();
+        return $beschikbarelessen;
     }
 
     public function getIngeschrevenLessons($memberid)
@@ -47,8 +52,8 @@ class LessonRepository extends ServiceEntityRepository
 
         $em=$this->getEntityManager();
         $member=$em->getRepository(Member::class)->findOneBy(['id'=>$memberid]);
-        $query=$em->createQuery("SELECT a FROM App:lesson a WHERE :member MEMBER OF a.registration ORDER BY a.date");
-       
+        //$query=$em->createQuery("SELECT a FROM App:lesson a WHERE :member MEMBER OF a.registration ORDER BY a.date");
+        $query=$em->createQuery("SELECT l FROM App:lesson l JOIN l.registration r  WHERE r.member=:member");
         $query->setParameter('member',$member);
        
 

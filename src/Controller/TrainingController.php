@@ -6,9 +6,12 @@ namespace App\Controller;
     use Symfony\Component\Routing\Annotation\Route;
     use App\Entity\Training;
     use App\Entity\Lesson;
+    use App\Entity\Registration;
     use App\Entity\Member;
     use App\Form\TrainingType;
     use App\Repository\TrainingRepository;
+    use App\Repository\RegistrationRepository;
+    use App\Repository\MemberRepository;
     use Symfony\Component\HttpFoundation\Response;
     use Symfony\Component\HttpFoundation\Request;
     use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -93,7 +96,7 @@ class TrainingController extends Controller
      /**
      * @Route("/training/{id}/lessons", name="lesson_list", methods={"GET"})
      */
-    public function lessons($id): Response
+    public function lessons($id, MemberRepository $memberRepository, RegistrationRepository $registrationRepository): Response
     {
       
       $repository = $this->getDoctrine()->getRepository(Training::class);
@@ -103,7 +106,7 @@ class TrainingController extends Controller
         $memberid= $this->get('security.token_storage')->getToken()->getUser();
        
         $beschikbareLessons= $this->getDoctrine()->getRepository(Lesson::class)->getBeschikbareLessons($memberid->getId());
-        return $this->render('training/index.html.twig', ['beschikbare_lessons' => $beschikbareLessons]);
+        return $this->render('training/index.html.twig', ['beschikbare_lessons' => $beschikbareLessons, 'members' => $memberRepository->findAll(), 'registrations' => $registrationRepository->findAll()]);
   
     }
 
@@ -125,21 +128,25 @@ class TrainingController extends Controller
   
     }
 
-
      /**
      * @Route("/training/inschrijven/{id}", name="inschrijven")
      */
     public function inschrijvenLessonAction($id)
     {
+      
+      $registration = new Registration();
 
-        $lesson = $this->getDoctrine()
+        $repos = $this->getDoctrine()
             ->getRepository(Lesson::class)
             ->find($id);
+         
         $usr= $this->get('security.token_storage')->getToken()->getUser();
-        $usr->addRegistration($registration);
+        $registration->setLesson($repos);
+        $registration->setMember($usr);
+        $registration->setPayment(false);
 
         $em = $this->getDoctrine()->getManager();
-        $em->persist($usr);
+        $em->persist($registration);
         $em->flush();
 
         return $this->redirectToRoute('lesson_list');
@@ -150,14 +157,19 @@ class TrainingController extends Controller
      */
     public function uitschrijvenLessonAction($id)
     {
-        $lesson = $this->getDoctrine()
-            ->getRepository(Lesson::class)
-            ->find($id);
+
+
+      $repos = $this->getDoctrine()
+      ->getRepository(Lesson::class)
+      ->find($id);
+
         $usr= $this->get('security.token_storage')->getToken()->getUser();
-        $usr->removeRegistration($registration);
+        $usr->removeRegistration($repos);
+        
         $em = $this->getDoctrine()->getManager();
         $em->persist($usr);
         $em->flush();
+
         return $this->redirectToRoute('lesson_private');
     }
 
