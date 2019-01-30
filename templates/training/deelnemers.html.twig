@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Private rooster - TrainingFactory{% endblock %}
+{% block title %}Deelnemers van les - TrainingFactory{% endblock %}
 
 {% block body %}
 <section id="schemas" class="class pad-top-115">
@@ -11,36 +11,29 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="titleText">
                         <h6 class="titleTop">Bekijk</h6>
-                        <h2 class="sectionTitle">jouw <span> rooster,</span> {{ app.user.username }}</h2>
+                        <h2 class="sectionTitle">de <span> deelnemers van deze les,</span> {{ app.user.username }}</h2>
                     </div>
                 </div>
             </div>
         </div>
 </section>
 <div>
-    {% if is_granted('ROLE_MEMBER') %}
-    <a class="btn btn-danger" style="margin-left:20px;" href="{{ path('lesson_list', {'id': app.user.id}) }}">Publieke
-        rooster</a>
-    {% endif %}
-</div>
+
 <div class="container">
     <div class="row">
-        {% if ingeschreven_lessons %}
-        <table id="lessons" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
+        {% if deelnemers %}
+        <table id="deelnemers" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
             <tbody>
-                {% for lesson in ingeschreven_lessons %}
-
+                {% for deelnemer in deelnemers %}
                 <tr>
-
-
                     <!-- Card -->
                     <div class="card" style="width: 15rem; margin-left:20px; margin-top:20px;">
 
                         <!-- Card image -->
                         <div class="view overlay">
-                            <img class="card-img-top" src="{{ asset('images/' ~ lesson.training.image) }}" alt="Image van user">
+                            <img class="card-img-top" src="{{ asset('images/user.png') }}" alt="Image van user">
                             <a tabindex="0" role="button" data-placement="left" data-toggle="popover" data-trigger="focus"
-                                title="Descriptie" data-content=" {{  lesson.training.description  }}">
+                                title="Descriptie" data-content=" {{  deelnemer.roles ? deelnemer.roles|join(', ') : ''  }}">
                                 <div class="mask rgba-white-slight"></div>
                             </a>
                         </div>
@@ -51,20 +44,23 @@
                             <!-- Title -->
 
 
-                            <h4 class="card-title text-center"><b>{{ lesson.training.name }}</b></h4>
+                            <h4 class="card-title text-center"><b>{{ deelnemer.username }}</b></h4>
 
-                            <p class="text-center">
-                                <hr><b>Tijd:</b> {{ lesson.time|date('H:i') }}
-                                <hr> <b>Datum:</b> {{ lesson.date|date('m/d/Y') }}
-                                <hr> <b>Lokatie:</b> {{lesson.location }}
-                                <hr> <b>Max Personen:</b> {{lesson.maxpersons }}
-                            </p>
+                           <p class="text-center">
+                                <hr><b>Voornaam:</b> {{ deelnemer.firstname }}
+                                <hr> <b>Achternaam:</b> {{deelnemer.lastname }} 
+                                <hr> <b>Geboortedatum:</b> {{deelnemer.dateofbirth }}
+                                <hr> <b>Straat:</b> {{deelnemer.street }}
+                                <hr> <b>Woonplaats:</b> {{deelnemer.place }}</p>
                             <!-- Button -->
 
                             <hr>
                             <div class="row" style="margin-left:5px;">
-                                <a href="{{ path('uitschrijven', { 'id': lesson.id }) }}"><i class="fa fa-4x fa-minus"
-                                        style="color:red; margin-right:5px;"></i></a>
+                                {% if is_granted('ROLE_INSTRUCTOR') %}
+                            <a href="{{ path('uitschrijven', { 'id': memdeelnemerber.lesson.id }) }}"><i class="fa fa-4x fa-minus"
+                                        style="color:red; margin-left:70px;"></i></a>
+                                {% else %}
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -78,19 +74,14 @@
 </div>
 {% else %}
 <div class="container class">
-    <div class="card text-white bg-danger mb-3" style="max-width: 20rem;  margin-top:60px;">
+    <div class="card text-white bg-danger mb-3" style="max-width: 20rem;  margin-bottom:300px;">
         <div class="card-header">Sorry!</div>
         <div class="card-body">
-            <h5 class="card-title">Maar er zijn op dit moment geen lessen</h5>
+            <h5 class="card-title">Maar er zijn op dit moment geen deelnemers ingeschreven</h5>
         </div>
     </div>
 </div>
 {% endif %}
 
 
-</div>
-
-
-</div>
-</div>
 {% endblock %}

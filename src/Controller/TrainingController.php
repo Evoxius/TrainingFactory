@@ -107,6 +107,17 @@ class TrainingController extends Controller
   
     }
 
+      /**
+     * @Route("/training/lessons/deelnemers/{id}", name="lesson_deelnemers", methods={"GET"})
+     */
+    public function deelnemers($id): Response
+    {
+
+        $deelnemers= $this->getDoctrine()->getRepository(Member::class)->getDeelnemers($id);
+        return $this->render('training/index.html.twig', ['deelnemers' => $deelnemers]);
+  
+    }
+
      /**
      * @Route("/training/{id}/private", name="lesson_private", methods={"GET"})
      */
@@ -135,7 +146,7 @@ class TrainingController extends Controller
         $usr= $this->get('security.token_storage')->getToken()->getUser();
         $registration->setLesson($repos);
         $registration->setMember($usr);
-        $registration->setPayment(false);
+        $registration->setPayment('4 euro');
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($registration);
