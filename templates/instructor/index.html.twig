@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Private rooster - TrainingFactory{% endblock %}
+{% block title %}Instructor index{% endblock %}
 
 {% block body %}
-<section id="schemas" class="class pad-top-115">
+   <section id="schemas" class="class pad-top-115">
     <div class="container pr">
         <div class="secHead wow fadeInLeft  animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
             <div class="skewpink"></div>
@@ -11,18 +11,25 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="titleText">
                         <h6 class="titleTop">Bekijk</h6>
-                        <h2 class="sectionTitle">jouw <span> rooster,</span> {{ app.user.username }}</h2>
+                        <h2 class="sectionTitle">onze <span> instructors,</span> {{ app.user.username }}</h2>
                     </div>
                 </div>
             </div>
         </div>
 </section>
+
 <div class="container">
+    {% if is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-info" href="{{ path('instructor_new') }}" style="margin-left:10px; margin-bottom: 40px;">Nieuwe
+        instructor
+        toevoegen</a>
+    {% else %}
+    {% endif %}
     <div class="row">
-        {% if ingeschreven_lessons %}
-        <table id="lessons" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
+        {% if instructors %}
+        <table id="instructors" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
             <tbody>
-                {% for lesson in ingeschreven_lessons %}
+                {% for instructor in instructors %}
 
                 <tr>
 
@@ -32,9 +39,9 @@
 
                         <!-- Card image -->
                         <div class="view overlay">
-                            <img class="card-img-top" src="{{ asset('images/' ~ lesson.training.image) }}" alt="Image van user">
+                            <img class="card-img-top" src="{{ asset('images/user.png') }}" alt="Image van user">
                             <a tabindex="0" role="button" data-placement="left" data-toggle="popover" data-trigger="focus"
-                                title="Descriptie" data-content=" {{  lesson.training.description  }}">
+                                title="Descriptie" data-content=" {{  instructor.roles ? instructor.roles|join(', ') : ''  }}">
                                 <div class="mask rgba-white-slight"></div>
                             </a>
                         </div>
@@ -45,20 +52,25 @@
                             <!-- Title -->
 
 
-                            <h4 class="card-title text-center"><b>{{ lesson.training.name }}</b></h4>
+                            <h4 class="card-title text-center"><b>{{ instructor.username }}</b></h4>
 
                             <p class="text-center">
-                                <hr><b>Tijd:</b> {{ lesson.time|date('H:i') }}
-                                <hr> <b>Datum:</b> {{ lesson.date|date('m/d/Y') }}
-                                <hr> <b>Lokatie:</b> {{lesson.location }}
-                                <hr> <b>Max Personen:</b> {{lesson.maxpersons }}
-                            </p>
+                                <hr><b>Voornaam:</b> {{ instructor.firstname }}
+                                <hr> <b>Achternaam:</b> {{instructor.lastname }} 
+                                <hr> <b>Geboortedatum:</b> {{instructor.dateofbirth }}
+                                <hr> <b>Straat:</b> {{instructor.street }}
+                                <hr> <b>Woonplaats:</b> {{instructor.hiring_date }}
+                                <hr> <b>Woonplaats:</b> {{instructor.salary }}
+                                <hr> <b>Woonplaats:</b> {{instructor.social_sec_number }}</p>
                             <!-- Button -->
 
                             <hr>
                             <div class="row" style="margin-left:5px;">
-                                <a href="{{ path('uitschrijven', { 'id': lesson.id }) }}"><i class="fa fa-4x fa-minus"
-                                        style="color:red; margin-right:5px;"></i></a>
+
+                                {% if is_granted('ROLE_ADMIN') %}
+                                {{ include('instructor/_delete_form.html.twig')}}
+                                {% else %}
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -75,16 +87,9 @@
     <div class="card text-white bg-danger mb-3" style="max-width: 20rem;  margin-bottom:300px;">
         <div class="card-header">Sorry!</div>
         <div class="card-body">
-            <h5 class="card-title">Maar er zijn op dit moment geen lessen</h5>
+            <h5 class="card-title">Maar er zijn op dit moment geen instructors</h5>
         </div>
     </div>
 </div>
 {% endif %}
-
-
-</div>
-
-
-</div>
-</div>
 {% endblock %}

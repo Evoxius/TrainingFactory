@@ -519,7 +519,7 @@
 
           <!--Section: Trainingen-->
           <div class="container">
-            {% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted('ROLE_INSTRUCTOR') %}
             <a class="btn btn-info" href="{{ asset('training/new') }}" style="margin-left:10px; margin-bottom: 40px;">Nieuwe
               training
               toevoegen</a>
@@ -560,8 +560,12 @@
                         <!-- Button -->
 
                         <hr>
-                        <div class="row" style="margin-left: 30px;">
-                          {% if is_granted('ROLE_ADMIN') %}
+                        <div class="row" style="margin-left:5px;">
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a href="{{ path('lesson_list', {'id': training.id}) }}"><i class="fa fa-4x fa-folder" style="color:orange; margin-right:10px;"></i></a>
+                        {% else %}
+                          {% endif %}
+                          {% if is_granted('ROLE_INSTRUCTOR') %}
 
                           <a href="{{ path('training_edit', {'id': training.id}) }}"><i class="fa fa-4x fa-edit" style="color:black;"></i></a>
                           {{ include('training/_delete_form.html.twig')}}
@@ -572,7 +576,7 @@
                               style="color:green; margin-right:5px;"></i></a>
                           {% else %}
                           {% endif %}
-                          <a href="{{ path('lesson_list', {'id': training.id}) }}"><i class="fa fa-4x fa-folder" style="color:orange;"></i></a>
+                          
 
                         </div>
 

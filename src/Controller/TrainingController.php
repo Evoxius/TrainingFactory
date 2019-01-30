@@ -52,6 +52,7 @@ class TrainingController extends Controller
      */
     public function addLesson(Request $request, $id): Response
     {
+      $this->denyAccessUnlessGranted('ROLE_INSTRUCTOR', null, 'User tried to access a page without having being an instructor');
       $lesson = new Lesson();
   
       $form = $this->createFormBuilder($lesson)
@@ -96,17 +97,13 @@ class TrainingController extends Controller
      /**
      * @Route("/training/{id}/lessons", name="lesson_list", methods={"GET"})
      */
-    public function lessons($id, MemberRepository $memberRepository, RegistrationRepository $registrationRepository): Response
+    public function lessons($id): Response
     {
-      
-      $repository = $this->getDoctrine()->getRepository(Training::class);
-      $trainingid = $repository->find($id);
-    
 
         $memberid= $this->get('security.token_storage')->getToken()->getUser();
        
         $beschikbareLessons= $this->getDoctrine()->getRepository(Lesson::class)->getBeschikbareLessons($memberid->getId());
-        return $this->render('training/index.html.twig', ['beschikbare_lessons' => $beschikbareLessons, 'members' => $memberRepository->findAll(), 'registrations' => $registrationRepository->findAll()]);
+        return $this->render('training/index.html.twig', ['beschikbare_lessons' => $beschikbareLessons]);
   
     }
 
@@ -115,11 +112,6 @@ class TrainingController extends Controller
      */
     public function private($id): Response
     {
-      
-      $repository = $this->getDoctrine()->getRepository(Training::class);
-      $trainingid = $repository->find($id);
-
-
 
         $memberid= $this->get('security.token_storage')->getToken()->getUser();
         
@@ -185,7 +177,7 @@ class TrainingController extends Controller
      * @Route("/training/new", name="training_new", methods={"GET","POST"})
      */
     public function new(Request $request, FileUploader $fileUploader) {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_INSTRUCTOR', null, 'User tried to access a page without having being an instructor');
         $training = new Training();
   
         $form = $this->createFormBuilder($training)

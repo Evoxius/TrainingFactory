@@ -128,7 +128,10 @@
 
     <script>
         $(document).ready(function () {
-            $('#lessons').DataTable();
+            $('#lessons').DataTable( { 
+                paging:         true,
+                "autoWidth": false,
+            });
             $('.dataTables_length').addClass('bs-select');
         });
     </script>

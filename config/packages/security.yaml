@@ -2,11 +2,13 @@ security:
     encoders:
         Symfony\Component\Security\Core\User\User: plaintext
         App\Entity\Member:
-            algorithm: bcrypt  
+            algorithm: bcrypt
+        App\Entity\Instructor:
+            algorithm: bcrypt    
     providers:
         chain_provider:
             chain:
-                providers: [in_memory, user_db] 
+                providers: [in_memory, user_db, instr_db] 
         in_memory:
             memory:
                 users:
@@ -14,7 +16,11 @@ security:
         user_db:
             entity:
                 class: App\Entity\Member
-                property: username 
+                property: username
+        instr_db:
+            entity:
+                class: App\Entity\Instructor
+                property: username  
 
     firewalls:
         dev:

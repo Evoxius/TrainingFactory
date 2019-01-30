@@ -15,7 +15,8 @@ class Instructor extends Person
 
 
     /**
-     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     * @ORM\Column(type="date")
      */
     private $hiring_date;
 
@@ -29,12 +30,24 @@ class Instructor extends Person
      */
     private $social_sec_number;
 
-    public function getHiringDate(): ?\DateTimeInterface
+      /**
+     * Get hiring_date
+     *
+     * @return \DateTime
+     */
+    public function  getHiringDate()
     {
         return $this->hiring_date;
     }
 
-    public function setHiringDate(\DateTimeInterface $hiring_date): self
+    /**
+     * Set hiring_date
+     *
+     * @param \DateTime $hiring_date
+     *
+     * @return Activiteit
+     */
+    public function setHiringDate($hiring_date)
     {
         $this->hiring_date = $hiring_date;
 

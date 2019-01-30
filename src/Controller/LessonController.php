@@ -38,7 +38,7 @@ class LessonController extends Controller
      * @Route("/{id}/edit", name="lesson_edit", methods={"GET","POST"})
      */
       public function edit(Request $request, $id) {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_INSTRUCTOR', null, 'User tried to access a page without having being an instructor');
         $lesson = new Lesson();
         $lesson = $this->getDoctrine()->getRepository(Lesson::class)->find($id);
   
@@ -51,7 +51,7 @@ class LessonController extends Controller
         ->add('location', TextareaType::class, array('attr' => array('class' => 'form-control')))
         ->add('max_persons', TextareaType::class, array('attr' => array('class' => 'form-control')))
         ->add('save', SubmitType::class, array(
-          'label' => 'Create',
+          'label' => 'Update',
           'attr' => array('class' => 'btn btn-success mt-3')
         ))
         ->getForm();
@@ -63,7 +63,9 @@ class LessonController extends Controller
           $entityManager = $this->getDoctrine()->getManager();
           $entityManager->flush();
   
-          return $this->redirectToRoute('lesson_list');
+          return $this->redirectToRoute('lesson_list', array(
+            'id' => $id
+          ));
         }
   
         $log = new Logger('editLogs');
@@ -82,7 +84,7 @@ class LessonController extends Controller
     /**
      * @Route("/{id}", name="lesson_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Lesson $lesson): Response
+    public function delete(Request $request, Lesson $lesson, $id): Response
     {
         if ($this->isCsrfTokenValid('delete'.$lesson->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -90,6 +92,8 @@ class LessonController extends Controller
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('lesson_list');
+        return $this->redirectToRoute('lesson_list', array(
+          'id' => $id
+        ));
     }
 }

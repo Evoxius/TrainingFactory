@@ -59,8 +59,10 @@ class Person implements UserInterface, \Serializable
      */
     private $lastname;
 
+    
     /**
-     * @ORM\Column(type="string", length=50)
+     * @var \DateTime
+     * @ORM\Column(type="date")
      * @Assert\NotBlank(message="vul geboortedatum in")
      */
     private $dateofbirth;
@@ -143,12 +145,24 @@ class Person implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getDateofbirth(): ?string
+     /**
+     * Get dateofbirth
+     *
+     * @return \DateTime
+     */
+    public function  getDateofbirth()
     {
         return $this->dateofbirth;
     }
 
-    public function setDateofbirth(string $dateofbirth): self
+    /**
+     * Set dateofbirth
+     *
+     * @param \DateTime $dateofbirth
+     *
+     * @return Activiteit
+     */
+    public function setDateofbirth($dateofbirth)
     {
         $this->dateofbirth = $dateofbirth;
 

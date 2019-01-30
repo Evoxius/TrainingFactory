@@ -3,49 +3,93 @@
 {% block title %}Member index{% endblock %}
 
 {% block body %}
-    <h1>Member index</h1>
+<section id="schemas" class="class pad-top-115">
+    <div class="container pr">
+        <div class="secHead wow fadeInLeft  animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+            <div class="skewpink"></div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="titleText">
+                        <h6 class="titleTop">Bekijk</h6>
+                        <h2 class="sectionTitle">onze <span> members,</span> {{ app.user.username }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Roles</th>
-                <th>Firstname</th>
-                <th>Preprovision</th>
-                <th>Lastname</th>
-                <th>Dateofbirth</th>
-                <th>Street</th>
-                <th>Place</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for member in members %}
-            <tr>
-                <td>{{ member.id }}</td>
-                <td>{{ member.username }}</td>
-                <td>{{ member.password }}</td>
-                <td>{{ member.roles ? member.roles|join(', ') : '' }}</td>
-                <td>{{ member.firstname }}</td>
-                <td>{{ member.preprovision }}</td>
-                <td>{{ member.lastname }}</td>
-                <td>{{ member.dateofbirth }}</td>
-                <td>{{ member.street }}</td>
-                <td>{{ member.place }}</td>
-                <td>
-                    <a href="{{ path('member_show', {'id': member.id}) }}">show</a>
-                    <a href="{{ path('member_edit', {'id': member.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="container">
+    {% if is_granted('ROLE_ADMIN') %}
+    <a class="btn btn-info" href="{{ path('member_new') }}" style="margin-left:10px; margin-bottom: 40px;">Nieuwe
+        member
+        toevoegen</a>
+    {% else %}
+    {% endif %}
+    <div class="row">
+        {% if members %}
+        <table id="members" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
+            <tbody>
+                {% for member in members %}
 
-    <a href="{{ path('member_new') }}">Create new</a>
+                <tr>
+
+
+                    <!-- Card -->
+                    <div class="card" style="width: 19rem; margin-left:20px; margin-top:20px;">
+
+                        <!-- Card image -->
+                        <div class="view overlay">
+                            <img class="card-img-top" src="{{ asset('images/user.png') }}" alt="Image van user">
+                            <a tabindex="0" role="button" data-placement="left" data-toggle="popover" data-trigger="focus"
+                                title="Descriptie" data-content=" {{  member.roles ? member.roles|join(', ') : ''  }}">
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
+                        </div>
+
+                        <!-- Card content -->
+                        <div class="card-body" style="">
+
+                            <!-- Title -->
+
+
+                            <h4 class="card-title text-center"><b>{{ member.username }}</b></h4>
+
+                            <p class="text-center">
+                                <hr><b>Voornaam:</b> {{ member.firstname }}
+                                <hr> <b>Achternaam:</b> {{member.lastname }} 
+                                <hr> <b>Geboortedatum:</b> {{member.dateofbirth }}
+                                <hr> <b>Straat:</b> {{member.street }}
+                                <hr> <b>Woonplaats:</b> {{member.place }}</p>
+                            <!-- Button -->
+
+                            <hr>
+                            <div class="row" style="margin-left:5px;">
+
+                                {% if is_granted('ROLE_ADMIN') %}
+                                {{ include('member/_delete_form.html.twig')}}
+                                {% else %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card -->
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% else %}
+<div class="container class">
+    <div class="card text-white bg-danger mb-3" style="max-width: 20rem;  margin-bottom:300px;">
+        <div class="card-header">Sorry!</div>
+        <div class="card-body">
+            <h5 class="card-title">Maar er zijn op dit moment geen members</h5>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
 {% endblock %}
