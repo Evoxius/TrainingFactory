@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Registration;
+use App\Entity\Lesson;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -17,6 +18,17 @@ class RegistrationRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Registration::class);
+    }
+
+    public function getRegistration($id,$usr) {
+        $em=$this->getEntityManager();
+        
+        $lesson = $em->getRepository(Lesson::class)->findOneBy(['id'=>$id]);
+        $query=$em->createQuery("SELECT r FROM App:registration r WHERE r.member = :usr AND r.lesson = :lesson");
+        $query->setParameter('usr',$usr);
+        $query->setParameter('lesson',$lesson);
+        return $query->getResult();
+
     }
 
     // /**

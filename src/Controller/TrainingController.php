@@ -156,20 +156,21 @@ class TrainingController extends Controller
 
      /**
      * @Route("/training/uitschrijven/{id}", name="uitschrijven")
-     * @Method("DELETE")
      */
     public function uitschrijvenLessonAction($id)
     {
+      $usr=$this->getUser();
+      $repos=$this->getDoctrine()->getManager()->getRepository(Registration::class)->getRegistration($id,$usr);
+      //dump($repos);die();
+      //$repos = $this->getDoctrine()
+      //->getRepository(Registration::class)
+      //->getRegistration($id);
 
-      $repos = $this->getDoctrine()
-      ->getRepository(Registration::class)
-      ->find($id);
-
-        $usr= $this->get('security.token_storage')->getToken()->getUser();
-        $usr->removeRegistration($repos);
+       // $usr= $this->get('security.token_storage')->getToken()->getUser();
+        //$usr->removeRegistration($repos);
         
         $em = $this->getDoctrine()->getManager();
-        $em->persist($usr);
+        $em->remove($repos[0]);
         $em->flush();
 
         return $this->redirectToRoute('lesson_private', [

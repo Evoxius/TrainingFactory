@@ -80,9 +80,9 @@ class Member extends Person
         return $this;
     }
 
-    public function removeRegistration(Registration $registration, $id)
+    public function removeRegistration(Registration $registration)
     {
-        $this->lesson->removeElement($registration);
+        $this->registration->removeElement($registration);
     }
 
      /**
