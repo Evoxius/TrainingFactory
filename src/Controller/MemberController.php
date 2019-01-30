@@ -87,7 +87,9 @@ class MemberController extends AbstractController
         ))
         ->add('firstname',TextType::class, array('label' => 'First name'))
         ->add('lastname',TextType::class, array('label' => 'Last name'))
-        ->add('dateofbirth', TextType::class, array('label' => 'Date of Birth'))
+        ->add('dateofbirth', DateType::class, ['attr' => ['class' => 'js-datepicker', 'placeholder'=>'dd-mm-yyyy'],
+        'widget'=>'single_text', 'html5' => false, 'format'=> 'dd-MM-yyyy'
+           ])
         ->add('street',TextType::class, array('label' => 'Street'))
         ->add('place',TextType::class, array('label' => 'Place'))
         ->add('preprovision')

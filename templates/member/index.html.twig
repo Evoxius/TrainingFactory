@@ -57,7 +57,7 @@
                             <p class="text-center">
                                 <hr><b>Voornaam:</b> {{ member.firstname }}
                                 <hr> <b>Achternaam:</b> {{member.lastname }} 
-                                <hr> <b>Geboortedatum:</b> {{member.dateofbirth }}
+                                <hr> <b>Geboortedatum:</b> {{member.dateofbirth|date('m/d/Y') }}
                                 <hr> <b>Straat:</b> {{member.street }}
                                 <hr> <b>Woonplaats:</b> {{member.place }}</p>
                             <!-- Button -->
@@ -82,7 +82,7 @@
 </div>
 {% else %}
 <div class="container class">
-    <div class="card text-white bg-danger mb-3" style="max-width: 20rem;  margin-bottom:300px;">
+    <div class="card text-white bg-danger mb-3" style="max-width: 20rem;  margin-top:70px;">
         <div class="card-header">Sorry!</div>
         <div class="card-body">
             <h5 class="card-title">Maar er zijn op dit moment geen members</h5>

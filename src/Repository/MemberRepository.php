@@ -20,14 +20,14 @@ class MemberRepository extends ServiceEntityRepository
     }
 
      
-    public function getDeelnemers($id)
+    public function getDeelnemers($lessonid)
     {
         $em=$this->getEntityManager();
 
         
-        $query=$em->createQuery("SELECT d FROM App:Member d WHERE :id MEMBER OF d.lesson");
+        $query=$em->createQuery("SELECT d FROM App:Member d WHERE :lessonid MEMBER OF d.lesson");
 
-        $query->setParameter('id',$id);
+        $query->setParameter('lessonid',$lessonid);
 
         return $query->getResult();
     }

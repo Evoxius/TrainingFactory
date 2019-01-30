@@ -114,7 +114,7 @@ class TrainingController extends Controller
     {
 
         $deelnemers= $this->getDoctrine()->getRepository(Member::class)->getDeelnemers($id);
-        return $this->render('training/index.html.twig', ['deelnemers' => $deelnemers]);
+        return $this->render('training/deelnemers.html.twig', ['deelnemers' => $deelnemers]);
   
     }
 

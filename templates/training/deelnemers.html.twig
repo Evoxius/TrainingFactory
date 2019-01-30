@@ -24,7 +24,7 @@
         {% if deelnemers %}
         <table id="deelnemers" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
             <tbody>
-                {% for deelnemer in deelnemers %}
+                {% for member in deelnemers %}
                 <tr>
                     <!-- Card -->
                     <div class="card" style="width: 15rem; margin-left:20px; margin-top:20px;">
@@ -33,7 +33,7 @@
                         <div class="view overlay">
                             <img class="card-img-top" src="{{ asset('images/user.png') }}" alt="Image van user">
                             <a tabindex="0" role="button" data-placement="left" data-toggle="popover" data-trigger="focus"
-                                title="Descriptie" data-content=" {{  deelnemer.roles ? deelnemer.roles|join(', ') : ''  }}">
+                                title="Descriptie" data-content=" {{  member.roles ? member.roles|join(', ') : ''  }}">
                                 <div class="mask rgba-white-slight"></div>
                             </a>
                         </div>
@@ -44,20 +44,20 @@
                             <!-- Title -->
 
 
-                            <h4 class="card-title text-center"><b>{{ deelnemer.username }}</b></h4>
+                            <h4 class="card-title text-center"><b>{{ member.username }}</b></h4>
 
                            <p class="text-center">
-                                <hr><b>Voornaam:</b> {{ deelnemer.firstname }}
-                                <hr> <b>Achternaam:</b> {{deelnemer.lastname }} 
-                                <hr> <b>Geboortedatum:</b> {{deelnemer.dateofbirth }}
-                                <hr> <b>Straat:</b> {{deelnemer.street }}
-                                <hr> <b>Woonplaats:</b> {{deelnemer.place }}</p>
+                                <hr><b>Voornaam:</b> {{ member.firstname }}
+                                <hr> <b>Achternaam:</b> {{member.lastname }} 
+                                <hr> <b>Geboortedatum:</b> {{member.dateofbirth }}
+                                <hr> <b>Straat:</b> {{member.street }}
+                                <hr> <b>Woonplaats:</b> {{member.place }}</p>
                             <!-- Button -->
 
                             <hr>
                             <div class="row" style="margin-left:5px;">
                                 {% if is_granted('ROLE_INSTRUCTOR') %}
-                            <a href="{{ path('uitschrijven', { 'id': memdeelnemerber.lesson.id }) }}"><i class="fa fa-4x fa-minus"
+                            <a href="{{ path('uitschrijven', { 'id': member.lesson.id }) }}"><i class="fa fa-4x fa-minus"
                                         style="color:red; margin-left:70px;"></i></a>
                                 {% else %}
                                 {% endif %}
@@ -74,7 +74,7 @@
 </div>
 {% else %}
 <div class="container class">
-    <div class="card text-white bg-danger mb-3" style="max-width: 20rem;  margin-bottom:300px;">
+    <div class="card text-white bg-danger mb-3" style="max-width: 20rem;   margin-top:70px;">
         <div class="card-header">Sorry!</div>
         <div class="card-body">
             <h5 class="card-title">Maar er zijn op dit moment geen deelnemers ingeschreven</h5>
@@ -82,6 +82,8 @@
     </div>
 </div>
 {% endif %}
+</div>
+</div>
 
 
 {% endblock %}
