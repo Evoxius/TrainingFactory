@@ -32,10 +32,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Begint om: {{ lesson.time|date('H:i') }}</h5>
                             <p class="card-title text-white">Begint in: {{ lesson.location }}</p>
-                            
-                            <div class="row" style="margin-left:3px;">
-                                {{ include('lesson/_delete_form.html.twig')}}
-                            </div>
+
 
                             <a href="{{ path('uitschrijven', {'id':lesson.id}) }}" >
                                <span class="fa fa-minus" style="color:red; float:right;"></span>

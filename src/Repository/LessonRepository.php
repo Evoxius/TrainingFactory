@@ -30,19 +30,26 @@ class LessonRepository extends ServiceEntityRepository
     {  
         
 
-        $memberid=2;
+        //$memberid=2;
         $em=$this->getEntityManager();
         $member=$em->getRepository(Member::class)->findOneBy(['id'=>$memberid]);
-        //dump($member  ); die;
-      //$query=$em->createQuery("SELECT a FROM App:lesson a WHERE :member MEMBER OF a.registration ORDER BY a.date");
+        $query=$em->createQuery("SELECT l FROM App:lesson l WHERE NOT EXISTS (SELECT IDENTITY(r.lesson) FROM App:registration r WHERE r.member=:member AND r.lesson=l)");
+        $query->setParameter('member',$member);
+        $beschikbarelessen=$query->getResult();
+
+       /*
         $query=$em->createQuery("SELECT l FROM App:lesson l JOIN l.registration r  WHERE  r.member=:member");
        
         $query->setParameter('member',$member);
         
        $ingeschrevenlessen=$query->getResult();
        $allelessen=$em->getRepository(Member::class)->findAll();
-        $beschikbarelessen=array_diff($ingeschrevenlessen,$allelessen);
-        dump($beschikbarelessen);die();
+        $beschikbarelessen=array_udiff($allelessen,$ingeschrevenlessen,
+        function ($i, $a) {
+            return $i->getId() - $a->getId();
+        }
+      );*/
+
         return $beschikbarelessen;
     }
 
@@ -53,7 +60,7 @@ class LessonRepository extends ServiceEntityRepository
         $em=$this->getEntityManager();
         $member=$em->getRepository(Member::class)->findOneBy(['id'=>$memberid]);
         //$query=$em->createQuery("SELECT a FROM App:lesson a WHERE :member MEMBER OF a.registration ORDER BY a.date");
-        $query=$em->createQuery("SELECT l FROM App:lesson l JOIN l.registration r  WHERE r.member=:member");
+        $query=$em->createQuery("SELECT l FROM App:lesson l WHERE EXISTS (SELECT IDENTITY(r.lesson) FROM App:registration r WHERE r.member=:member AND r.lesson=l)");
         $query->setParameter('member',$member);
        
 

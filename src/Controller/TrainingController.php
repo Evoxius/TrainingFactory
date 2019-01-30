@@ -149,18 +149,20 @@ class TrainingController extends Controller
         $em->persist($registration);
         $em->flush();
 
-        return $this->redirectToRoute('lesson_list');
+        return $this->redirectToRoute('lesson_list', [
+          'id' => $id,
+      ]);
     }
 
      /**
      * @Route("/training/uitschrijven/{id}", name="uitschrijven")
+     * @Method("DELETE")
      */
     public function uitschrijvenLessonAction($id)
     {
 
-
       $repos = $this->getDoctrine()
-      ->getRepository(Lesson::class)
+      ->getRepository(Registration::class)
       ->find($id);
 
         $usr= $this->get('security.token_storage')->getToken()->getUser();
@@ -170,7 +172,9 @@ class TrainingController extends Controller
         $em->persist($usr);
         $em->flush();
 
-        return $this->redirectToRoute('lesson_private');
+        return $this->redirectToRoute('lesson_private', [
+          'id' => $id,
+      ]);
     }
 
 
