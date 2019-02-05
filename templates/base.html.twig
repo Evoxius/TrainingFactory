@@ -79,7 +79,6 @@
         // Animations initialization
         new WOW().init();
     </script>
-    <!-- Jquery plugins and such -->
     <script src="{{ asset('js/jquery.fancybox.js') }}"></script>
     <script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
     <script src="{{ asset('js/modernizr.js') }}"></script>
@@ -131,6 +130,7 @@
             $('#lessons').DataTable( { 
                 paging:         true,
                 "autoWidth": false,
+                
             });
             $('.dataTables_length').addClass('bs-select');
         });

@@ -197,5 +197,10 @@ class Lesson
     */
     private $registration;
 
+    public function getRegistration()
+    {
+        return $this->registration;
+    }
+
     
 }

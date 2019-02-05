@@ -91,4 +91,8 @@ class Member extends Person
     private $lesson;
 
     
+    public function getLesson()
+    {
+        return $this->lesson;
+    }
 }

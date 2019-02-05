@@ -27,7 +27,7 @@
     <div class="row">
         {% if ingeschreven_lessons %}
         <table id="lessons" class="table table-striped fadeInLeft animated" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft; margin-top:20px;">
-            <tbody>
+            <tbody> 
                 {% for lesson in ingeschreven_lessons %}
 
                 <tr>
@@ -58,6 +58,7 @@
                                 <hr> <b>Datum:</b> {{ lesson.date|date('m/d/Y') }}
                                 <hr> <b>Lokatie:</b> {{lesson.location }}
                                 <hr> <b>Max Personen:</b> {{lesson.maxpersons }}
+                                <hr> <b>Ingeschreven members:</b> {{ lesson.registration|length }}
                             </p>
                             <!-- Button -->
 
