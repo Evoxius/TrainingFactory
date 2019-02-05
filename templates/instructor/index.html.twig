@@ -57,11 +57,11 @@
                             <p class="text-center">
                                 <hr><b>Voornaam:</b> {{ instructor.firstname }}
                                 <hr> <b>Achternaam:</b> {{instructor.lastname }} 
-                                <hr> <b>Geboortedatum:</b> {{instructor.dateofbirth }}
-                                <hr> <b>Straat:</b> {{instructor.street }}
-                                <hr> <b>Woonplaats:</b> {{instructor.hiring_date }}
-                                <hr> <b>Woonplaats:</b> {{instructor.salary }}
-                                <hr> <b>Woonplaats:</b> {{instructor.social_sec_number }}</p>
+                                <hr> <b>Geboortedatum:</b> {{instructor.dateofbirth|date('m/d/Y') }}
+                            
+                                <hr> <b>Huur datum:</b> {{instructor.HiringDate|date('m/d/Y') }}
+                                <hr> <b>Salary:</b> {{instructor.salary }}
+                                <hr> <b>Social sec number:</b> {{instructor.SocialSecNumber }}</p>
                             <!-- Button -->
 
                             <hr>
